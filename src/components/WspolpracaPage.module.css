@@ -1,0 +1,433 @@
+/* ═══════════════════════════════════════════════════════
+   WspolpracaPage.module.css
+   /wspolpraca — storytelling timeline page
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Hero ── */
+.hero {
+    position: relative;
+    min-height: calc(100vh - 64px - 240px);
+    margin-top: 64px;
+    background: var(--apx-black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 80px 40px;
+}
+
+.heroInner {
+    max-width: 1440px;
+    width: 100%;
+}
+
+.backLink {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    margin-bottom: 40px;
+    transition: color 0.2s ease;
+}
+
+.backLink:hover {
+    color: var(--apx-white);
+}
+
+.heroLabel {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--apx-red);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.heroTitle {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--apx-white);
+    margin-bottom: 1.5rem;
+}
+
+.accent {
+    color: var(--apx-red);
+}
+
+.heroDesc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    color: #777;
+    max-width: 560px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   TIMELINE / STORYTELLING SECTION
+   ═══════════════════════════════════════════════════════ */
+.timelineSection {
+    background: var(--apx-white);
+    padding: 120px 80px;
+}
+
+.timelineInner {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.timelineLabel {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--apx-red);
+    margin-bottom: 16px;
+}
+
+.timelineHeading {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--apx-black);
+    margin-bottom: 16px;
+}
+
+.timelineSubhead {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    max-width: 640px;
+    margin-bottom: 80px;
+}
+
+/* Timeline steps container */
+.timelineSteps {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Vertical connector line */
+.timelineSteps::before {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 40px;
+    bottom: 40px;
+    width: 2px;
+    background: linear-gradient(to bottom,
+            var(--apx-red) 0%,
+            rgba(210, 40, 40, 0.15) 100%);
+}
+
+/* Individual step card */
+.timelineStep {
+    position: relative;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 48px;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.timelineStep:last-child {
+    border-bottom: none;
+}
+
+/* Step number circle */
+.stepNumberWrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.stepNumber {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--apx-black);
+    color: var(--apx-white);
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.timelineStep:hover .stepNumber {
+    background: var(--apx-red);
+    transform: scale(1.05);
+}
+
+/* Step content */
+.stepContent {
+    padding-top: 8px;
+}
+
+.stepTitle {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--apx-black);
+    margin-bottom: 16px;
+    transition: color 0.2s ease;
+}
+
+.timelineStep:hover .stepTitle {
+    color: var(--apx-red);
+}
+
+.stepDesc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    color: #555;
+    margin-bottom: 24px;
+    max-width: 600px;
+}
+
+/* Bullet points within step */
+.stepDetails {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stepDetailItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.stepBullet {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    background: var(--apx-red);
+    margin-top: 7px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   "WHAT NEXT?" BRIDGE SECTION
+   ═══════════════════════════════════════════════════════ */
+.bridgeSection {
+    background: var(--apx-grey);
+    padding: 80px 80px;
+}
+
+.bridgeInner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.bridgeTitle {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 400;
+    color: var(--apx-black);
+    margin-bottom: 20px;
+}
+
+.bridgeDesc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CTA SECTION
+   ═══════════════════════════════════════════════════════ */
+.ctaSection {
+    background: var(--apx-black);
+    padding: 120px 80px;
+    text-align: center;
+}
+
+.ctaInner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.ctaTitle {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--apx-white);
+    margin-bottom: 24px;
+}
+
+.ctaDesc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: #999;
+    margin-bottom: 40px;
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    padding: 0 40px;
+    background: var(--apx-red);
+    color: var(--apx-white);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.ctaButton:hover {
+    background: #e62e2e;
+    transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════
+   INLINE CTA BANNER — reusable across subpages
+   ═══════════════════════════════════════════════════════ */
+.wspBanner {
+    background: var(--apx-white);
+    padding: 80px 80px;
+}
+
+.wspBannerInner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 48px 56px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-left: 4px solid var(--apx-red);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wspBannerInner:hover {
+    border-color: var(--apx-red);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+.wspBannerText {
+    flex: 1;
+}
+
+.wspBannerTitle {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--apx-black);
+    margin-bottom: 8px;
+}
+
+.wspBannerDesc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.wspBannerLink {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 32px;
+    background: var(--apx-black);
+    color: var(--apx-white);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.wspBannerLink:hover {
+    background: var(--apx-red);
+    transform: translateY(-2px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .hero {
+        padding: 116px 24px 60px;
+    }
+
+    .timelineSection {
+        padding: 60px 24px;
+    }
+
+    .timelineSteps::before {
+        left: 24px;
+    }
+
+    .timelineStep {
+        grid-template-columns: 48px 1fr;
+        gap: 24px;
+        padding: 32px 0;
+    }
+
+    .stepNumber {
+        width: 48px;
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .stepTitle {
+        font-size: 20px;
+    }
+
+    .bridgeSection {
+        padding: 60px 24px;
+    }
+
+    .ctaSection {
+        padding: 60px 24px;
+    }
+
+    .wspBanner {
+        padding: 40px 24px;
+    }
+
+    .wspBannerInner {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+    }
+}

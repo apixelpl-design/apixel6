@@ -1,0 +1,130 @@
+/* ═══════════════════════════════════════════════════════
+   Hero.module.css — Editorial Minimal
+   Adjusted for fixed navbar (64px) and viewport framing
+   ═══════════════════════════════════════════════════════ */
+
+.hero {
+    position: relative;
+    /* Hero fills viewport minus navbar, minus exact space for services padding + label + heading */
+    min-height: calc(100vh - 64px - 240px);
+    margin-top: 64px;
+    /* offset for fixed navbar */
+    background: var(--apx-black);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ── Content ── */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 80px 40px;
+    gap: 0;
+}
+
+/* ── Heading ── */
+.heading {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 300;
+    color: var(--apx-white);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-top: 28px;
+    max-width: 700px;
+}
+
+.headingAccent {
+    color: var(--apx-red);
+}
+
+/* ── Red accent bar ── */
+.accentBar {
+    width: 56px;
+    height: 3px;
+    background: var(--apx-red);
+    margin-top: 20px;
+}
+
+/* ── Subtitle ── */
+.subtitle {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: #777;
+    line-height: 1.75;
+    margin-top: 16px;
+    max-width: 440px;
+    letter-spacing: 0.01em;
+}
+
+/* ── CTA Button ── */
+.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 14px 32px;
+    background: var(--apx-red);
+    color: var(--apx-white);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    width: fit-content;
+}
+
+.cta:hover {
+    background: var(--apx-dark-red);
+    transform: translateX(4px);
+}
+
+.cta:focus-visible {
+    outline: 2px solid var(--apx-red);
+    outline-offset: 3px;
+}
+
+.ctaArrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+    animation: arrowPulse 2s ease-in-out infinite;
+}
+
+.cta:hover .ctaArrow {
+    transform: translateX(4px);
+}
+
+/* ── Gradient strip ── */
+.gradientStrip {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(to right, var(--apx-red), var(--apx-dark-red), var(--apx-black));
+    flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .hero {
+        margin-top: 56px;
+        min-height: calc(100vh - 56px - 160px);
+    }
+
+    .content {
+        padding: 0 24px 32px;
+    }
+
+    .heading {
+        font-size: clamp(28px, 8vw, 48px);
+        margin-top: 24px;
+    }
+
+    .subtitle {
+        font-size: 15px;
+    }
+}

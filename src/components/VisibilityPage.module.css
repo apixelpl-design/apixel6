@@ -1,0 +1,312 @@
+/* ═══════════════════════════════════════════════════════
+   VisibilityPage.module.css
+   /widocznosc detail page
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Hero ── */
+.hero {
+    position: relative;
+    min-height: calc(100vh - 64px - 240px);
+    margin-top: 64px;
+    background: var(--apx-black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 80px 40px;
+}
+
+.heroInner {
+    max-width: 1440px;
+    width: 100%;
+}
+
+.backLink {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    margin-bottom: 40px;
+    transition: color 0.2s ease;
+}
+
+.backLink:hover {
+    color: var(--apx-white);
+}
+
+.heroLabel {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--apx-red);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.heroTitle {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--apx-white);
+    margin-bottom: 1.5rem;
+}
+
+.accent {
+    color: var(--apx-red);
+}
+
+.heroDesc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    color: #777;
+    max-width: 560px;
+}
+
+/* ── Shared section wrapper ── */
+.sectionInner {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.sectionLabel {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--apx-red);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.sectionHeading {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--apx-black);
+    margin-bottom: 40px;
+}
+
+/* ── Problem section ── */
+.problemSection {
+    background: var(--apx-white);
+    padding: 100px 80px;
+}
+
+.problemGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.bodyText {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--apx-text-light);
+    margin-bottom: 20px;
+}
+
+.bodyText strong {
+    color: var(--apx-black);
+    font-weight: 600;
+}
+
+/* ── Process section ── */
+.processSection {
+    background: var(--apx-white);
+    padding: 0 80px 100px;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.accordionItem {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.accordionHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 20px 0;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+    color: var(--apx-black);
+    transition: color 0.2s ease;
+}
+
+.accordionHeader:hover {
+    color: var(--apx-red);
+}
+
+.accordionTitle {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.accordionIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--apx-red);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.isOpen .accordionIcon {
+    transform: rotate(180deg);
+}
+
+.isOpen .accordionHeader {
+    color: var(--apx-red);
+}
+
+.accordionContent {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--apx-text-light);
+    padding-bottom: 24px;
+    padding-right: 24px;
+    /* leave space for the icon */
+}
+
+
+/* ── Deliverables section ── */
+.deliverablesSection {
+    background: var(--apx-grey);
+    padding: 100px 80px;
+}
+
+.delGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.delCard {
+    background: var(--apx-white);
+    padding: 32px;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
+}
+
+.delCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+}
+
+.delIcon {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.delTitle {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--apx-black);
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+}
+
+.delDesc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--apx-text-light);
+}
+
+/* ── CTA section ── */
+.ctaSection {
+    background: var(--apx-black);
+    padding: 100px 80px;
+    text-align: center;
+}
+
+.ctaSection .sectionInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ctaTitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--apx-white);
+    margin-bottom: 1rem;
+}
+
+.ctaDesc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 2rem;
+    max-width: 440px;
+}
+
+.ctaButton {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 16px 40px;
+    background: var(--apx-red);
+    color: var(--apx-white);
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.ctaButton:hover {
+    background: var(--apx-dark-red);
+    transform: translateY(-2px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .hero {
+        padding: 116px 24px 60px;
+    }
+
+    .problemSection {
+        padding: 60px 24px;
+    }
+
+    .problemGrid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .deliverablesSection {
+        padding: 60px 24px;
+    }
+
+    .delGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .ctaSection {
+        padding: 60px 24px;
+    }
+}

@@ -1,0 +1,410 @@
+/* ═══════════════════════════════════════════════════════
+   Services.module.css
+   ═══════════════════════════════════════════════════════ */
+
+.section {
+    padding: 80px 80px 100px;
+    background: var(--apx-grey);
+}
+
+/* ── Section label ── */
+.sectionLabel {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.labelNumber {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--apx-red);
+    text-transform: uppercase;
+}
+
+.labelLine {
+    width: 32px;
+    height: 1px;
+    background: var(--apx-red);
+}
+
+.labelText {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--apx-black);
+    text-transform: uppercase;
+}
+
+/* ── Header row ── */
+.headerRow {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+}
+
+.heading {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.8vw, 42px);
+    font-weight: 500;
+    color: var(--apx-black);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.headerDesc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: #666;
+    max-width: 300px;
+    text-align: right;
+    line-height: 1.65;
+}
+
+/* ── Intro block ── */
+.introBlock {
+    max-width: 720px;
+    margin-bottom: 48px;
+}
+
+.introText {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.75;
+    color: #444;
+}
+
+.introText strong {
+    color: var(--apx-black);
+    font-weight: 600;
+}
+
+/* ── Cards grid ── */
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+}
+
+/* ── Card base ── */
+.card {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
+}
+
+.card {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ── Card "dowiedz się więcej" link ── */
+.cardLink {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: right;
+    margin-top: 16px;
+    opacity: 0.4;
+    transition: opacity 0.25s ease;
+}
+
+.card:hover .cardLink {
+    opacity: 1;
+}
+
+/* ── Card strip ── */
+.cardStrip {
+    height: 4px;
+    flex-shrink: 0;
+}
+
+/* ── Card content ── */
+.cardContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+}
+
+/* ── Card top row ── */
+.cardTopRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+/* ── Card number ── */
+.cardNumber {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+}
+
+/* ── Card badge ── */
+.cardBadge {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+}
+
+/* ── Card title ── */
+.cardTitle {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+}
+
+.cardSubtitle {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+}
+
+/* ── Card bridge ── */
+.cardBridge {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: auto;
+    margin-bottom: 16px;
+}
+
+.bridgeLine {
+    width: 32px;
+    height: 1px;
+    background: var(--apx-red);
+}
+
+.bridgeText {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* ── Card list ── */
+.cardList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.cardItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 10px 0;
+    border-top: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.cardBullet {
+    font-size: 10px;
+    margin-top: 4px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* ════════════════════════
+   Variant: BLACK
+   ════════════════════════ */
+.black {
+    background: var(--apx-black);
+}
+
+.black .cardStrip {
+    background: var(--apx-red);
+}
+
+.black .cardNumber {
+    color: #888;
+}
+
+.black .cardBadge {
+    background: var(--apx-red);
+    color: var(--apx-white);
+}
+
+.black .cardTitle,
+.black .cardSubtitle {
+    color: var(--apx-white);
+}
+
+.black .bridgeText {
+    color: #888;
+}
+
+.black .cardLink {
+    color: var(--apx-white);
+    opacity: 0.5;
+}
+
+.black:hover .cardLink {
+    opacity: 1;
+}
+
+.black .cardItem {
+    color: #ccc;
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.black .cardBullet {
+    color: var(--apx-red);
+}
+
+/* Unify text wrapping inside the wide black card */
+@media (min-width: 1025px) {
+
+    .black .cardTitle,
+    .black .cardSubtitle,
+    .black .cardBridge,
+    .black .cardList {
+        max-width: 60%;
+    }
+}
+
+/* ════════════════════════
+   Variant: WHITE
+   ════════════════════════ */
+.white {
+    background: var(--apx-white);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.white .cardStrip {
+    background: var(--apx-black);
+}
+
+.white .cardNumber {
+    color: #bbb;
+}
+
+.white .cardBadge {
+    background: var(--apx-grey);
+    color: var(--apx-black);
+}
+
+.white .cardTitle,
+.white .cardSubtitle {
+    color: var(--apx-black);
+}
+
+.white .bridgeText {
+    color: #888;
+}
+
+.white .cardItem {
+    color: var(--apx-text-light);
+    border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+.white .cardBullet {
+    color: var(--apx-black);
+}
+
+/* ════════════════════════
+   Variant: RED
+   ════════════════════════ */
+.red {
+    background: var(--apx-red);
+}
+
+.red .cardStrip {
+    background: var(--apx-dark-red);
+}
+
+.red .cardNumber {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.red .cardBadge {
+    background: var(--apx-white);
+    color: var(--apx-red);
+}
+
+.red .cardTitle,
+.red .cardSubtitle {
+    color: var(--apx-white);
+}
+
+.red .bridgeText {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.red .bridgeLine {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.red .cardItem {
+    color: rgba(255, 255, 255, 0.9);
+    border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.red .cardBullet {
+    color: var(--apx-white);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card:first-child {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 24px 80px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin: 0 auto;
+    }
+
+    .card:first-child {
+        grid-column: span 1;
+    }
+
+    .headerRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .headerDesc {
+        text-align: left;
+    }
+}
