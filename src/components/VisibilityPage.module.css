@@ -298,6 +298,10 @@
         gap: 32px;
     }
 
+    .processSection {
+        padding: 0 24px 60px;
+    }
+
     .deliverablesSection {
         padding: 60px 24px;
     }

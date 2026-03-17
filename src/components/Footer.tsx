@@ -12,10 +12,6 @@ export function Footer() {
                     <img src="/src/assets/logo-red.png" alt="APIXEL Logo" className={styles.logo} />
                     <div className={styles.brandInfo}>
                         <p>Proste, szczere i skuteczne.</p>
-                        <p className={styles.legalInfo}>
-                            NIP: 000-000-00-00<br />
-                            REGON: 000000000
-                        </p>
                     </div>
                 </div>
 
@@ -44,10 +40,22 @@ export function Footer() {
                     <h4 className={styles.colTitle}>KONTAKT</h4>
                     <ul className={styles.linkList}>
                         <li><a href="mailto:kontakt@apixel.pl">kontakt@apixel.pl</a></li>
-                        <li><a href="tel:+48123456789">+48 123 456 789</a></li>
-                        <li className={styles.socialSpacer}></li>
-                        <li><a href="#linkedin">LinkedIn</a></li>
-                        <li><a href="#instagram">Instagram</a></li>
+                        <li><a href="tel:+48732737786">732 737 786</a></li>
+                        <li className={styles.addressBlock}>
+                            Karmelicka 17a<br />
+                            00-168 Warszawa
+                        </li>
+                    </ul>
+                </div>
+
+                {/* Kolumna 5: Social Media */}
+                <div className={styles.col}>
+                    <h4 className={styles.colTitle}>SOCIAL MEDIA</h4>
+                    <ul className={styles.linkList}>
+                        <li><a href="https://www.instagram.com/apixel.pl?igsh=MTFoN3owbDV1djVnYg==" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://linkedin.com/company/apixel-pl" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://www.facebook.com/apixelpl" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://www.tiktok.com/@apixel.pl" target="_blank" rel="noopener noreferrer">TikTok</a></li>
                     </ul>
                 </div>
             </div>

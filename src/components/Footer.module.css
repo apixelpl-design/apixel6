@@ -15,7 +15,7 @@
     max-width: 1440px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
     gap: 40px;
     padding-bottom: 80px;
 }
@@ -53,10 +53,11 @@
     color: rgba(255, 255, 255, 0.6);
 }
 
-.legalInfo {
-    margin-top: 16px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.3);
+.addressBlock {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* ── Columns & Links ── */
@@ -97,10 +98,7 @@
     color: var(--apx-red);
 }
 
-.socialSpacer {
-    height: 16px;
-    /* Gap between direct contact and socials */
-}
+
 
 /* ── Bottom Bar ── */
 .bottomBar {
@@ -136,10 +134,17 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
+    .container {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 48px;
+    }
+}
+
+@media (max-width: 900px) {
     .container {
         grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        gap: 48px;
     }
 }
 
@@ -152,16 +157,27 @@
         grid-template-columns: 1fr;
         gap: 48px;
         padding-bottom: 60px;
+        text-align: center;
+    }
+
+    .col {
+        align-items: center;
     }
 
     .logo {
         height: 38px;
         margin-bottom: 24px;
+        object-position: center;
+    }
+
+    .linkList {
+        align-items: center;
     }
 
     .bottomContainer {
         flex-direction: column-reverse;
         gap: 16px;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
     }
 }

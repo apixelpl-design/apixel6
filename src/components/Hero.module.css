@@ -128,3 +128,14 @@
         font-size: 15px;
     }
 }
+
+@media (max-width: 480px) {
+    .heading {
+        font-size: clamp(24px, 7vw, 36px);
+    }
+
+    .cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
