@@ -234,6 +234,67 @@
     color: var(--apx-text-light);
 }
 
+/* ── Współpraca Banner section ── */
+.bannerSection {
+    background: var(--apx-white);
+    padding: 80px 80px;
+}
+
+.bannerCard {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 48px 56px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-left: 4px solid var(--apx-red);
+}
+
+.bannerContent {
+    flex: 1;
+}
+
+.bannerTitle {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--apx-black);
+    margin-bottom: 8px;
+}
+
+.bannerDesc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+.bannerButton {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 32px;
+    background: var(--apx-black);
+    color: var(--apx-white);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.bannerButton:hover {
+    background: var(--apx-red);
+    transform: translateY(-2px);
+}
+
 /* ── CTA section ── */
 .ctaSection {
     background: var(--apx-black);
@@ -308,6 +369,17 @@
 
     .delGrid {
         grid-template-columns: 1fr;
+    }
+
+    .bannerSection {
+        padding: 40px 24px;
+    }
+
+    .bannerCard {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+        gap: 24px;
     }
 
     .ctaSection {

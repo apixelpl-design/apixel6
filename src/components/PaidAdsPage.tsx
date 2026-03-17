@@ -123,69 +123,17 @@ export function PaidAdsPage() {
             </section>
 
             {/* ── Współpraca Banner ── */}
-            <section style={{
-                background: 'var(--apx-white)',
-                padding: '80px 80px',
-            }}>
-                <div style={{
-                    maxWidth: '1440px',
-                    margin: '0 auto',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: '40px',
-                    padding: '48px 56px',
-                    border: '1px solid rgba(0,0,0,0.08)',
-                    borderLeft: '4px solid var(--apx-red)',
-                }}>
-                    <div style={{ flex: 1 }}>
-                        <h3 style={{
-                            fontFamily: 'var(--font-display)',
-                            fontSize: '22px',
-                            fontWeight: 700,
-                            color: 'var(--apx-black)',
-                            marginBottom: '8px',
-                        }}>
+            <section className={styles.bannerSection}>
+                <div className={styles.bannerCard}>
+                    <div className={styles.bannerContent}>
+                        <h3 className={styles.bannerTitle}>
                             Chcesz wiedzieć, jak wygląda współpraca z nami?
                         </h3>
-                        <p style={{
-                            fontFamily: 'var(--font-body)',
-                            fontSize: '15px',
-                            lineHeight: 1.6,
-                            color: '#555',
-                            margin: 0,
-                        }}>
+                        <p className={styles.bannerDesc}>
                             Zobacz nasz proces krok po kroku — od audytu Twojej obecności, przez aktywne prowadzenie, aż po comiesięczne raporty.
                         </p>
                     </div>
-                    <Link
-                        to="/wspolpraca"
-                        style={{
-                            flexShrink: 0,
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            height: '48px',
-                            padding: '0 32px',
-                            background: 'var(--apx-black)',
-                            color: 'var(--apx-white)',
-                            textDecoration: 'none',
-                            fontFamily: 'var(--font-body)',
-                            fontSize: '12px',
-                            fontWeight: 600,
-                            textTransform: 'uppercase' as const,
-                            letterSpacing: '0.1em',
-                            transition: 'background 0.2s ease, transform 0.2s ease',
-                        }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.background = 'var(--apx-red)';
-                            e.currentTarget.style.transform = 'translateY(-2px)';
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.background = 'var(--apx-black)';
-                            e.currentTarget.style.transform = 'translateY(0)';
-                        }}
-                    >
+                    <Link to="/wspolpraca" className={styles.bannerButton}>
                         Jak działamy? →
                     </Link>
                 </div>

@@ -9,7 +9,6 @@ export function Footer() {
             <div className={styles.container}>
                 {/* Kolumna 1: Brand */}
                 <div className={styles.col}>
-                    <img src="/src/assets/logo-red.png" alt="APIXEL Logo" className={styles.logo} />
                     <div className={styles.brandInfo}>
                         <p>Proste, szczere i skuteczne.</p>
                     </div>
