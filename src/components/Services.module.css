@@ -88,6 +88,20 @@
     gap: 20px;
 }
 
+/* Row 2: cards 4 & 5 — equal columns */
+.grid > *:nth-child(4),
+.grid > *:nth-child(5) {
+    grid-column: auto;
+}
+
+/* Make row 2 equal-width by overriding the 2fr on child 4 */
+.grid > *:nth-child(4) {
+    grid-column: 1 / 3;
+}
+.grid > *:nth-child(5) {
+    grid-column: 3 / 4;
+}
+
 /* ── Card base ── */
 .card {
     display: flex;
@@ -372,6 +386,106 @@
     color: var(--apx-white);
 }
 
+/* ════════════════════════
+   Variant: GREY
+   ════════════════════════ */
+.grey {
+    background: #f5f5f5;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.grey .cardStrip {
+    background: var(--apx-black);
+}
+
+.grey .cardNumber {
+    color: #bbb;
+}
+
+.grey .cardBadge {
+    background: var(--apx-black);
+    color: var(--apx-white);
+}
+
+.grey .cardTitle,
+.grey .cardSubtitle {
+    color: var(--apx-black);
+}
+
+.grey .bridgeText {
+    color: #888;
+}
+
+.grey .cardItem {
+    color: var(--apx-text-light);
+    border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+.grey .cardBullet {
+    color: var(--apx-black);
+}
+
+.grey .cardLink {
+    color: var(--apx-black);
+}
+
+/* ════════════════════════
+   Variant: DARKBLACK (AI/Automation)
+   ════════════════════════ */
+.darkblack {
+    background: #111111;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.darkblack .cardStrip {
+    background: linear-gradient(90deg, var(--apx-red), #ff6b6b);
+}
+
+.darkblack .cardNumber {
+    color: #555;
+}
+
+.darkblack .cardBadge {
+    background: rgba(210, 40, 40, 0.2);
+    color: var(--apx-red);
+    border: 1px solid rgba(210, 40, 40, 0.3);
+}
+
+.darkblack .cardTitle,
+.darkblack .cardSubtitle {
+    color: var(--apx-white);
+}
+
+.darkblack .bridgeText {
+    color: #555;
+}
+
+.darkblack .bridgeLine {
+    background: var(--apx-red);
+}
+
+.darkblack .cardItem {
+    color: #aaa;
+    border-top-color: rgba(255, 255, 255, 0.07);
+}
+
+.darkblack .cardBullet {
+    color: var(--apx-red);
+}
+
+.darkblack .cardLink {
+    color: var(--apx-white);
+    opacity: 0.4;
+}
+
+.darkblack:hover .cardLink {
+    opacity: 1;
+}
+
+.darkblack:hover {
+    box-shadow: 0 24px 64px rgba(210, 40, 40, 0.15);
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
     .grid {
@@ -380,6 +494,13 @@
 
     .card:first-child {
         grid-column: span 2;
+    }
+
+    .grid > *:nth-child(4) {
+        grid-column: auto;
+    }
+    .grid > *:nth-child(5) {
+        grid-column: auto;
     }
 }
 
@@ -395,6 +516,11 @@
     }
 
     .card:first-child {
+        grid-column: span 1;
+    }
+
+    .grid > *:nth-child(4),
+    .grid > *:nth-child(5) {
         grid-column: span 1;
     }
 

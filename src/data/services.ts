@@ -9,7 +9,7 @@ export interface ServiceCard {
     title: string;
     subtitle: string;
     items: string[];
-    variant: 'black' | 'white' | 'red';
+    variant: 'black' | 'white' | 'red' | 'grey' | 'darkblack';
     href: string;
 }
 
@@ -55,5 +55,33 @@ export const services: ServiceCard[] = [
         ],
         variant: 'red',
         href: '/uslugi/reklamy',
+    },
+    {
+        number: '04',
+        badge: 'DODATKOWO',
+        title: 'CHCĘ STRONĘ',
+        subtitle: 'INTERNETOWĄ',
+        items: [
+            'Zaprojektujemy szybką, nowoczesną stronę dopasowaną do Twojej marki',
+            'Zoptymalizujemy ją pod SEO i konwersję od pierwszego dnia',
+            'Zadbamy o responsywność — świetnie wygląda na każdym urządzeniu',
+            'Przekażemy gotową stronę i przeszkolimy z obsługi',
+        ],
+        variant: 'grey',
+        href: '/uslugi/strona',
+    },
+    {
+        number: '05',
+        badge: 'DODATKOWO',
+        title: 'CHCĘ',
+        subtitle: 'AUTOMATYZACJĘ & APLIKACJE',
+        items: [
+            'Zautomatyzujemy powtarzalne procesy w Twojej firmie',
+            'Tworzymy dedykowane aplikacje webowe szyte na miarę',
+            'Połączymy używane przez Ciebie narzędzia i aplikacje',
+            'Wdrożymy chatboty i asystentów AI do obsługi klientów',
+        ],
+        variant: 'darkblack',
+        href: '/uslugi/automatyzacja',
     },
 ];

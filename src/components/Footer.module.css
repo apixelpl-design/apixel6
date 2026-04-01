@@ -15,7 +15,7 @@
     max-width: 1440px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     padding-bottom: 80px;
 }
@@ -46,12 +46,7 @@
     }
 }
 
-.brandInfo {
-    font-family: var(--font-body);
-    font-size: 14px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.6);
-}
+
 
 .addressBlock {
     font-family: var(--font-body);

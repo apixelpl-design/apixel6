@@ -10,6 +10,8 @@ import { ServicesPage } from './components/ServicesPage';
 import { VisibilityPage } from './components/VisibilityPage';
 import { ContentPage } from './components/ContentPage';
 import { PaidAdsPage } from './components/PaidAdsPage';
+import { WebsitePage } from './components/WebsitePage';
+import { AutomationPage } from './components/AutomationPage';
 import { ContactPage } from './components/ContactPage';
 import { WspolpracaPage } from './components/WspolpracaPage';
 import { PageLoader } from './components/PageLoader';
@@ -34,6 +36,8 @@ export default function App() {
                 <Route path="/widocznosc" element={<VisibilityPage />} />
                 <Route path="/uslugi/content" element={<ContentPage />} />
                 <Route path="/uslugi/reklamy" element={<PaidAdsPage />} />
+                <Route path="/uslugi/strona" element={<WebsitePage />} />
+                <Route path="/uslugi/automatyzacja" element={<AutomationPage />} />
                 <Route path="/wspolpraca" element={<WspolpracaPage />} />
                 <Route path="/kontakt" element={<ContactPage />} />
             </Routes>

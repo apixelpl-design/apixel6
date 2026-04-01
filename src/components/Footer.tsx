@@ -7,24 +7,20 @@ export function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
-                {/* Kolumna 1: Brand */}
-                <div className={styles.col}>
-                    <div className={styles.brandInfo}>
-                        <p>Proste, szczere i skuteczne.</p>
-                    </div>
-                </div>
 
-                {/* Kolumna 2: Ekspertyza */}
+                {/* Kolumna 1: Ekspertyza */}
                 <div className={styles.col}>
                     <h4 className={styles.colTitle}>EKSPERTYZA</h4>
                     <ul className={styles.linkList}>
                         <li><Link to="/widocznosc">Widoczność w sieci</Link></li>
                         <li><Link to="/uslugi/content">Content w internecie</Link></li>
                         <li><Link to="/uslugi/reklamy">Płatne kampanie</Link></li>
+                        <li><Link to="/uslugi/strona">Strony internetowe</Link></li>
+                        <li><Link to="/uslugi/automatyzacja">Automatyzacja i aplikacje</Link></li>
                     </ul>
                 </div>
 
-                {/* Kolumna 3: Agencja */}
+                {/* Kolumna 2: Agencja */}
                 <div className={styles.col}>
                     <h4 className={styles.colTitle}>AGENCJA</h4>
                     <ul className={styles.linkList}>
@@ -34,7 +30,7 @@ export function Footer() {
                     </ul>
                 </div>
 
-                {/* Kolumna 4: Kontakt */}
+                {/* Kolumna 3: Kontakt */}
                 <div className={styles.col}>
                     <h4 className={styles.colTitle}>KONTAKT</h4>
                     <ul className={styles.linkList}>
@@ -47,7 +43,7 @@ export function Footer() {
                     </ul>
                 </div>
 
-                {/* Kolumna 5: Social Media */}
+                {/* Kolumna 4: Social Media */}
                 <div className={styles.col}>
                     <h4 className={styles.colTitle}>SOCIAL MEDIA</h4>
                     <ul className={styles.linkList}>

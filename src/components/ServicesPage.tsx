@@ -81,36 +81,6 @@ export function ServicesPage() {
                                 </Link>
                             </div>
 
-                            <div className={styles.addonsWrapper}>
-                                <h3 className={styles.addonsTitle}>Jedyne dodatki</h3>
-                                <div ref={addonsRef} className={styles.addonsGrid}>
-                                    <Link to="/uslugi/content" className={`${styles.addonCard} reveal-child`}>
-                                        <span className={styles.addonBadge}>Wtyczka</span>
-                                        <div className={styles.addonHeader}>
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                                                <circle cx="8.5" cy="8.5" r="1.5" />
-                                                <polyline points="21 15 16 10 5 21" />
-                                            </svg>
-                                            <h4 className={styles.addonName}>Oryginalny Content</h4>
-                                        </div>
-                                        <p className={styles.addonDesc}>Przyjeżdżamy z kamerą i aparatem. Tworzysz content, który jest naprawdę Twój.</p>
-                                    </Link>
-
-                                    <Link to="/uslugi/reklamy" className={`${styles.addonCard} reveal-child`}>
-                                        <span className={styles.addonBadge}>Wtyczka</span>
-                                        <div className={styles.addonHeader}>
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                <circle cx="12" cy="12" r="10" />
-                                                <circle cx="12" cy="12" r="6" />
-                                                <circle cx="12" cy="12" r="2" />
-                                            </svg>
-                                            <h4 className={styles.addonName}>Płatne Kampanie</h4>
-                                        </div>
-                                        <p className={styles.addonDesc}>Reklamy w Google i Meta — kiedy chcesz szybciej docierać do klientów.</p>
-                                    </Link>
-                                </div>
-                            </div>
                         </div>
 
                         {/* Right: Benefits list with SVG icons */}
@@ -177,6 +147,64 @@ export function ServicesPage() {
                                     </span>
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+
+                    {/* ── Full-width Addons ── */}
+                    <div className={styles.addonsWrapper}>
+                        <h3 className={styles.addonsTitle}>Co jeszcze robimy</h3>
+                        <div ref={addonsRef} className={styles.addonsSlider}>
+                            <Link to="/uslugi/content" className={`${styles.addonCard} reveal-child`}>
+                                <span className={styles.addonBadge}>Wtyczka</span>
+                                <div className={styles.addonHeader}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <polyline points="21 15 16 10 5 21" />
+                                    </svg>
+                                    <h4 className={styles.addonName}>Oryginalny Content</h4>
+                                </div>
+                                <p className={styles.addonDesc}>Przyjeżdżamy z kamerą i aparatem. Tworzysz content, który jest naprawdę Twój.</p>
+                            </Link>
+
+                            <Link to="/uslugi/reklamy" className={`${styles.addonCard} reveal-child`}>
+                                <span className={styles.addonBadge}>Wtyczka</span>
+                                <div className={styles.addonHeader}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <circle cx="12" cy="12" r="6" />
+                                        <circle cx="12" cy="12" r="2" />
+                                    </svg>
+                                    <h4 className={styles.addonName}>Płatne Kampanie</h4>
+                                </div>
+                                <p className={styles.addonDesc}>Reklamy w Google i Meta — kiedy chcesz szybciej docierać do klientów.</p>
+                            </Link>
+
+                            <Link to="/uslugi/strona" className={`${styles.addonCard} reveal-child`}>
+                                <span className={styles.addonBadge}>Osobna usługa</span>
+                                <div className={styles.addonHeader}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                                        <path d="M3 9h18" />
+                                        <path d="M9 21V9" />
+                                    </svg>
+                                    <h4 className={styles.addonName}>Strona Internetowa</h4>
+                                </div>
+                                <p className={styles.addonDesc}>Projektujemy i wdrażamy strony od zera — szybkie, responsywne, zoptymalizowane pod SEO i konwersję.</p>
+                            </Link>
+
+                            <Link to="/uslugi/automatyzacja" className={`${styles.addonCard} reveal-child`}>
+                                <span className={styles.addonBadge}>Osobna usługa</span>
+                                <div className={styles.addonHeader}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                        <path d="M2 17l10 5 10-5" />
+                                        <path d="M2 12l10 5 10-5" />
+                                    </svg>
+                                    <h4 className={styles.addonName}>Automatyzacja &amp; Aplikacje</h4>
+                                </div>
+                                <p className={styles.addonDesc}>Automatyzujemy powtarzalne procesy, tworzymy dedykowane aplikacje i wdrażamy asystentów AI dla Twojej firmy.</p>
+                            </Link>
                         </div>
                     </div>
                 </div>

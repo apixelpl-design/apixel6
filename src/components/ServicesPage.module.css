@@ -320,10 +320,12 @@
 
 
 /* ═══════════════════════════════════════════════════════
-   INTEGRATED ADDONS
+   FULL-WIDTH ADDONS STRIP
    ═══════════════════════════════════════════════════════ */
 .addonsWrapper {
-    margin-top: 16px;
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
     width: 100%;
 }
 
@@ -337,17 +339,42 @@
     margin-bottom: 24px;
 }
 
-.addonsGrid {
+/* Desktop: 4 equal columns in one row */
+.addonsSlider {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
 }
 
-@media (min-width: 640px) {
-    .addonsGrid {
-        grid-template-columns: 1fr 1fr;
+/* Tablet: 2 columns */
+@media (max-width: 1024px) {
+    .addonsSlider {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* Mobile: horizontal scroll slider */
+@media (max-width: 640px) {
+    .addonsSlider {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding-bottom: 12px;
+        scrollbar-width: none;
+    }
+    .addonsSlider::-webkit-scrollbar {
+        display: none;
+    }
+    .addonsSlider > * {
+        flex: 0 0 80vw;
+        max-width: 300px;
+        scroll-snap-align: start;
+    }
+}
+
 
 .addonCard {
     background: var(--apx-grey);

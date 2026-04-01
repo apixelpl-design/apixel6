@@ -9,44 +9,42 @@ import styles from './WspolpracaPage.module.css';
 const steps = [
     {
         number: '01',
-        title: 'Audyt obecności',
+        title: 'Audyt marketingu i technologii',
         subtitle: 'Sprawdzamy, gdzie dziś stoisz',
-        desc: 'Zanim cokolwiek zrobimy, musimy wiedzieć, z czym pracujemy. Nie zaczynamy od szablonu — zaczynamy od Twojej rzeczywistości.',
+        desc: 'Zanim cokolwiek zdefiniujemy, musimy poznać Twój biznes. Nie zaczynamy od gotowych szablonów — audytujemy Twoją faktyczną sytuację, by znaleźć największe dźwignie wzrostu.',
         details: [
-            'Prześwietlamy wszystkie Twoje profile w mediach społecznościowych — Facebook, Instagram, LinkedIn, Google Business',
-            'Analizujemy Twoją wizytówkę Google: zdjęcia, opinie, kompletność danych',
-            'Sprawdzamy ranking Twojej domeny i pozycje na kluczowe frazy — gdzie jesteś, a gdzie powinieneś być',
-            'Oceniamy jakość materiałów wizualnych: zdjęcia, logo, spójność wizerunkowa',
-            'Rozmawiamy o Twoim „pomyśle na markę" (brand DNA) — kim jesteś, jak chcesz być postrzegany, czym się wyróżniasz',
-            'Wszystko dokumentujemy i analizujemy w kontekście widoczności, słów kluczowych i SEO',
+            'Prześwietlamy cyfrową obecność: profile w social mediach, Google Business oraz aktualną stronę internetową',
+            'Analizujemy wydajność witryny pod kątem UX (wygody klienta) oraz optymalizacji SEO',
+            'Mapujemy ręczne, powtarzalne procesy operacyjne w Twojej firmie pod kątem możliwości automatyzacji i wdrożenia AI',
+            'Rozmawiamy o DNA Twojej marki — Twoich przewagach, grupie docelowej i tym, jak chcesz być odbierany na rynku',
+            'Zebrane dane zamieniamy w konkretny plan na marketing, technologię i widoczność',
         ],
     },
     {
         number: '02',
-        title: 'Aktywne prowadzenie obecności',
-        subtitle: 'Działamy — codziennie, konsekwentnie',
-        desc: 'W pełni obsługujemy Twoją stronę marketingową — całą obecność w internecie. Nie działamy na szablonach. Wszystko jest dostosowane do typu i rodzaju Twojego biznesu, jak i osób, które go tworzą.',
+        title: 'Wdrożenie i aktywna obsługa',
+        subtitle: 'Budujemy fundamenty i regularnie działamy',
+        desc: 'Bierzemy technologię i marketing na siebie. Dostarczamy skrojone na miarę rozwiązania, prowadząc Twoje projekty tak, byś mógł skupić się wyłącznie na prowadzeniu biznesu.',
         details: [
-            'Prowadzimy profile na wszystkich potrzebnych dla Twojego biznesu mediach społecznościowych',
-            'Aktualizujemy i optymalizujemy wizytówki Google i branżowe katalogi',
-            'Raz na 2 tygodnie lub raz na miesiąc przyjeżdżamy do Twojego miejsca pracy — robimy profesjonalne zdjęcia i filmy, z których tworzymy content',
-            'Tworzymy filmy promujące Twój brand — pokazujemy Ciebie, Twój zespół i to, co robicie najlepiej',
-            'Tworzymy profesjonalne artykuły — wizerunkowe i branżowe — i publikujemy je na portalach i blogach',
-            'Odpowiadamy na opinie Google i Facebook w Twoim imieniu — profesjonalnie, w Twoim tonie',
-            'Dbamy o spójność Twojego przekazu na każdym kanale, w każdym punkcie kontaktu z klientem',
+            'Tam gdzie to potrzebne, projektujemy i wdrażamy szybkie strony internetowe oraz systemy rezerwacji/sprzedaży',
+            'Automatyzujemy uciążliwe procesy i tworzymy dedykowane aplikacje webowe odciążające zespół',
+            'Obejmujemy pełne zarządzanie profilami w mediach społecznościowych i moderację wizytówek (np. odpowiadanie na opinie)',
+            'Regularnie (co 2 lub 4 tygodnie) zjawiamy się u Ciebie z kamerą, by nagrywać autentyczny materiał foto/wideo dla Twoich profili',
+            'Tworzymy merytoryczne i branżowe publikacje, budując Twój autorytet w sieci',
+            'Dbamy o jednolitą, spójną architekturę całego przekazu na każdym polu styku z nowym klientem',
         ],
     },
     {
         number: '03',
-        title: 'Raportowanie i optymalizacja',
-        subtitle: 'Mierzymy, uczymy się, rośniemy dalej',
-        desc: 'Nie zostawiamy Cię z abonamentem i nadzieją. Co miesiąc pokazujemy twarde dane i wspólnie planujemy kolejne kroki.',
+        title: 'Raportowanie i skalowanie',
+        subtitle: 'Mierzymy, wyciągamy wnioski, rośniemy',
+        desc: 'Nie zostawiamy Cię z obietnicami. Co cykl pokazujemy rzetelne liczby, wspólnie omawiamy efekty rynkowe i od razu planujemy, jak wygenerować jeszcze więcej wartości.',
         details: [
-            'Comiesięczny raport z naszych działań — co zrobiliśmy, co zadziałało, co rośnie',
-            'Wskazujemy miejsca do poprawy i proponujemy konkretne rozwiązania',
-            'Proponujemy nowe formaty i kierunki na podstawie aktualnych trendów na social mediach',
-            'Konsultujemy strategię na bieżąco — jesteśmy dostępni, reagujemy szybko',
-            'Wspólnie wyznaczamy cele na kolejny miesiąc — bo współpraca to partnerstwo, nie usługa „na autopilocie"',
+            'Dostarczamy comiesięczny raport bez ściemy — co zostało zrobione, co zyskaliśmy, co ulepszamy dalej',
+            'Proaktywnie wskazujemy nowe obszary do optymalizacji i potencjał na nowe automatyzacje oszczędzające koszty',
+            'Reagujemy na najnowsze trendy społecznościowe, aktualizując formaty i komunikację w locie',
+            'Jesteśmy dostępnymi, szybkimi w reakcji partnerami — bez barier korporacyjnych',
+            'Wyznaczamy nowe cele biznesowe. Pracujemy na mierzalny rozwój Twojej bazy klientów.',
         ],
     },
 ];
@@ -75,8 +73,8 @@ export function WspolpracaPage() {
                     </h1>
                     <p className={`${styles.heroDesc} animate-fade-slide-up delay-400`}>
                         Nie wierzysz w agencje, które obiecują cuda? My też nie.
-                        Dlatego pokazujemy dokładnie, jak wygląda z nami współpraca
-                        — od pierwszego dnia do comiesięcznych raportów.
+                        Dlatego gramy w otwarte karty. Tak wygląda z nami współpraca
+                        — od audytu IT i marketingu, po wdrażanie rozwiązań i ich rozwój.
                     </p>
                 </div>
             </header>
@@ -87,14 +85,14 @@ export function WspolpracaPage() {
                     <div ref={timelineLabelRef} className="reveal">
                         <span className={styles.timelineLabel}>Twoja droga z nami</span>
                         <h2 className={styles.timelineHeading}>
-                            Trzy etapy, które zmieniają
+                            Trzy etapy, które budują
                             <br />
-                            <span className={styles.accent}>Twoją widoczność.</span>
+                            <span className={styles.accent}>Twój biznes w sieci.</span>
                         </h2>
                         <p className={styles.timelineSubhead}>
-                            Każda współpraca zaczyna się od zrozumienia. Potem działamy.
-                            Na koniec mierzymy i planujemy dalej. To nie sprint — to proces,
-                            który krok po kroku buduje Twoją pozycję w sieci.
+                            Każda współpraca zaczyna się od zrozumienia, w jakim miejscu jesteś. Zabezpieczamy fundamenty 
+                            technologiczne, automatyzujemy pracę i prowadzimy marketing. To proces, 
+                            który zdejmuje z Ciebie ciężar operacyjny i przyspiesza wzrost.
                         </p>
                     </div>
 
@@ -131,13 +129,12 @@ export function WspolpracaPage() {
             <section className={styles.bridgeSection}>
                 <div ref={bridgeRef} className={`${styles.bridgeInner} reveal`}>
                     <h2 className={styles.bridgeTitle}>
-                        I tak co miesiąc — <span className={styles.accent}>dalej.</span>
+                        I tak co miesiąc — <span className={styles.accent}>rosniesz.</span>
                     </h2>
                     <p className={styles.bridgeDesc}>
-                        Po pierwszym miesiącu masz pełen obraz sytuacji. Po trzecim — widzisz
-                        realne efekty. Po szóstym — Twoja widoczność w sieci jest na zupełnie
-                        innym poziomie. A my cały czas jesteśmy obok, szukając kolejnych
-                        obszarów do wzrostu.
+                        W pierwszym kwartale stawiamy fundamenty i organizujemy chaos. Piszemy kod, 
+                        układamy procesy, kręcimy wideo. Po 3 do 6 miesiącach pracy widzisz już na liczbach, 
+                        że Twoja firma funkcjonuje sprawniej, a marketing po prostu działa.
                     </p>
                     <p className={styles.bridgeDesc}>
                         Nie trzymamy Cię umową — trzymamy wynikami.
