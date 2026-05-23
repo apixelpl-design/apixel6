@@ -4,7 +4,6 @@
    Hamburger menu on mobile (≤900 px)
    ═══════════════════════════════════════════════════════ */
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import logoUrl from '../assets/pixel-logo.png';
 import styles from './Navbar.module.css';
 
@@ -12,12 +11,19 @@ const NAV_LINKS = [
     { label: 'Home', to: '/' },
     { label: 'Usługi & Ceny', to: '/uslugi' },
     { label: 'Jak działamy', to: '/wspolpraca' },
+    { label: 'Portfolio', to: '/portfolio' },
     { label: 'Kontakt', to: '/kontakt' },
 ];
 
-export function Navbar() {
-    const { pathname } = useLocation();
+interface NavbarProps {
+    currentPath?: string;
+}
+
+export function Navbar({ currentPath = '/' }: NavbarProps) {
     const [menuOpen, setMenuOpen] = useState(false);
+    const pathname = currentPath.replace(/\/$/, '') || '/';
+
+    const logoSrc = typeof logoUrl === 'string' ? logoUrl : logoUrl.src;
 
     /* Close menu whenever the route changes */
     useEffect(() => {
@@ -34,9 +40,13 @@ export function Navbar() {
         <nav className={styles.navbar}>
             <div className={styles.inner}>
                 {/* Logo — left */}
-                <Link to="/" className={styles.logoLink} aria-label="pixel — strona główna">
-                    <img src={logoUrl} alt="pixel logo" className={styles.logoImage} />
-                </Link>
+                <a href="/" className={styles.logoLink} aria-label="pixel — strona główna">
+                    <img 
+                        src={logoSrc} 
+                        alt="pixel logo" 
+                        className={styles.logoImage} 
+                    />
+                </a>
 
                 {/* Hamburger toggle — mobile only */}
                 <button
@@ -54,8 +64,8 @@ export function Navbar() {
                 <ul className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}>
                     {NAV_LINKS.map((link) => (
                         <li key={link.label}>
-                            <Link
-                                to={link.to}
+                            <a
+                                href={link.to}
                                 className={`${styles.link} ${pathname === link.to ||
                                     (link.to !== '/' && pathname.startsWith(link.to))
                                     ? styles.linkActive
@@ -64,7 +74,7 @@ export function Navbar() {
                                 onClick={() => setMenuOpen(false)}
                             >
                                 {link.label}
-                            </Link>
+                            </a>
                         </li>
                     ))}
                 </ul>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 export function Footer() {
@@ -12,11 +11,11 @@ export function Footer() {
                 <div className={styles.col}>
                     <h4 className={styles.colTitle}>EKSPERTYZA</h4>
                     <ul className={styles.linkList}>
-                        <li><Link to="/widocznosc">Widoczność w sieci</Link></li>
-                        <li><Link to="/uslugi/content">Content w internecie</Link></li>
-                        <li><Link to="/uslugi/reklamy">Płatne kampanie</Link></li>
-                        <li><Link to="/uslugi/strona">Strony internetowe</Link></li>
-                        <li><Link to="/uslugi/automatyzacja">Automatyzacja i aplikacje</Link></li>
+                        <li><a href="/widocznosc">Widoczność w sieci</a></li>
+                        <li><a href="/uslugi/content">Content w internecie</a></li>
+                        <li><a href="/uslugi/reklamy">Płatne kampanie</a></li>
+                        <li><a href="/uslugi/strona">Strony internetowe</a></li>
+                        <li><a href="/uslugi/automatyzacja">Automatyzacja i aplikacje</a></li>
                     </ul>
                 </div>
 
@@ -24,9 +23,9 @@ export function Footer() {
                 <div className={styles.col}>
                     <h4 className={styles.colTitle}>AGENCJA</h4>
                     <ul className={styles.linkList}>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/uslugi">Usługi</Link></li>
-                        <li><Link to="/kontakt">Kontakt</Link></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/uslugi">Usługi</a></li>
+                        <li><a href="/kontakt">Kontakt</a></li>
                     </ul>
                 </div>
 
@@ -35,7 +34,7 @@ export function Footer() {
                     <h4 className={styles.colTitle}>KONTAKT</h4>
                     <ul className={styles.linkList}>
                         <li><a href="mailto:kontakt@apixel.pl">kontakt@apixel.pl</a></li>
-                        <li><a href="tel:+48732737786">732 737 786</a></li>
+                        <li><a href="tel:+48798343712">798 343 712</a></li>
                         <li className={styles.addressBlock}>
                             Karmelicka 17a<br />
                             00-168 Warszawa
@@ -61,9 +60,9 @@ export function Footer() {
                     <span className={styles.copyright}>
                         © {currentYear} APIXEL. Wszelkie prawa zastrzeżone.
                     </span>
-                    <Link to="/polityka-prywatnosci" className={styles.privacyLink}>
+                    <a href="/polityka-prywatnosci" className={styles.privacyLink}>
                         Polityka prywatności
-                    </Link>
+                    </a>
                 </div>
             </div>
         </footer>

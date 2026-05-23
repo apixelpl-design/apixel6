@@ -3,7 +3,6 @@
    "Widoczność w sieci" service detail page
    ═══════════════════════════════════════════════════════ */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './VisibilityPage.module.css';
 
@@ -70,9 +69,9 @@ export function VisibilityPage() {
             {/* ── Hero ── */}
             <header className={styles.hero}>
                 <div className={styles.heroInner}>
-                    <Link to="/uslugi" className={styles.backLink}>
+                    <a href="/uslugi" className={styles.backLink}>
                         ← Usługi
-                    </Link>
+                    </a>
                     <span className={`${styles.heroLabel} animate-fade-slide-up delay-100`}>01 / WIDOCZNOŚĆ W SIECI</span>
                     <h1 className={`${styles.heroTitle} animate-fade-slide-up delay-200`}>
                         Klient, który Cię
@@ -211,9 +210,9 @@ export function VisibilityPage() {
                             Zobacz nasz proces krok po kroku — od audytu Twojej obecności, przez aktywne prowadzenie, aż po comiesięczne raporty.
                         </p>
                     </div>
-                    <Link to="/wspolpraca" className={styles.bannerButton}>
+                    <a href="/wspolpraca" className={styles.bannerButton}>
                         Jak działamy? →
-                    </Link>
+                    </a>
                 </div>
             </section>
 

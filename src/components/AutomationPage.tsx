@@ -3,7 +3,6 @@
    "Automatyzacja procesów, AI i dedykowane aplikacje" service detail page
    ═══════════════════════════════════════════════════════ */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './VisibilityPage.module.css';
 
@@ -75,9 +74,9 @@ export function AutomationPage() {
             {/* ── Hero ── */}
             <header className={styles.hero}>
                 <div className={styles.heroInner}>
-                    <Link to="/uslugi" className={styles.backLink}>
+                    <a href="/uslugi" className={styles.backLink}>
                         ← Usługi
-                    </Link>
+                    </a>
                     <span className={`${styles.heroLabel} animate-fade-slide-up delay-100`}>05 / AUTOMATYZACJA I APLIKACJE</span>
                     <h1 className={`${styles.heroTitle} animate-fade-slide-up delay-200`}>
                         Przestań robić to,
@@ -217,9 +216,9 @@ export function AutomationPage() {
                             Zobacz nasz proces od audytu Twojego biznesu, przez wdrożenie automatyzacji, aż po comiesięczne wsparcie.
                         </p>
                     </div>
-                    <Link to="/wspolpraca" className={styles.bannerButton}>
+                    <a href="/wspolpraca" className={styles.bannerButton}>
                         Jak działamy? →
-                    </Link>
+                    </a>
                 </div>
             </section>
 

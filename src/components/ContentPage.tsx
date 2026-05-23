@@ -3,7 +3,6 @@
    "Content w internecie" service detail page
    ═══════════════════════════════════════════════════════ */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './VisibilityPage.module.css';
 
@@ -70,9 +69,9 @@ export function ContentPage() {
             {/* ── Hero ── */}
             <header className={styles.hero}>
                 <div className={styles.heroInner}>
-                    <Link to="/uslugi" className={styles.backLink}>
+                    <a href="/uslugi" className={styles.backLink}>
                         ← Usługi
-                    </Link>
+                    </a>
                     <span className={`${styles.heroLabel} animate-fade-slide-up delay-100`}>02 / CONTENT W INTERNECIE</span>
                     <h1 className={`${styles.heroTitle} animate-fade-slide-up delay-200`}>
                         Twoja marka mówi
@@ -211,9 +210,9 @@ export function ContentPage() {
                             Zobacz nasz proces krok po kroku — od audytu Twojej obecności, przez aktywne prowadzenie, aż po comiesięczne raporty.
                         </p>
                     </div>
-                    <Link to="/wspolpraca" className={styles.bannerButton}>
+                    <a href="/wspolpraca" className={styles.bannerButton}>
                         Jak działamy? →
-                    </Link>
+                    </a>
                 </div>
             </section>
             <section ref={ctaRef} className={`${styles.ctaSection} reveal-scale`}>

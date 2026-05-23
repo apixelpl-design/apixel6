@@ -2,7 +2,6 @@
    Services Section (homepage)
    3 square cards: Black, White, Red
    ═══════════════════════════════════════════════════════ */
-import { Link } from 'react-router-dom';
 import { services } from '../data/services';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './Services.module.css';
@@ -43,9 +42,9 @@ export function Services() {
             {/* Cards grid */}
             <div ref={gridRef} className={styles.grid}>
                 {services.map((service) => (
-                    <Link
+                    <a
                         key={service.number}
-                        to={service.href}
+                        href={service.href}
                         className={`${styles.card} ${styles[service.variant]} reveal-child`}
                     >
                         {/* Top accent strip */}
@@ -79,7 +78,7 @@ export function Services() {
                                 dowiedz się więcej →
                             </span>
                         </div>
-                    </Link>
+                    </a>
                 ))}
             </div>
         </section>

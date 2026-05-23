@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PortfolioPage } from '../components/PortfolioPage';
+---
+
+<BaseLayout
+    title="Portfolio | APIXEL"
+    description="Zobacz wybrane realizacje APIXEL: strony, platformy i cyfrowe produkty tworzone z myślą o zaufaniu, szybkości i konwersji."
+>
+    <PortfolioPage client:load />
+</BaseLayout>

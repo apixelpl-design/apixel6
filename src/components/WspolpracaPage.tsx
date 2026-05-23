@@ -2,7 +2,6 @@
    WspolpracaPage — /wspolpraca
    "Jak dokładnie działamy" — storytelling page
    ═══════════════════════════════════════════════════════ */
-import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './WspolpracaPage.module.css';
 
@@ -60,9 +59,9 @@ export function WspolpracaPage() {
             {/* ── Hero ── */}
             <header className={styles.hero}>
                 <div className={styles.heroInner}>
-                    <Link to="/uslugi" className={styles.backLink}>
+                    <a href="/uslugi" className={styles.backLink}>
                         ← Usługi
-                    </Link>
+                    </a>
                     <span className={`${styles.heroLabel} animate-fade-slide-up delay-100`}>
                         WSPÓŁPRACA KROK PO KROKU
                     </span>
@@ -154,9 +153,9 @@ export function WspolpracaPage() {
                         Bez zobowiązań, bez sprzedażowej gadki. Opowiesz, czym się
                         zajmujesz — a my pokażemy, co możemy zrobić.
                     </p>
-                    <Link to="/kontakt" className={styles.ctaButton}>
+                    <a href="/kontakt" className={styles.ctaButton}>
                         Umów się na rozmowę
-                    </Link>
+                    </a>
                 </div>
             </section>
         </main>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Hero } from '../components/Hero';
+import { Services } from '../components/Services';
+---
+
+<BaseLayout
+	title="APIXEL — Twoja widoczność w internecie"
+	description="APIXEL pomaga małym i średnim firmom zaistnieć w sieci poprzez marketing, content, strony internetowe i automatyzacje."
+>
+	<Hero />
+	<Services client:load />
+</BaseLayout>

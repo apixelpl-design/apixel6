@@ -37,8 +37,8 @@ export function ContactPage() {
                     <ul ref={listRef} className={styles.contactList}>
                         <li className={`${styles.contactItem} reveal-child`}>
                             <span className={styles.contactLabel}>TELEFON</span>
-                            <a href="tel:+48732737786" className={styles.contactValue}>
-                                732 737 786
+                            <a href="tel:+48798343712" className={styles.contactValue}>
+                                798 343 712
                             </a>
                         </li>
                         <li className={`${styles.contactItem} reveal-child`}>

@@ -2,7 +2,6 @@
    PaidAdsPage — /uslugi/reklamy
    "Płatne Reklamy" service detail page
    ═══════════════════════════════════════════════════════ */
-import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './VisibilityPage.module.css';
 
@@ -51,9 +50,9 @@ export function PaidAdsPage() {
             {/* ── Hero ── */}
             <header className={styles.hero}>
                 <div className={styles.heroInner}>
-                    <Link to="/uslugi" className={styles.backLink}>
+                    <a href="/uslugi" className={styles.backLink}>
                         ← Usługi
-                    </Link>
+                    </a>
                     <span className={`${styles.heroLabel} animate-fade-slide-up delay-100`}>03 / PŁATNE REKLAMY</span>
                     <h1 className={`${styles.heroTitle} animate-fade-slide-up delay-200`}>
                         Każda złotówka
@@ -133,9 +132,9 @@ export function PaidAdsPage() {
                             Zobacz nasz proces krok po kroku — od audytu Twojej obecności, przez aktywne prowadzenie, aż po comiesięczne raporty.
                         </p>
                     </div>
-                    <Link to="/wspolpraca" className={styles.bannerButton}>
+                    <a href="/wspolpraca" className={styles.bannerButton}>
                         Jak działamy? →
-                    </Link>
+                    </a>
                 </div>
             </section>
             <section ref={ctaRef} className={`${styles.ctaSection} reveal-scale`}>

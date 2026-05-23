@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './ServicesPage.module.css';
 
@@ -68,7 +67,7 @@ export function ServicesPage() {
                             <h2 className={styles.coreTitle}>
                                 Prowadzimy Twoje<br />social media i widoczność
                             </h2>
-                            <p className={styles.corePrice}>od 1200 zł netto / m-c</p>
+                            <p className={styles.corePrice}>od 1500 zł netto / m-c</p>
                             <p className={styles.coreDesc}>
                                 Wchodzimy do Twojej firmy jako Twój dział marketingu. Publikujemy posty na Facebooku, Instagramie, LinkedIn i Google Business. Ustawiamy wizytówki. Odpowiadamy na opinie za Ciebie. Pilnujemy, żebyś był widoczny tam, gdzie szukają Cię klienci.
                             </p>
@@ -76,9 +75,9 @@ export function ServicesPage() {
                                 Nie oferujemy pakietów do wyboru. <strong>Robimy wszystko</strong> — a jedyne, co możesz dodać, to usługi, które wykraczają poza codzienną obsługę.
                             </p>
                             <div className={styles.coreCtaWrapper}>
-                                <Link to="/wspolpraca" className={styles.coreCta}>
+                                <a href="/wspolpraca" className={styles.coreCta}>
                                     Jak dokładnie działacie? →
-                                </Link>
+                                </a>
                             </div>
 
                         </div>
@@ -154,7 +153,7 @@ export function ServicesPage() {
                     <div className={styles.addonsWrapper}>
                         <h3 className={styles.addonsTitle}>Co jeszcze robimy</h3>
                         <div ref={addonsRef} className={styles.addonsSlider}>
-                            <Link to="/uslugi/content" className={`${styles.addonCard} reveal-child`}>
+                            <a href="/uslugi/content" className={`${styles.addonCard} reveal-child`}>
                                 <span className={styles.addonBadge}>Wtyczka</span>
                                 <div className={styles.addonHeader}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -165,9 +164,9 @@ export function ServicesPage() {
                                     <h4 className={styles.addonName}>Oryginalny Content</h4>
                                 </div>
                                 <p className={styles.addonDesc}>Przyjeżdżamy z kamerą i aparatem. Tworzysz content, który jest naprawdę Twój.</p>
-                            </Link>
+                            </a>
 
-                            <Link to="/uslugi/reklamy" className={`${styles.addonCard} reveal-child`}>
+                            <a href="/uslugi/reklamy" className={`${styles.addonCard} reveal-child`}>
                                 <span className={styles.addonBadge}>Wtyczka</span>
                                 <div className={styles.addonHeader}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -178,9 +177,9 @@ export function ServicesPage() {
                                     <h4 className={styles.addonName}>Płatne Kampanie</h4>
                                 </div>
                                 <p className={styles.addonDesc}>Reklamy w Google i Meta — kiedy chcesz szybciej docierać do klientów.</p>
-                            </Link>
+                            </a>
 
-                            <Link to="/uslugi/strona" className={`${styles.addonCard} reveal-child`}>
+                            <a href="/uslugi/strona" className={`${styles.addonCard} reveal-child`}>
                                 <span className={styles.addonBadge}>Osobna usługa</span>
                                 <div className={styles.addonHeader}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -191,9 +190,9 @@ export function ServicesPage() {
                                     <h4 className={styles.addonName}>Strona Internetowa</h4>
                                 </div>
                                 <p className={styles.addonDesc}>Projektujemy i wdrażamy strony od zera — szybkie, responsywne, zoptymalizowane pod SEO i konwersję.</p>
-                            </Link>
+                            </a>
 
-                            <Link to="/uslugi/automatyzacja" className={`${styles.addonCard} reveal-child`}>
+                            <a href="/uslugi/automatyzacja" className={`${styles.addonCard} reveal-child`}>
                                 <span className={styles.addonBadge}>Osobna usługa</span>
                                 <div className={styles.addonHeader}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--apx-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -204,7 +203,7 @@ export function ServicesPage() {
                                     <h4 className={styles.addonName}>Automatyzacja &amp; Aplikacje</h4>
                                 </div>
                                 <p className={styles.addonDesc}>Automatyzujemy powtarzalne procesy, tworzymy dedykowane aplikacje i wdrażamy asystentów AI dla Twojej firmy.</p>
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -245,9 +244,9 @@ export function ServicesPage() {
                 <div ref={ctaRef} className={`${styles.ctaInner} reveal-scale`}>
                     <h2 className={styles.ctaTitle}>Pogadajmy o Twoim biznesie.</h2>
                     <p className={styles.ctaDesc}>Bez zobowiązań, bez sprzedażowej gadki. Opowiesz, czym się zajmujesz — a my pokażemy, co możemy zrobić.</p>
-                    <Link to="/kontakt" className={styles.ctaButton}>
+                    <a href="/kontakt" className={styles.ctaButton}>
                         Umów się na rozmowę
-                    </Link>
+                    </a>
                 </div>
             </section>
         </main>

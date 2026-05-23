@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+    title="Polityka prywatności | APIXEL"
+    description="Polityka prywatności APIXEL dotycząca kontaktu mailowego, telefonicznego oraz korzystania ze strony internetowej."
+>
+    <main class="privacy-page">
+        <header class="privacy-hero">
+            <span>Dokument</span>
+            <h1>Polityka prywatności</h1>
+            <p>
+                Poniżej znajdziesz podstawowe informacje o tym, jak przetwarzamy dane
+                przekazywane przez formularze kontaktowe, e-mail i telefon.
+            </p>
+        </header>
+
+        <section class="privacy-content">
+            <h2>Administrator danych</h2>
+            <p>
+                Administratorem danych jest APIXEL. W sprawach związanych z danymi
+                osobowymi możesz skontaktować się pod adresem
+                <a href="mailto:kontakt@apixel.pl">kontakt@apixel.pl</a>.
+            </p>
+
+            <h2>Zakres i cel przetwarzania</h2>
+            <p>
+                Dane podane w korespondencji wykorzystujemy wyłącznie do obsługi
+                zapytania, przygotowania odpowiedzi, kontaktu handlowego oraz dalszej
+                współpracy, jeśli do niej dojdzie.
+            </p>
+
+            <h2>Okres przechowywania</h2>
+            <p>
+                Dane przechowujemy przez czas potrzebny do obsługi sprawy, a następnie
+                przez okres wymagany przepisami prawa lub uzasadnionym interesem
+                administratora.
+            </p>
+
+            <h2>Twoje prawa</h2>
+            <p>
+                Masz prawo dostępu do danych, ich sprostowania, usunięcia, ograniczenia
+                przetwarzania oraz wniesienia sprzeciwu wobec przetwarzania.
+            </p>
+        </section>
+    </main>
+
+    <style>
+        .privacy-page {
+            background: var(--apx-white);
+            color: var(--apx-black);
+            min-height: 80vh;
+        }
+
+        .privacy-hero {
+            background: var(--apx-black);
+            color: var(--apx-white);
+            padding: 160px 80px 80px;
+        }
+
+        .privacy-hero span {
+            display: block;
+            color: var(--apx-red);
+            font-family: var(--font-display);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .privacy-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 5vw, 68px);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .privacy-hero p,
+        .privacy-content p {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--apx-text-light);
+            max-width: 720px;
+        }
+
+        .privacy-hero p {
+            color: #777;
+        }
+
+        .privacy-content {
+            max-width: 760px;
+            padding: 80px;
+        }
+
+        .privacy-content h2 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            margin: 40px 0 12px;
+        }
+
+        .privacy-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .privacy-content a {
+            color: var(--apx-red);
+        }
+
+        @media (max-width: 900px) {
+            .privacy-hero {
+                padding: 120px 24px 64px;
+            }
+
+            .privacy-content {
+                padding: 56px 24px;
+            }
+        }
+    </style>
+</BaseLayout>

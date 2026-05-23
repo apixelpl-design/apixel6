@@ -1,0 +1,454 @@
+/* ═══════════════════════════════════════════════════════
+   PortfolioPage.module.css
+   /portfolio detail page
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Hero ── */
+.hero {
+    position: relative;
+    min-height: calc(100dvh - 64px - 240px);
+    margin-top: 64px;
+    background: var(--apx-black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 80px 40px;
+}
+
+.heroInner {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+
+.heroLabel {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    color: var(--apx-red);
+    text-transform: lowercase;
+    margin-bottom: 20px;
+}
+
+.heroTitle {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--apx-white);
+    margin-bottom: 1.5rem;
+    text-wrap: balance;
+}
+
+.accent {
+    color: var(--apx-red);
+}
+
+.heroDesc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    color: #777;
+    max-width: 560px;
+    text-wrap: pretty;
+}
+
+/* ── Shared section wrapper ── */
+.sectionInner {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* ── Portfolio section ── */
+.portfolioSection {
+    background: var(--apx-white);
+    padding: 100px 80px;
+}
+
+.projectCard {
+    display: flex;
+    gap: 80px;
+    margin-bottom: 160px;
+    align-items: center;
+}
+
+.projectCard:last-child {
+    margin-bottom: 0;
+}
+
+.projectCard:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.projectInfo {
+    flex: 1;
+    max-width: 500px;
+}
+
+.projectCategory {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    color: var(--apx-red);
+    text-transform: lowercase;
+    margin-bottom: 12px;
+}
+
+.projectTitle {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--apx-black);
+    margin-bottom: 24px;
+    text-wrap: balance;
+}
+
+.projectDesc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--apx-text-light);
+    margin-bottom: 32px;
+    text-wrap: pretty;
+}
+
+.projectFeature {
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    background: #fafafa;
+    border-left: 3px solid var(--apx-red);
+    border-radius: 0 8px 8px 0;
+}
+
+.featureLabel {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--apx-red);
+    margin-bottom: 6px;
+}
+
+.featureText {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--apx-black);
+    font-weight: 500;
+}
+
+.techStackContainer {
+    margin-top: 24px;
+}
+
+.techStackLabel {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.techStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.techBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: #f4f4f5;
+    border: 1px solid #e4e4e7;
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--apx-black);
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    user-select: none;
+}
+
+.techBadge svg {
+    flex-shrink: 0;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.techBadge:hover {
+    background: #e4e4e7;
+    border-color: #d4d4d8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.techBadge:hover svg {
+    transform: scale(1.15) rotate(3deg);
+}
+
+.projectMockups {
+    flex: 1.5;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    perspective: 1000px;
+}
+
+.laptopMockup {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 10;
+    background: #e8e8e8;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    border: 12px solid #222;
+    border-bottom: 24px solid #1a1a1a;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(10, 15, 25, 0.15);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s ease;
+    transform-origin: center bottom;
+}
+
+/* Laptop base visual */
+.laptopMockup::after {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 6px;
+    background: #333;
+    border-radius: 0 0 8px 8px;
+}
+
+.laptopScreen {
+    width: 100%;
+    height: 100%;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-family: var(--font-body);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -2px 10px rgba(0, 0, 0, 0.05);
+    background-size: cover;
+    background-position: top center;
+    transition: background-position 2.5s ease-in-out;
+}
+
+/* Laptop Screen Glare */
+.laptopScreen::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 40%);
+    pointer-events: none;
+}
+
+.phoneMockup {
+    width: 22%;
+    min-width: 140px;
+    aspect-ratio: 9 / 19;
+    background: #222;
+    border-radius: 24px;
+    position: absolute;
+    bottom: -10px;
+    right: 0px;
+    border: 8px solid #1a1a1a;
+    overflow: hidden;
+    box-shadow: -10px 20px 40px rgba(10, 15, 25, 0.25);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.7s ease;
+    z-index: 2;
+}
+
+/* Phone notch */
+.phoneMockup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 16px;
+    background: #1a1a1a;
+    border-radius: 0 0 12px 12px;
+    z-index: 2;
+}
+
+.phoneScreen {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 11px;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 1;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.05);
+    background-size: cover;
+    background-position: top center;
+    transition: background-position 2.5s ease-in-out;
+}
+
+/* Phone Screen Glare */
+.phoneScreen::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ── Interactive Hover States ── */
+.projectCard {
+    cursor: pointer;
+}
+
+.projectCard:hover .laptopScreen,
+.projectCard:hover .phoneScreen {
+    background-position: bottom center;
+}
+
+.projectCard:hover .laptopMockup {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 40px 80px rgba(10, 15, 25, 0.2);
+}
+
+.projectCard:hover .phoneMockup {
+    transform: translateY(-24px) scale(1.05);
+    box-shadow: -15px 30px 60px rgba(10, 15, 25, 0.3);
+}
+
+/* ── Tactile Feedback (Active State) ── */
+.projectCard:active .laptopMockup {
+    transform: translateY(-4px) scale(0.99);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.projectCard:active .phoneMockup {
+    transform: translateY(-16px) scale(1.02);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── CTA section ── */
+.ctaSection {
+    position: relative;
+    background: var(--apx-black);
+    padding: 100px 80px;
+    text-align: center;
+}
+
+.ctaSection .sectionInner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ctaTitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--apx-white);
+    margin-bottom: 1rem;
+    text-wrap: balance;
+}
+
+.ctaDesc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 2rem;
+    max-width: 440px;
+    text-wrap: pretty;
+}
+
+.ctaButton {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 16px 40px;
+    background: var(--apx-red);
+    color: var(--apx-white);
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease;
+    transform-origin: center;
+}
+
+.ctaButton:hover {
+    background: var(--apx-dark-red);
+    transform: translateY(-2px);
+}
+
+.ctaButton:active {
+    transform: translateY(0px) scale(0.96);
+    transition: transform 0.1s ease;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .hero {
+        padding: 116px 24px 60px;
+    }
+
+    .portfolioSection {
+        padding: 60px 24px;
+    }
+
+    .projectCard {
+        flex-direction: column !important;
+        gap: 40px;
+        margin-bottom: 100px;
+    }
+
+    .projectMockups {
+        width: 100%;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .phoneMockup {
+        width: 30%;
+        min-width: 100px;
+        bottom: -30px;
+        right: 5px;
+    }
+    
+    .ctaSection {
+        padding: 60px 24px;
+    }
+}
