@@ -7,16 +7,16 @@ import type { ReactNode } from 'react';
 import styles from './PortfolioPage.module.css';
 
 // Import project images
-import okRemovalsDesktop from '../assets/portfolio/optimized/OkremovalsStatio.jpg';
-import okRemovalsMobile from '../assets/portfolio/optimized/OkremovalsMobile.jpg';
-import michalDesktop from '../assets/portfolio/optimized/MichalStatio.jpg';
-import michalMobile from '../assets/portfolio/optimized/MichalMobile.jpg';
-import mojapasjaDesktop from '../assets/portfolio/optimized/MojapasjaStatio.jpg';
-import mojapasjaMobile from '../assets/portfolio/optimized/MojapasjaMobile.jpg';
-import searidersDesktop from '../assets/portfolio/optimized/SearidersStatio.jpg';
-import searidersMobile from '../assets/portfolio/optimized/SearidersMobile.jpg';
-import bbDesktop from '../assets/portfolio/optimized/bbStatio.jpg';
-import bbMobile from '../assets/portfolio/optimized/bbMobile.jpg';
+import okRemovalsDesktop from '../assets/portfolio/optimized/OkremovalsStatio.webp';
+import okRemovalsMobile from '../assets/portfolio/optimized/OkremovalsMobile.webp';
+import michalDesktop from '../assets/portfolio/optimized/MichalStatio.webp';
+import michalMobile from '../assets/portfolio/optimized/MichalMobile.webp';
+import mojapasjaDesktop from '../assets/portfolio/optimized/MojapasjaStatio.webp';
+import mojapasjaMobile from '../assets/portfolio/optimized/MojapasjaMobile.webp';
+import searidersDesktop from '../assets/portfolio/optimized/SearidersStatio.webp';
+import searidersMobile from '../assets/portfolio/optimized/SearidersMobile.webp';
+import bbDesktop from '../assets/portfolio/optimized/bbStatio.webp';
+import bbMobile from '../assets/portfolio/optimized/bbMobile.webp';
 
 type ImageSource = string | { src: string };
 
