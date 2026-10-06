@@ -35,11 +35,11 @@ const icons: Record<string, string[]> = {
   <div class="offer-price-panel">
     <div class="offer-price-content">
       <p class="offer-label">{offer.label}</p>
-      <h3>
+      <h2>
         {offer.title[0]}
         <br />
         {offer.title[1]}
-      </h3>
+      </h2>
       <p class="offer-price">
         {pricing.startingPrice && <span class="offer-from">od</span>}
         <strong>{new Intl.NumberFormat('pl-PL').format(pricing.price)}</strong>
@@ -48,10 +48,10 @@ const icons: Record<string, string[]> = {
       <p class="offer-billing">
         {pricing.monthly ? 'Abonament miesięczny' : 'Płatność jednorazowa'}
       </p>
-      <p class="offer-fit">{offer.fit}</p>
       <a class="button" href="#wycena" data-cta={`${service}_single_offer`}>
         {offer.cta} <span aria-hidden="true">↗</span>
       </a>
+      <p class="offer-fit">{offer.fit}</p>
       <p class="offer-no-subscription">{offer.note}</p>
     </div>
   </div>
@@ -120,7 +120,7 @@ const icons: Record<string, string[]> = {
     letter-spacing: 0.08em;
     margin-bottom: 32px;
   }
-  .offer-price-panel h3 {
+  .offer-price-panel h2 {
     font-size: 30px;
   }
   .offer-price {
@@ -232,7 +232,7 @@ const icons: Record<string, string[]> = {
     .offer-price-panel {
       padding: 32px;
     }
-    .offer-price-panel h3 {
+    .offer-price-panel h2 {
       font-size: 32px;
     }
     .offer-price-content {
@@ -247,9 +247,36 @@ const icons: Record<string, string[]> = {
     .offer-features li:nth-child(even) {
       padding: 24px 0;
     }
-    .offer-price-panel,
     .offer-features-panel {
       padding: 28px 24px;
+    }
+    .offer-price-panel {
+      padding: 24px 20px;
+    }
+    .offer-label {
+      font-size: 11px;
+      margin-bottom: 16px;
+    }
+    .offer-price-panel h2 {
+      font-size: 26px;
+    }
+    .offer-price {
+      margin-top: 16px;
+      column-gap: 10px;
+    }
+    .offer-price strong {
+      font-size: 52px;
+    }
+    .offer-price span {
+      font-size: 16px;
+    }
+    .offer-price-content .button {
+      margin-top: 18px;
+      padding-inline: 12px;
+      gap: 10px;
+    }
+    .offer-fit {
+      margin-top: 24px;
     }
   }
 </style>

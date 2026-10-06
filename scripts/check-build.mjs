@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { gzipSync } from 'node:zlib';
+import { assertContentVisibility } from './visibility-check.mjs';
 
 const root = path.resolve('.vercel/output/static');
 const origin = 'https://www.apixel.pl';
@@ -91,6 +92,11 @@ for (const [route, html] of pages) {
     /<astro-island\b/,
     `${route}: no hydrated React pages`,
   );
+  assert.doesNotMatch(
+    html,
+    /\bstyle="[^"]*\bopacity\s*:\s*0(?:\.0+)?%?\s*(?:!important\s*)?(?:;|")/i,
+    `${route}: primary content has no inline opacity:0 gate`,
+  );
   const noindex = attribute(meta(html, 'robots') ?? '', 'content')?.includes(
     'noindex',
   );
@@ -141,6 +147,41 @@ assert.ok(
   'Contact page uses the shared contact section.',
 );
 await stat('.vercel/output/functions/_render.func/.vc-config.json');
+const initialSlides =
+  (pages.get('/') ?? '').match(/<article\b[^>]*\bdata-project-slide[^>]*>/g) ??
+  [];
+const initialActive = initialSlides.filter(
+  (tag) => attribute(tag, 'data-active') === 'true',
+);
+assert.equal(
+  initialActive.length,
+  1,
+  'One carousel project is visible without JavaScript.',
+);
+assert.notEqual(attribute(initialActive[0], 'aria-hidden'), 'true');
+assert.doesNotMatch(
+  initialActive[0],
+  /\binert(?:[=>\s])/,
+  'Initial project is interactive without JavaScript.',
+);
+const routing = JSON.parse(
+  await readFile('.vercel/output/config.json', 'utf8'),
+);
+for (const pathname of ['/uslugi', '/uslugi/']) {
+  const firstMatch = routing.routes.find(
+    (route) => route.src && new RegExp(route.src).test(pathname),
+  );
+  assert.equal(
+    firstMatch?.status,
+    301,
+    `${pathname}: direct permanent redirect`,
+  );
+  assert.equal(
+    firstMatch?.headers?.Location,
+    '/uslugi/strona/',
+    `${pathname}: redirect precedes slash normalization and fallback`,
+  );
+}
 const css = (
   await Promise.all(
     files
@@ -148,11 +189,7 @@ const css = (
       .map((file) => readFile(file, 'utf8')),
   )
 ).join('');
-assert.doesNotMatch(
-  css.replace(/[^{}]*\.project-carousel-slide[^{}]*\{[^{}]*\}/g, ''),
-  /opacity\s*:\s*0(?:[;}])/,
-  'Content is not hidden until animation runs.',
-);
+assertContentVisibility(css);
 const js = files.filter((file) => file.endsWith('.js'));
 const compressedBytes = (
   await Promise.all(
@@ -160,7 +197,7 @@ const compressedBytes = (
   )
 ).reduce((sum, size) => sum + size, 0);
 console.log(
-  `Verified ${pages.size} pages, ${indexable.length} indexed URLs, internal links, JSON-LD, contact endpoint and sitemap.`,
+  `Verified ${pages.size} pages, ${indexable.length} indexable URLs, internal links, JSON-LD, contact endpoint, legacy redirects and sitemap.`,
 );
 console.log(
   `Client JavaScript: ${js.length} files, ${compressedBytes} bytes total gzip (excluding optional Google Analytics).`,

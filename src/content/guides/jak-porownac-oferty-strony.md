@@ -5,6 +5,10 @@ category: 'Wybór wykonawcy'
 publishedAt: 2026-10-05
 relatedProject: moja-pasja
 relatedService: strona
+relatedGuides:
+  - ile-kosztuje-strona-firmowa
+  - one-page-czy-podstrony
+  - przebudowa-strony-a-ruch-z-google
 ---
 
 ## Ta sama nazwa usługi może oznaczać różny zakres

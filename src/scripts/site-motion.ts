@@ -48,6 +48,8 @@ const revealSelectors = [
   '.contact-details--section',
   '.article-content > h2',
   '.article-aside',
+  '.article-price-answer',
+  '.article-editorial',
   '.privacy-content > h2',
   '.footer-top > div',
 ];

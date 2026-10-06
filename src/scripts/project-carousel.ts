@@ -1,5 +1,30 @@
 import { carouselMotion } from '../data/motion';
 
+const imageWaitMs = 1500;
+
+function waitForImage(image: HTMLImageElement): Promise<void> {
+  return new Promise((resolve) => {
+    const finish = () => {
+      window.clearTimeout(timeout);
+      image.removeEventListener('load', decode);
+      image.removeEventListener('error', finish);
+      resolve();
+    };
+    const decode = () => {
+      // A failed or slow image must never lock navigation.
+      if (image.naturalWidth && typeof image.decode === 'function')
+        image.decode().then(finish, finish);
+      else finish();
+    };
+    const timeout = window.setTimeout(finish, imageWaitMs);
+    if (image.complete) decode();
+    else {
+      image.addEventListener('load', decode, { once: true });
+      image.addEventListener('error', finish, { once: true });
+    }
+  });
+}
+
 export function initProjectCarousels() {
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   document
@@ -18,12 +43,46 @@ export function initProjectCarousels() {
       const status = carousel.querySelector<HTMLElement>(
         '[data-carousel-status]',
       );
+      const stage = carousel.querySelector<HTMLElement>(
+        '.project-carousel-stage',
+      );
       if (!slides.length) return;
-      carousel.dataset.carouselReady = 'true';
       // Homepage screenshots stay still; only user-selected transitions move.
       carousel.dataset.carouselRunning = 'false';
       let active = 0;
+      let requested = active;
+      let request = 0;
       let animations: Animation[] = [];
+      const imageLoads = new Map<HTMLElement, Promise<void>>();
+
+      const prepareSlide = (slide: HTMLElement) => {
+        const existing = imageLoads.get(slide);
+        if (existing) return existing;
+        // Template contents are inert: hidden slides have no live src/srcset.
+        slide
+          .querySelectorAll<HTMLTemplateElement>('[data-preview-image]')
+          .forEach((template) => {
+            template.parentElement?.append(template.content.cloneNode(true));
+            template.remove();
+          });
+        const ready = Promise.all(
+          [...slide.querySelectorAll<HTMLImageElement>('img')].map(
+            waitForImage,
+          ),
+        ).then(() => {});
+        imageLoads.set(slide, ready);
+        return ready;
+      };
+
+      const setLoading = (index?: number) => {
+        const loading = index !== undefined;
+        carousel.dataset.carouselLoading = String(loading);
+        stage?.setAttribute('aria-busy', String(loading));
+        pages.forEach((page, pageIndex) => {
+          if (pageIndex === index) page.dataset.loading = 'true';
+          else delete page.dataset.loading;
+        });
+      };
 
       const clearTransition = () => {
         animations.forEach((animation) => animation.cancel());
@@ -41,9 +100,23 @@ export function initProjectCarousels() {
             ),
           );
       };
-      const show = (index: number, direction = 1) => {
+      const show = async (index: number, direction = 1) => {
         const selected = (index + slides.length) % slides.length;
-        if (selected === active) return;
+        requested = selected;
+        const currentRequest = ++request;
+        if (selected === active) {
+          setLoading();
+          if (status)
+            status.textContent = slides[active].getAttribute('aria-label');
+          return;
+        }
+        setLoading(selected);
+        if (status)
+          status.textContent = `Ładowanie realizacji: ${slides[selected].getAttribute('aria-label')}`;
+        await prepareSlide(slides[selected]);
+        // Rapid arrows/pages always honor the most recent user choice.
+        if (currentRequest !== request) return;
+        setLoading();
         clearTransition();
         const outgoing = slides[active];
         const moveFocus = outgoing.contains(document.activeElement);
@@ -90,13 +163,14 @@ export function initProjectCarousels() {
 
       carousel
         .querySelector<HTMLButtonElement>('[data-carousel-prev]')
-        ?.addEventListener('click', () => show(active - 1, -1));
+        ?.addEventListener('click', () => void show(requested - 1, -1));
       carousel
         .querySelector<HTMLButtonElement>('[data-carousel-next]')
-        ?.addEventListener('click', () => show(active + 1, 1));
+        ?.addEventListener('click', () => void show(requested + 1, 1));
       pages.forEach((page, index) =>
-        page.addEventListener('click', () =>
-          show(index, index > active ? 1 : -1),
+        page.addEventListener(
+          'click',
+          () => void show(index, index > requested ? 1 : -1),
         ),
       );
       controls?.addEventListener('keydown', (event) => {
@@ -104,12 +178,18 @@ export function initProjectCarousels() {
         if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
           event.preventDefault();
           const direction = event.key === 'ArrowLeft' ? -1 : 1;
-          show(active + direction, direction);
+          void show(requested + direction, direction);
         }
       });
       motion.addEventListener('change', () => {
         if (motion.matches) clearTransition();
       });
       resetPreviews();
+      controls
+        ?.querySelectorAll<HTMLButtonElement>('button')
+        .forEach((button) => {
+          button.disabled = false;
+        });
+      carousel.dataset.carouselReady = 'true';
     });
 }

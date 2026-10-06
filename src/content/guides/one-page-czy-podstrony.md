@@ -5,6 +5,10 @@ category: 'Struktura strony'
 publishedAt: 2026-10-05
 relatedProject: bbtrans
 relatedService: strona
+relatedGuides:
+  - ile-kosztuje-strona-firmowa
+  - seo-przy-budowie-a-pozycjonowanie
+  - strona-ma-ruch-ale-brak-zapytan
 ---
 
 ## Zacznij od oferty, nie od liczby ekranów

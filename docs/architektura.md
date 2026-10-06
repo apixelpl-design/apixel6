@@ -4,22 +4,22 @@ Strony składają się z komponentów Astro, które pobierają dane z `src/data`
 
 ## Gdzie wprowadzać zmiany
 
-| Zmiana                                              | Jedno miejsce edycji                                         | Gdzie pojawi się efekt                                                                                    |
-| --------------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| Telefon, e-mail, adres, social media, logo          | `src/data/site.ts`, obiekt `site`                            | Kontakt, sekcje kontaktowe, stopka, dane strukturalne, prywatność, komunikaty serwera                     |
-| Nagłówek, opis i włączenie formularza               | `src/data/site.ts`, obiekt `contact`                         | Wszystkie sekcje kontaktowe oraz `/kontakt/`; tryb kontaktu wpływa też na endpoint i opisy prywatności    |
-| Cena „od”, zakres, rozliczenie, nazwa i link usługi | `src/data/services.ts`                                       | Homepage, cennik, zakres i cena na stronie usługi; nazwy i linki w menu, stopce oraz usługach dodatkowych |
-| Linki do głównych podstron i układ menu             | `src/data/navigation.ts`                                     | Menu komputerowe i mobilne, stopka, odnośniki korzystające z katalogu podstron                            |
-| Nazwa, domena, zdjęcia i opis realizacji            | `src/data/projects.ts`                                       | Portfolio, studium przypadku, karuzela, polecenia projektu w poradnikach i ofercie                        |
-| Kolejność realizacji w hero                         | `featuredOrder` w `src/data/projects.ts`                     | Karuzela strony głównej; brak tego pola wyklucza projekt z karuzeli                                       |
-| Projekty na stronie oferty stron                    | `showOnWebsiteOffer` w `src/data/projects.ts`                | Lista realizacji na `/uslugi/strona/`                                                                     |
-| Pytania i odpowiedzi                                | `src/data/faq.ts`                                            | FAQ na homepage, w cenniku i na stronach usług                                                            |
-| Etapy i zasady współpracy                           | `src/data/process.ts`                                        | Krótkie kroki na homepage i opis na `/wspolpraca/`; osobne procesy strony oraz pomiaru SEO                |
-| Tempo animacji i zmiany slajdów                     | `src/data/motion.ts`                                         | Wszystkie animowane podglądy i karuzela hero                                                              |
-| GA4                                                 | `PUBLIC_GA_MEASUREMENT_ID`; odczyt w `src/data/analytics.ts` | Analityka, panel zgody, ustawienia w stopce i opis prywatności                                            |
-| Kolory, fonty, odstępy, wygląd elementów            | `src/styles/site.css`                                        | Cała witryna                                                                                              |
+| Zmiana                                     | Jedno miejsce edycji                                         | Gdzie pojawi się efekt                                                                                 |
+| ------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| Telefon, e-mail, adres, social media, logo | `src/data/site.ts`, obiekt `site`                            | Kontakt, sekcje kontaktowe, stopka, dane strukturalne, prywatność, komunikaty serwera                  |
+| Nagłówek, opis i włączenie formularza      | `src/data/site.ts`, obiekt `contact`                         | Wszystkie sekcje kontaktowe oraz `/kontakt/`; tryb kontaktu wpływa też na endpoint i opisy prywatności |
+| Cena i zakres strony oraz SEO              | `src/data/website-offer.ts`, `src/data/seo-offer.ts`         | Homepage, oferty usług i odpowiedź cenowa poradnika; `services.ts` udostępnia te dane                  |
+| Linki do głównych podstron i układ menu    | `src/data/navigation.ts`                                     | Menu komputerowe i mobilne, stopka, odnośniki korzystające z katalogu podstron                         |
+| Nazwa, domena, zdjęcia i opis realizacji   | `src/data/projects.ts`                                       | Portfolio, studium przypadku, karuzela, polecenia projektu w poradnikach i ofercie                     |
+| Kolejność realizacji w hero                | `featuredOrder` w `src/data/projects.ts`                     | Karuzela strony głównej; brak tego pola wyklucza projekt z karuzeli                                    |
+| Projekty na stronie oferty stron           | `showOnWebsiteOffer` w `src/data/projects.ts`                | Lista realizacji na `/uslugi/strona/`                                                                  |
+| Pytania i odpowiedzi                       | `src/data/faq.ts`                                            | FAQ na homepage i na stronach usług                                                                    |
+| Etapy i zasady współpracy                  | `src/data/process.ts`                                        | Krótkie kroki na homepage i opis na `/wspolpraca/`; osobne procesy strony oraz pomiaru SEO             |
+| Tempo animacji i zmiany slajdów            | `src/data/motion.ts`                                         | Wszystkie animowane podglądy i karuzela hero                                                           |
+| GA4                                        | `PUBLIC_GA_MEASUREMENT_ID`; odczyt w `src/data/analytics.ts` | Analityka, panel zgody, ustawienia w stopce i opis prywatności                                         |
+| Kolory, fonty, odstępy, wygląd elementów   | `src/styles/site.css`                                        | Cała witryna                                                                                           |
 
-Kwoty to `primaryServices.strona.price` oraz `primaryServices.seo.price`. Obecnie: **od 2000 zł netto jednorazowo** i **od 800 zł netto miesięcznie**. Nie ma osobnych kopii cen w stronach ani nadpisania cen przez `.env`.
+Kwoty źródłowe to `websiteOffer.price` oraz `seoOffer.price`, udostępniane również przez `primaryServices`. Obecnie: **2000 zł netto jednorazowo** i **od 800 zł netto miesięcznie**. Nie ma osobnych kopii cen w stronach ani nadpisania cen przez `.env`.
 
 ## Kontakt
 
@@ -41,6 +41,10 @@ Kod formularza pozostaje dostępny do przyszłego włączenia. Włączenie wymag
 
 Unikalne nagłówki i teksty usług pozostają na ich podstronach, a poradniki w `src/content/guides`. Wspólne dane nie zastępują odrębnych opisów oferty.
 
+`GuideOfferSummary.astro` pobiera cenę, liczbę podstron i abonament z danych ofert. Frontmatter `offerSummary: true` dodaje ten blok przed treścią poradnika oraz w jego spisie. `relatedGuides` określa tematyczne rekomendacje; kategorię i usługę wykorzystujemy jako dalsze kryteria.
+
+Spis poradnika występuje raz w DOM, przed artykułem. Na mobile jest nad tekstem, a na komputerze w bocznej kolumnie. To natywny, domyślnie zamknięty `details`, dostępny również bez JavaScript. Cena i CTA kart ofert są przed dłuższym opisem dopasowania.
+
 ## Realizacje i obrazy
 
 `projectWebsites` przechowuje nazwy i domeny dostępnych publicznie realizacji. Rekordy `projects` wykorzystują te dane zamiast powtarzać nazwy i adresy. Moja Pasja pozostaje w portfolio bez linku domenowego. MojAdwokat ma osobny publiczny rekord i pozostaje poza karuzelą homepage. Pasek odnośników pod hero został usunięty. Poufna kancelaria pozostaje odrębnym projektem.
@@ -59,6 +63,8 @@ Realizacje w hero wybiera się ręcznie przez strzałki i znaczniki paginacji. P
 
 Karuzela homepage korzysta z wariantu `frameless` w `SitePreview.astro`: podglądy nie mają obramowań, zaokrągleń, cieni ani paska przeglądarki. Sam widget również nie ma ramki, a jego zawartość jest na czarnym tle hero. Pozostałe podglądy mogą nadal korzystać z domyślnego wariantu z ramką.
 
+Obrazy nieaktywnych slajdów są w `template`, a `project-carousel.ts` doładowuje je po wyborze. Sterowanie jest ukryte i wyłączone przed inicjalizacją; link do portfolio działa zawsze. Wspólny `PreviewMotionControl.astro` zatrzymuje i wznawia pozostałe przewijane podglądy. Przycisk jest poza linkami, widoczny podczas oglądania podglądów i uwzględnia safe-area. Na telefonie ma 44 × 44 px oraz dostępny opis działania i pozostaje przy widocznym obrazie. Jeśli obraz jest zbyt mało widoczny, przycisk znika, a ruch zostaje zatrzymany. Pozycję obliczamy w jednym RAF na scroll/resize.
+
 ## Animacje
 
 `BaseLayout.astro` włącza na każdej podstronie wspólny `src/scripts/site-motion.ts` i `src/styles/motion.css`. Parametry są w obiekcie `siteMotion` w `src/data/motion.ts`; layout udostępnia je CSS jako zmienne.
@@ -74,3 +80,5 @@ Domyślny HTML i CSS nie ukrywają treści oczekującej na skrypt. Animacje wej�
 Użyj `BaseLayout.astro`, wspólnych komponentów i właściwych rekordów danych. Sekcję kontaktu dodaj przez `<ContactSection />`. Nie wpisuj ponownie telefonu, ceny czy zakresu w HTML. Po zmianach danych publikacja wymaga ponownego zbudowania i wdrożenia strony; lokalny podgląd Astro odświeża się automatycznie.
 
 Adresy w konfiguracji hostingu (`astro.config.mjs`, `vercel.json`, `public/robots.txt`) oraz odnośniki w autorskich artykułach mają własną rolę. Zmiana domeny lub rzeczywistej ścieżki podstrony wymaga również aktualizacji tych miejsc i przekierowań.
+
+Integracja `scripts/vercel-static-redirects.mjs` ustawia dokładne stałe przekierowania przed normalizacją slash w artefakcie Vercel. `check:build` sprawdza również obie wersje starych adresów i poprawne stany widoczności treści. CI uruchamia typy, testy, kompilację i walidator.

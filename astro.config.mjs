@@ -1,6 +1,7 @@
 import { defineConfig, envField } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
+import { vercelStaticRedirects } from './scripts/vercel-static-redirects.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,6 +20,7 @@ export default defineConfig({
         !url.includes('/404/') &&
         new URL(url).pathname !== '/uslugi/',
     }),
+    vercelStaticRedirects(),
   ],
   devToolbar: { enabled: false },
   env: {

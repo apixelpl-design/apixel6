@@ -1,10 +1,16 @@
 ---
 title: 'Ile kosztuje strona internetowa dla małej firmy?'
-description: 'Co wpływa na wycenę strony, jakie koszty są jednorazowe i co sprawdzić w propozycji wykonawcy. Przykłady zakresów z portfolio APIXEL.'
+description: 'Poznaj cenę i zakres strony firmowej w APIXEL. Sprawdź, co obejmuje wdrożenie, które koszty są dodatkowe i jak porównać oferty wykonawców.'
 category: 'Koszt i zakres'
 publishedAt: 2026-10-05
+updatedAt: 2026-10-06
 relatedProject: okremovals
 relatedService: strona
+offerSummary: true
+relatedGuides:
+  - jak-porownac-oferty-strony
+  - one-page-czy-podstrony
+  - seo-przy-budowie-a-pozycjonowanie
 ---
 
 ## Porównuj zakres, a potem cenę
@@ -12,8 +18,6 @@ relatedService: strona
 Strona firmowa nie ma jednego zakresu. Witryna przedstawiająca trzy usługi, formularz zbierający dane do wyceny przeprowadzki i sklep z katalogiem produktów rozwiązują różne problemy. Różni się też praca potrzebna do ich wykonania.
 
 Dlatego przed porównaniem kwot zapisz, czego potrzebuje Twoja firma: jakie usługi ma wyjaśnić strona, jakie pytania zadają klienci i w jaki sposób mają się kontaktować. Poproś wykonawców o wycenę tego samego zakresu. Niska cena bez informacji o treściach, funkcjach i późniejszej opiece niewiele mówi o całej inwestycji.
-
-W APIXEL [wykonanie strony](/uslugi/strona/) rozliczamy jednorazowo, a [późniejsze pozycjonowanie](/widocznosc/) w miesięcznym abonamencie. Na podstronach usług znajdziesz ceny i zakres prac. Dodatkowe funkcje wyceniamy osobno.
 
 ## Co wpływa na koszt wdrożenia
 
@@ -31,7 +35,7 @@ W **OkRemovals** zakres obejmował również formularz zbierający kluczowe info
 
 W **Mojej Pasji** strona łączy prezentację pracowni z katalogiem oraz obsługą płatności. Do zakresu dochodzą elementy procesu zakupowego. Samo porównanie liczby podstron nie oddaje tej różnicy.
 
-To przykłady wykonanej pracy, nie przykładowe kwoty udające rzeczywiste wyceny. Szczegóły znajdziesz w [realizacjach APIXEL](/portfolio/).
+Szczegóły wykonanej pracy znajdziesz w [realizacjach APIXEL](/portfolio/).
 
 ## Jakie koszty mogą pojawić się później
 

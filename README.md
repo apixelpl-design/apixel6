@@ -20,7 +20,7 @@ npm run build
 npm run check:build
 ```
 
-Testy formularza używają atrap dostawcy poczty i nie wysyłają wiadomości. `check:build` sprawdza wygenerowane strony, linki, metadane i sitemapę. `npm run format` porządkuje źródła.
+Testy formularza używają atrap dostawcy poczty i nie wysyłają wiadomości. `check:build` sprawdza wygenerowane strony, linki, metadane, sitemapę, routing starych adresów oraz widoczność treści. `npm run format` porządkuje źródła. Workflow `.github/workflows/ci.yml` wykonuje te same kontrole dla push i pull request na Node 22.
 
 ## Wspólne dane i komponenty
 
@@ -44,9 +44,9 @@ Endpoint ma walidację po stronie serwera, limit rozmiaru, kontrolę pochodzenia
 
 ## Ceny i dane realizacji
 
-Zatwierdzone ceny początkowe to **od 2000 zł netto za stronę** i **od 800 zł netto miesięcznie za pozycjonowanie**. Kwoty oraz zakres edytuj wyłącznie w `src/data/services.ts`. Strona główna, cennik i podstrony usług pobierają stamtąd te same dane. Ceny nie mają nadpisania przez zmienne środowiskowe. Zmiana wymaga nowej kompilacji.
+Cena strony to **2000 zł netto jednorazowo**, a pozycjonowanie zaczyna się **od 800 zł netto miesięcznie**. Cenę i zakres strony edytuj w `src/data/website-offer.ts`, a SEO w `src/data/seo-offer.ts`. `src/data/services.ts` udostępnia te same dane pozostałym komponentom. Korzystają z nich homepage, oferty usług i odpowiedź cenowa w poradniku. Ceny nie mają nadpisania przez zmienne środowiskowe. Zmiana wymaga nowej kompilacji.
 
-Przed wprowadzeniem kwot ustal zakres minimalnego pakietu, liczbę podstron, zakres treści i funkcji, limity miesięcznych prac SEO, zasady rozliczenia i koszty zewnętrzne. Lista w `src/data/services.ts` opisuje ogólny zakres; szczegóły muszą odpowiadać rzeczywistej propozycji handlowej.
+Pakiet strony obejmuje do 10 podstron, projekt mobilny i komputerowy, teksty, formularz i blog, nowe lub zmodyfikowane logo oraz szybkość i podstawy SEO. Dodatkowe funkcje i miesięczny zakres pozycjonowania ustalamy osobno. Zmiany zakresu powinny odpowiadać rzeczywistej propozycji handlowej.
 
 Portfolio edytuj w `src/data/projects.ts`. Dla każdego zatwierdzonego wyniku `results` podaj wszystkie pola: `label`, `value`, `period`, `source`, `context`. Nie dodawaj wartości bez źródła, okresu, kontekstu porównania i zgody na publikację. Nie przypisuj całego wzrostu sprzedaży stronie, jeśli równocześnie zmieniały się reklamy lub oferta. Projekt objęty poufnością nie ma szczegółowej podstrony.
 
@@ -71,17 +71,19 @@ Zależność `path-to-regexp` adaptera Vercel ma poprawkę `6.3.0` przypiętą p
 - Strona główna: hero z karuzelą realizacji, wspólny blok oferty z zakresem i cenami, trzy kroki współpracy, kompaktowe FAQ oraz kontakt przez telefon i e-mail. Oferta oraz ceny korzystają z tych samych danych co podstrona usług.
 - `/uslugi/strona/`: główna oferta tworzenia stron dla Warszawy i okolic.
 - `/widocznosc/`: abonament SEO.
-- `/portfolio/`: pięć realizacji; cztery mają osobne opisy.
-- `/poradnik/`: sześć materiałów w `src/content/guides`. Przed publikacją warto uzupełnić je własnymi, zatwierdzonymi przykładami wycen i doświadczeniami zespołu.
+- `/portfolio/`: sześć realizacji; pięć ma publiczne opisy, jedna pozostaje poufna.
+- `/poradnik/`: sześć materiałów w `src/content/guides`, natywny spis przed artykułem w widoku mobilnym i tematyczne rekomendacje `relatedGuides`. `offerSummary: true` dodaje odpowiedź cenową ze wspólnych danych.
 - `/kontakt/`: wspólny blok kontaktu — telefon i e-mail.
 
 Astro generuje publiczne strony statycznie. JavaScript obsługuje menu, formularz, przewijanie podglądów realizacji i opcjonalną analitykę; treść i podstawowa nawigacja nie zależą od animacji. Fonty Manrope i Space Grotesk są hostowane lokalnie, z zestawem polskich znaków.
 
-Podglądy stron korzystają ze wspólnego komponentu `SitePreview.astro`. Obraz automatycznie przesuwa się w dół i z powrotem, gdy podgląd jest widoczny. Nie ma przycisków ani ręcznego przewijania; gesty na obrazie przewijają całą stronę. Najechanie myszą nie zatrzymuje animacji. Ustawienie ograniczenia ruchu w systemie wyłącza automat. Bez JavaScript widoczny jest statyczny fragment obrazu. Długość animowanego podglądu zależy od zakresu dostarczonego zrzutu strony.
+Podglądy stron korzystają ze wspólnego komponentu `SitePreview.astro`. Poza homepage obraz może przesuwać się w dół i z powrotem, gdy jest widoczny. Wspólny przycisk „Zatrzymaj podglądy” / „Wznów podglądy” steruje wszystkimi obrazami na stronie i pojawia się przy przewijanych podglądach. Najechanie lub fokus zatrzymują dany podgląd, a systemowe ograniczenie ruchu wyłącza automat. Bez JavaScript widoczny jest statyczny fragment obrazu. Gesty na obrazie przewijają całą stronę.
 
-Widget „Wybrane realizacje” w hero (`ProjectCarousel.astro`) automatycznie pokazuje kolejno Seariders, BBTrans i OkRemovals. Projekt, opis i odnośnik zmieniają się wspólnie co 7 sekund. Karuzela nie ma ręcznego sterowania. Pokaz wstrzymuje się poza widokiem i po ukryciu karty. Bez JavaScript i przy ograniczeniu ruchu dostępna jest pierwsza realizacja z działającym odnośnikiem; pozostałe projekty można znaleźć w portfolio.
+Widget „Wybrane realizacje” w hero (`ProjectCarousel.astro`) jest ręczny: strzałki i paginacja wybierają Seariders, BBTrans i OkRemovals. Podglądy w home pozostają statyczne. Pierwszy slajd ładuje obrazy od razu; pozostałe przechowują je w inertnych `template` do wyboru projektu. Bez JavaScript kontrolki są ukryte, a pierwszy projekt i link do pełnego portfolio działają.
 
-Panel ma czarne tło z czerwonymi akcentami marki oraz podglądy strony na komputerze i telefonie. Nazwa projektu, branża oraz domena są pokazane osobno od obrazu. Zarówno podgląd, jak i „Zobacz projekt” prowadzą bezpośrednio do strony klienta. Przy zmianie slajdu podpisy nie przenikają się; delikatnie pojawia się sam widok urządzeń.
+Panel ma czarne tło i podglądy bez ramek. Nazwa projektu, branża oraz opis są oddzielone od obrazu. Podgląd i „Zobacz projekt” prowadzą do strony klienta. Zmiana slajdu płynnie przenika i przesuwa cały projekt; ograniczenie ruchu wyłącza przejście.
+
+Stałe przekierowania Astro są po kompilacji umieszczane przed normalizacją slash przez integrację `scripts/vercel-static-redirects.mjs`. Walidator sprawdza, że `/uslugi` i `/uslugi/` prowadzą bezpośrednio do `/uslugi/strona/`. Przy aktualizacji adaptera ponownie sprawdź wynikowy routing.
 
 ## Wdrożenie i rozwój
 

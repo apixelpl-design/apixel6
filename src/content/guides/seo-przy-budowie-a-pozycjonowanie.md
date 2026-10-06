@@ -5,6 +5,10 @@ category: 'SEO i rozwój'
 publishedAt: 2026-10-05
 relatedProject: seariders
 relatedService: seo
+relatedGuides:
+  - przebudowa-strony-a-ruch-z-google
+  - strona-ma-ruch-ale-brak-zapytan
+  - one-page-czy-podstrony
 ---
 
 ## Strona przygotowana pod SEO to punkt startowy

@@ -9,7 +9,7 @@ interface Props {
 const { service, title, accent } = Astro.props;
 ---
 
-<section class="section section-light" id="zakres">
+<section class="section section-light service-offer-section" id="zakres">
   <div class="container">
     <div class="single-offer-heading">
       <h1>
@@ -30,5 +30,16 @@ const { service, title, accent } = Astro.props;
   }
   .single-offer-heading h1 {
     font-size: clamp(30px, 3.4vw, 46px);
+  }
+  @media (max-width: 520px) {
+    .service-offer-section {
+      padding-block: 32px;
+    }
+    .single-offer-heading {
+      margin-bottom: 24px;
+    }
+    .single-offer-heading h1 {
+      font-size: 28px;
+    }
   }
 </style>

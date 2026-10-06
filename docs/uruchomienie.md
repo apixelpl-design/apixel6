@@ -2,8 +2,8 @@
 
 ## Przed publikacją
 
-- [ ] Zatwierdzić zakres wdrożenia, abonamentu, koszty dodatkowe i minimalne ceny. Ceny i zakres są w `src/data/services.ts`.
-- [ ] Uzupełnić co najmniej dwa opisy realizacji o dostępne, zweryfikowane wyniki: źródło, okres, porównanie i kontekst. W kodzie są rzeczywiste projekty i zakresy bez wymyślonych wyników.
+- [ ] Zatwierdzić zakres wdrożenia, abonamentu i koszty dodatkowe. Ceny i zakres są w `src/data/website-offer.ts` oraz `src/data/seo-offer.ts`.
+- [ ] Jeśli publikujemy liczbowe wyniki realizacji, sprawdzić źródło, okres, porównanie i kontekst. W kodzie są rzeczywiste projekty oraz zakresy; wyniki mogą zostać uzupełnione po uzyskaniu danych.
 - [ ] Dodać podpisane opinie i informacje o osobach prowadzących współpracę, jeśli są dostępne i zatwierdzone do publikacji.
 - [ ] Potwierdzić dane firmy, aktualny adres, własność kont i zapisy prywatności.
 - [ ] Jeśli formularz ma zostać ponownie włączony (`contact.formEnabled` w `src/data/site.ts`), skonfigurować Resend i sprawdzić prawdziwe dostarczenie wiadomości oraz odpowiedź do nadawcy.
@@ -16,7 +16,7 @@
 1. Dodać opcjonalną zmienną GA4 oraz sekretne zmienne poczty, jeśli formularz zostanie włączony, do środowiska Preview/Production. Wybrać Node.js 22.
 2. Utworzyć podgląd wdrożenia i sprawdzić telefon oraz e-mail we wspólnych sekcjach kontaktowych. Jeśli formularz jest włączony, sprawdzić także dostarczenie, błąd dostawcy, walidację, ponowną próbę oraz wysłanie bez JavaScript.
 3. Po zatwierdzeniu opublikować wersję produkcyjną. W panelu Domains wybrać `www.apixel.pl` jako host docelowy oraz stałe przekierowanie z `apixel.pl`. Reguła w `vercel.json` uzupełnia tę konfigurację; ustawienia domeny Vercel mogą mieć pierwszeństwo.
-4. Zweryfikować odpowiedzi dla HTTP, domeny bez www i ścieżek bez końcowego `/`. Docelowo jeden stały redirect 301/308 prowadzi do właściwego adresu. Nie przekierowywać nieistniejących stron na homepage — mają zwracać 404.
+4. Zweryfikować odpowiedzi dla HTTP, domeny bez www i ścieżek bez końcowego `/`, w tym `/uslugi` i `/uslugi/` → `/uslugi/strona/`. Integracja builda ustawia dokładne legacy redirecty przed normalizacją slash; kontroluje je `check:build`. Docelowo jeden stały redirect 301/308 prowadzi do właściwego adresu. Nie przekierowywać nieistniejących stron na homepage — mają zwracać 404.
 5. Sprawdzić `/robots.txt`, `/sitemap-index.xml` i `/sitemap-0.xml`: odpowiedź 200, host www i końcowe `/`. Strona podziękowania i endpoint API nie powinny być w sitemapie.
 6. Sprawdzić canonical i OG na głównych usługach oraz artykułach. Bez parametrów zapytania, zgodne z hostem www i sitemapą.
 

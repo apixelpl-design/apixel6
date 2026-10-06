@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactSection from '../../components/ContactSection.astro';
+import GuideOfferSummary from '../../components/GuideOfferSummary.astro';
 import { projects } from '../../data/projects';
 import { site } from '../../data/site';
 import { primaryServices } from '../../data/services';
@@ -20,9 +21,31 @@ const project = projects.find(
   (item) => item.slug === guide.data.relatedProject,
 );
 const path = `/poradnik/${guide.id}/`;
-const servicePath = primaryServices[guide.data.relatedService].href;
+const service = primaryServices[guide.data.relatedService];
+const tableOfContents = headings.filter((heading) => heading.depth === 2);
+if (guide.data.offerSummary) {
+  tableOfContents.unshift({
+    depth: 2,
+    slug: 'cena-strony-apixel',
+    text: 'Ile kosztuje strona firmowa w APIXEL?',
+  });
+}
+const relationScore = (item: CollectionEntry<'guides'>) => {
+  const explicitOrder = guide.data.relatedGuides.indexOf(item.id);
+  if (explicitOrder >= 0) {
+    return 1000 + guide.data.relatedGuides.length - explicitOrder;
+  }
+  return (
+    (item.data.category === guide.data.category ? 20 : 0) +
+    (item.data.relatedService === guide.data.relatedService ? 10 : 0)
+  );
+};
 const related = (await getCollection('guides'))
-  .filter((item) => item.id !== guide.id)
+  .filter((item) => item.id !== guide.id && relationScore(item) > 0)
+  .sort(
+    (a, b) =>
+      relationScore(b) - relationScore(a) || a.id.localeCompare(b.id, 'pl'),
+  )
   .slice(0, 3);
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -61,19 +84,63 @@ const articleSchema = {
       <h1 style="font-size:clamp(32px,3.8vw,52px)">{guide.data.title}</h1>
       <p class="lead">{guide.data.description}</p>
       <div class="article-meta">
-        <span>{guide.data.author}</span>
-        <time datetime={guide.data.publishedAt.toISOString()}>
-          Opublikowano:{' '}
-          {guide.data.publishedAt.toLocaleDateString('pl-PL', {
-            timeZone: 'Europe/Warsaw',
-          })}
+        <a href="#redakcja-poradnika">{guide.data.author}</a>
+        <time
+          datetime={(
+            guide.data.updatedAt ?? guide.data.publishedAt
+          ).toISOString()}
+        >
+          {guide.data.updatedAt ? 'Zaktualizowano:' : 'Opublikowano:'}{' '}
+          {(guide.data.updatedAt ?? guide.data.publishedAt).toLocaleDateString(
+            'pl-PL',
+            {
+              timeZone: 'Europe/Warsaw',
+            },
+          )}
         </time>
       </div>
     </div>
   </header>
   <section class="section section-white">
     <div class="container article-layout">
+      <aside class="article-aside">
+        <details class="article-toc">
+          <summary class="article-toc-summary">
+            <h2>W tym poradniku</h2>
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <nav aria-label="Spis treści poradnika">
+            <ul class="article-toc-list">
+              {tableOfContents.map((heading) => (
+                <li>
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </details>
+        <div class="article-offer-link">
+          <p>Cena i zakres usługi dla Twojej firmy.</p>
+          <a class="button" href={service.href}>
+            {guide.data.relatedService === 'strona'
+              ? 'Zobacz ofertę stron'
+              : 'Zobacz ofertę SEO'}{' '}
+            ↗
+          </a>
+        </div>
+      </aside>
       <article class="article-content">
+        {guide.data.offerSummary && <GuideOfferSummary />}
         <Content />
         {project && (
           <div class="case-section">
@@ -84,23 +151,20 @@ const articleSchema = {
             </a>
           </div>
         )}
+        <footer class="article-editorial" id="redakcja-poradnika">
+          <h2>O redakcji poradnika</h2>
+          <p>
+            {guide.data.author}. Projektujemy i wdrażamy strony dla firm oraz
+            pracujemy nad ich widocznością w Google. W poradnikach opisujemy
+            zakres usług i pokazujemy przykłady z realizacji APIXEL.
+          </p>
+          <p>
+            Poznaj <a href="/uslugi/strona/">tworzenie stron internetowych</a>,
+            <a href="/widocznosc/">pozycjonowanie</a> i
+            <a href="/portfolio/">wykonane projekty</a>.
+          </p>
+        </footer>
       </article>
-      <aside class="article-aside">
-        <h2>W tym poradniku</h2>
-        <ul style="padding-left:18px;font-size:14px;margin-top:18px">
-          {headings
-            .filter((h) => h.depth === 2)
-            .map((h) => (
-              <li style="margin-bottom:12px">
-                <a href={`#${h.slug}`}>{h.text}</a>
-              </li>
-            ))}
-        </ul>
-        <p>Sprawdź, jak możemy pomóc Twojej firmie.</p>
-        <a class="button" href={servicePath}>
-          Poznaj naszą ofertę ↗
-        </a>
-      </aside>
     </div>
   </section>
   <section class="section section-light">

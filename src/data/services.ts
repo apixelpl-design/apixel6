@@ -1,5 +1,5 @@
-import { websiteOffer } from './website-offer';
-import { seoOffer } from './seo-offer';
+import { websiteOffer } from './website-offer.ts';
+import { seoOffer } from './seo-offer.ts';
 
 export const primaryServices = {
   strona: {

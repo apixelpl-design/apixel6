@@ -1,14 +1,137 @@
 import { previewMotion } from '../data/motion';
+
+let initialized = false;
+
 export function initSitePreviews() {
+  if (initialized) return;
+  initialized = true;
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mobile = window.matchMedia('(max-width: 700px)');
+  const control = document.querySelector<HTMLElement>(
+    '[data-preview-motion-control]',
+  );
+  const toggle = control?.querySelector<HTMLButtonElement>(
+    '[data-preview-motion-toggle]',
+  );
+  const label = control?.querySelector<HTMLElement>(
+    '[data-preview-motion-label]',
+  );
+  const pauseIcon = control?.querySelector<HTMLElement>(
+    '[data-preview-motion-icon="pause"]',
+  );
+  const playIcon = control?.querySelector<HTMLElement>(
+    '[data-preview-motion-icon="play"]',
+  );
+  let paused = false;
+  let controlAvailable = false;
+  let controlFrame = 0;
+  let controlHeight = 44;
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const previews: {
+    available: () => boolean;
+    rect: () => DOMRect;
+    update: () => void;
+  }[] = [];
+
+  const syncControl = () => {
+    if (controlFrame) return;
+    controlFrame = requestAnimationFrame(() => {
+      controlFrame = 0;
+      const candidates = motion.matches
+        ? []
+        : previews.filter((preview) => preview.available());
+      let available = Boolean(control && toggle && candidates.length);
+      let top: number | undefined;
+
+      // Batch geometry reads before changing the fixed control's placement.
+      // On phones it stays on a screenshot, rather than covering its caption.
+      if (mobile.matches && available) {
+        const margin = 12;
+        const safeBottom = control
+          ? Number.parseFloat(
+              getComputedStyle(control).getPropertyValue(
+                '--preview-safe-bottom',
+              ),
+            ) || 0
+          : 0;
+        controlHeight = control?.offsetHeight || controlHeight;
+        const headerBottom = Math.max(
+          0,
+          header?.getBoundingClientRect().bottom ?? 0,
+        );
+        let largestArea = 0;
+        candidates.forEach((preview) => {
+          const rect = preview.rect();
+          const visibleTop = Math.max(rect.top, headerBottom);
+          const visibleBottom = Math.min(
+            rect.bottom,
+            window.innerHeight - safeBottom,
+          );
+          const visibleHeight = visibleBottom - visibleTop;
+          const visibleWidth =
+            Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0);
+          const area = visibleHeight * visibleWidth;
+          if (
+            visibleHeight >= controlHeight + margin * 2 &&
+            visibleWidth > 0 &&
+            area > largestArea
+          ) {
+            largestArea = area;
+            top = visibleBottom - controlHeight - margin;
+          }
+        });
+        available = top !== undefined;
+      }
+
+      if (control) {
+        if (mobile.matches && top !== undefined) {
+          control.style.top = `${Math.round(top)}px`;
+          control.style.bottom = 'auto';
+        } else {
+          control.style.removeProperty('top');
+          control.style.removeProperty('bottom');
+        }
+        control.hidden = !available;
+      }
+      if (toggle) toggle.disabled = !available;
+      if (label)
+        label.textContent = paused ? 'Wznów podglądy' : 'Zatrzymaj podglądy';
+      pauseIcon?.toggleAttribute('hidden', paused);
+      playIcon?.toggleAttribute('hidden', !paused);
+      if (available !== controlAvailable) {
+        controlAvailable = available;
+        // A clipped screenshot cannot keep moving without an accessible pause.
+        previews.forEach((preview) => preview.update());
+      }
+    });
+  };
+
+  toggle?.addEventListener('click', () => {
+    if (motion.matches) return;
+    paused = !paused;
+    previews.forEach((preview) => preview.update());
+    syncControl();
+  });
+  const updateAll = () => {
+    previews.forEach((preview) => preview.update());
+    syncControl();
+  };
+  document.addEventListener('visibilitychange', updateAll);
+  motion.addEventListener('change', updateAll);
+
   document
     .querySelectorAll<HTMLElement>('[data-site-preview]')
     .forEach((preview) => {
+      // The homepage carousel uses static screenshots, including deferred ones.
+      if (preview.closest('[data-project-carousel]')) return;
       const viewport = preview.querySelector<HTMLElement>(
         '[data-preview-viewport]',
-      )!;
-      const image = viewport.querySelector<HTMLImageElement>('img')!;
+      );
+      const image = viewport?.querySelector<HTMLImageElement>('img');
+      if (!viewport || !image) return;
+      const interaction = preview.closest<HTMLElement>('a') ?? preview;
       let visible = false;
+      let hovered = false;
       let distance = 0;
       let offset = 0;
       let elapsed = 0;
@@ -51,11 +174,13 @@ export function initSitePreviews() {
           !image.complete ||
           !image.naturalWidth ||
           !visible ||
+          !controlAvailable ||
+          paused ||
+          hovered ||
+          interaction.contains(document.activeElement) ||
           preview
             .closest('[data-project-slide]')
             ?.getAttribute('aria-hidden') === 'true' ||
-          preview.closest<HTMLElement>('[data-project-carousel]')?.dataset
-            .carouselRunning === 'false' ||
           motion.matches ||
           document.hidden
         )
@@ -77,6 +202,7 @@ export function initSitePreviews() {
             travel;
         render();
         update();
+        syncControl();
       };
       preview.addEventListener('site-preview-state', (event) => {
         if ((event as CustomEvent<{ reset?: boolean }>).detail.reset) {
@@ -88,9 +214,20 @@ export function initSitePreviews() {
         update();
       });
       image.addEventListener('load', measure);
-      image.addEventListener('error', stop);
-      document.addEventListener('visibilitychange', update);
-      motion.addEventListener('change', update);
+      image.addEventListener('error', () => {
+        stop();
+        syncControl();
+      });
+      preview.addEventListener('pointerenter', () => {
+        hovered = true;
+        update();
+      });
+      preview.addEventListener('pointerleave', () => {
+        hovered = false;
+        update();
+      });
+      interaction.addEventListener('focusin', update);
+      interaction.addEventListener('focusout', () => queueMicrotask(update));
       const resize = new ResizeObserver(measure);
       resize.observe(viewport);
       resize.observe(image);
@@ -100,9 +237,21 @@ export function initSitePreviews() {
             entries[0].isIntersecting &&
             entries[0].intersectionRatio > previewMotion.visibleThreshold;
           update();
+          syncControl();
         },
         { threshold: [0, previewMotion.visibleThreshold] },
       ).observe(viewport);
+      previews.push({
+        available: () => visible && distance > 2 && image.naturalWidth > 0,
+        rect: () => viewport.getBoundingClientRect(),
+        update,
+      });
       measure();
     });
+  if (previews.length) {
+    window.addEventListener('scroll', syncControl, { passive: true });
+    window.addEventListener('resize', syncControl, { passive: true });
+    mobile.addEventListener('change', syncControl);
+  }
+  syncControl();
 }

@@ -1,0 +1,1907 @@
+[
+  {
+    "canonical": "https://www.apixel.pl/",
+    "h1": [
+      "Strony internetowe,\nktóre pomagają\nzdobywać klientów."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/",
+    "schema": [
+      "Organization",
+      "WebSite"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "APIXEL — strony internetowe i rozwój w Google",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/strona/",
+    "h1": [
+      "Tworzenie stron internetowych\ndla firm z Warszawy i okolic."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/strona/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Tworzenie stron internetowych Warszawa | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/widocznosc/",
+    "h1": [
+      "Pozycjonowanie stron internetowych\ndla firm z Warszawy i okolic."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/widocznosc/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Pozycjonowanie stron internetowych Warszawa | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/",
+    "h1": [
+      "Realizacje stron internetowych dla firm.\nZobacz, co wdrożyliśmy."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Realizacje stron internetowych dla firm | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/seariders/",
+    "h1": [
+      "Strona internetowa organizatora rejsów Seariders"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/seariders/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Strona organizatora rejsów Seariders | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/mojadwokat/",
+    "h1": [
+      "Strona kancelarii adwokackiej MojAdwokat"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/mojadwokat/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Strona kancelarii MojAdwokat w Warszawie | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/kontakt/",
+    "h1": [
+      "Porozmawiajmy\no Twojej stronie."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/kontakt/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Kontakt | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/polityka-prywatnosci/",
+    "h1": [
+      "Polityka prywatności"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/polityka-prywatnosci/",
+    "schema": [
+      "Organization",
+      "WebSite"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "kontakt@apixel.pl",
+        "tag": "A",
+        "width": 131
+      },
+      {
+        "height": 22,
+        "name": "Informacje Vercel",
+        "tag": "A",
+        "width": 130
+      },
+      {
+        "height": 22,
+        "name": "kontakt@apixel.pl",
+        "tag": "A",
+        "width": 131
+      }
+    ],
+    "title": "Polityka prywatności | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/wspolpraca/",
+    "h1": [
+      "Najpierw ustalenia.\nPotem konkretna praca."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/wspolpraca/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Jak wygląda współpraca — strona i SEO | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/reklamy/",
+    "h1": [
+      "Reklamy Google Ads i Meta dla firm.\nDotrzyj do swoich klientów."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/reklamy/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Reklamy Google Ads i Meta dla firm | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/content/",
+    "h1": [
+      "Zdjęcia i filmy dla Twojej firmy.\nPokaż ofertę własnymi materiałami."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/content/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Zdjęcia i filmy dla firm — materiały na stronę | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/automatyzacja/",
+    "h1": [
+      "Automatyzacja procesów i aplikacje dla firm.\nSprawniejsza obsługa."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/automatyzacja/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Automatyzacja i aplikacje | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/",
+    "h1": [
+      "Podejmij dobrą decyzję\no stronie swojej firmy."
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Poradnik: strona firmowa, SEO i zapytania | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/ile-kosztuje-strona-firmowa/",
+    "h1": [
+      "Ile kosztuje strona internetowa dla małej firmy?"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/ile-kosztuje-strona-firmowa/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "Sprawdź zakres SEO",
+        "tag": "A",
+        "width": 147
+      },
+      {
+        "height": 22,
+        "name": "realizacjach APIXEL",
+        "tag": "A",
+        "width": 142
+      },
+      {
+        "height": 22,
+        "name": "opisz nam potrzebę",
+        "tag": "A",
+        "width": 145
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Ile kosztuje strona internetowa dla małej firmy? | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/okremovals/",
+    "h1": [
+      "Strona firmy przeprowadzkowej OkRemovals"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/okremovals/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Strona firmy przeprowadzkowej OkRemovals | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/moja-pasja/",
+    "h1": [
+      "Strona pracowni ceramicznej Moja Pasja"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/moja-pasja/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Strona pracowni ceramicznej Moja Pasja | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/bbtrans/",
+    "h1": [
+      "Strona firmy transportowej BBTrans"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/bbtrans/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [],
+    "title": "Strona firmy transportowej BBTrans | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/jak-porownac-oferty-strony/",
+    "h1": [
+      "Jak porównać oferty wykonania strony internetowej?"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/jak-porownac-oferty-strony/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "tworzenia stron",
+        "tag": "A",
+        "width": 115
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowania",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Jak porównać oferty wykonania strony internetowej? | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/one-page-czy-podstrony/",
+    "h1": [
+      "One page czy strona z podstronami dla firmy usługowej?"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/one-page-czy-podstrony/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "Opisz nam swoje usługi",
+        "tag": "A",
+        "width": 173
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "One page czy strona z podstronami dla firmy usługowej? | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/przebudowa-strony-a-ruch-z-google/",
+    "h1": [
+      "Przebudowa strony a ruch z Google: co sprawdzić?"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/przebudowa-strony-a-ruch-z-google/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "SEO i opieką",
+        "tag": "A",
+        "width": 89
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Przebudowa strony a ruch z Google: co sprawdzić? | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/seo-przy-budowie-a-pozycjonowanie/",
+    "h1": [
+      "SEO przy budowie strony a późniejsze pozycjonowanie"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/seo-przy-budowie-a-pozycjonowanie/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "zakresie tworzenia strony",
+        "tag": "A",
+        "width": 187
+      },
+      {
+        "height": 22,
+        "name": "SEO i opiekę",
+        "tag": "A",
+        "width": 90
+      },
+      {
+        "height": 22,
+        "name": "porozmawiajmy o obu etapach",
+        "tag": "A",
+        "width": 224
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "SEO przy budowie strony a późniejsze pozycjonowanie | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/strona-ma-ruch-ale-brak-zapytan/",
+    "h1": [
+      "Strona ma odwiedziny, ale nie przynosi zapytań"
+    ],
+    "layoutWidth": 320,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/strona-ma-ruch-ale-brak-zapytan/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "tworzeniu stron APIXEL",
+        "tag": "A",
+        "width": 169
+      },
+      {
+        "height": 22,
+        "name": "Opisz swoją stronę",
+        "tag": "A",
+        "width": 139
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Strona ma odwiedziny, ale nie przynosi zapytań | APIXEL",
+    "viewport": 320
+  },
+  {
+    "canonical": "https://www.apixel.pl/",
+    "h1": [
+      "Strony internetowe,\nktóre pomagają\nzdobywać klientów."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/",
+    "schema": [
+      "Organization",
+      "WebSite"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "APIXEL — strony internetowe i rozwój w Google",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/strona/",
+    "h1": [
+      "Tworzenie stron internetowych\ndla firm z Warszawy i okolic."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/strona/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Tworzenie stron internetowych Warszawa | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/widocznosc/",
+    "h1": [
+      "Pozycjonowanie stron internetowych\ndla firm z Warszawy i okolic."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/widocznosc/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Pozycjonowanie stron internetowych Warszawa | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/",
+    "h1": [
+      "Realizacje stron internetowych dla firm.\nZobacz, co wdrożyliśmy."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Realizacje stron internetowych dla firm | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/seariders/",
+    "h1": [
+      "Strona internetowa organizatora rejsów Seariders"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/seariders/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Strona organizatora rejsów Seariders | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/mojadwokat/",
+    "h1": [
+      "Strona kancelarii adwokackiej MojAdwokat"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/mojadwokat/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Strona kancelarii MojAdwokat w Warszawie | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/kontakt/",
+    "h1": [
+      "Porozmawiajmy\no Twojej stronie."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/kontakt/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Kontakt | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/polityka-prywatnosci/",
+    "h1": [
+      "Polityka prywatności"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/polityka-prywatnosci/",
+    "schema": [
+      "Organization",
+      "WebSite"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "kontakt@apixel.pl",
+        "tag": "A",
+        "width": 131
+      },
+      {
+        "height": 22,
+        "name": "kontakt@apixel.pl",
+        "tag": "A",
+        "width": 131
+      }
+    ],
+    "title": "Polityka prywatności | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/wspolpraca/",
+    "h1": [
+      "Najpierw ustalenia.\nPotem konkretna praca."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/wspolpraca/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Jak wygląda współpraca — strona i SEO | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/reklamy/",
+    "h1": [
+      "Reklamy Google Ads i Meta dla firm.\nDotrzyj do swoich klientów."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/reklamy/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Reklamy Google Ads i Meta dla firm | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/content/",
+    "h1": [
+      "Zdjęcia i filmy dla Twojej firmy.\nPokaż ofertę własnymi materiałami."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/content/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Zdjęcia i filmy dla firm — materiały na stronę | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/automatyzacja/",
+    "h1": [
+      "Automatyzacja procesów i aplikacje dla firm.\nSprawniejsza obsługa."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/automatyzacja/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Automatyzacja i aplikacje | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/",
+    "h1": [
+      "Podejmij dobrą decyzję\no stronie swojej firmy."
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Poradnik: strona firmowa, SEO i zapytania | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/ile-kosztuje-strona-firmowa/",
+    "h1": [
+      "Ile kosztuje strona internetowa dla małej firmy?"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/ile-kosztuje-strona-firmowa/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "realizacjach APIXEL",
+        "tag": "A",
+        "width": 142
+      },
+      {
+        "height": 22,
+        "name": "opisz nam potrzebę",
+        "tag": "A",
+        "width": 145
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Ile kosztuje strona internetowa dla małej firmy? | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/okremovals/",
+    "h1": [
+      "Strona firmy przeprowadzkowej OkRemovals"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/okremovals/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Strona firmy przeprowadzkowej OkRemovals | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/moja-pasja/",
+    "h1": [
+      "Strona pracowni ceramicznej Moja Pasja"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/moja-pasja/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Strona pracowni ceramicznej Moja Pasja | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/bbtrans/",
+    "h1": [
+      "Strona firmy transportowej BBTrans"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/bbtrans/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [],
+    "title": "Strona firmy transportowej BBTrans | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/jak-porownac-oferty-strony/",
+    "h1": [
+      "Jak porównać oferty wykonania strony internetowej?"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/jak-porownac-oferty-strony/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "tworzenia stron",
+        "tag": "A",
+        "width": 115
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowania",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Jak porównać oferty wykonania strony internetowej? | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/one-page-czy-podstrony/",
+    "h1": [
+      "One page czy strona z podstronami dla firmy usługowej?"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/one-page-czy-podstrony/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "przewodniku Google dla SEO",
+        "tag": "A",
+        "width": 207
+      },
+      {
+        "height": 22,
+        "name": "APIXEL projektujemy strukturę strony",
+        "tag": "A",
+        "width": 272
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "One page czy strona z podstronami dla firmy usługowej? | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/przebudowa-strony-a-ruch-z-google/",
+    "h1": [
+      "Przebudowa strony a ruch z Google: co sprawdzić?"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/przebudowa-strony-a-ruch-z-google/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "SEO i opieką",
+        "tag": "A",
+        "width": 89
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Przebudowa strony a ruch z Google: co sprawdzić? | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/seo-przy-budowie-a-pozycjonowanie/",
+    "h1": [
+      "SEO przy budowie strony a późniejsze pozycjonowanie"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/seo-przy-budowie-a-pozycjonowanie/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "zakresie tworzenia strony",
+        "tag": "A",
+        "width": 187
+      },
+      {
+        "height": 22,
+        "name": "SEO i opiekę",
+        "tag": "A",
+        "width": 90
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "SEO przy budowie strony a późniejsze pozycjonowanie | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/strona-ma-ruch-ale-brak-zapytan/",
+    "h1": [
+      "Strona ma odwiedziny, ale nie przynosi zapytań"
+    ],
+    "layoutWidth": 375,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/strona-ma-ruch-ale-brak-zapytan/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 375,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "tworzeniu stron APIXEL",
+        "tag": "A",
+        "width": 169
+      },
+      {
+        "height": 22,
+        "name": "Opisz swoją stronę",
+        "tag": "A",
+        "width": 139
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Strona ma odwiedziny, ale nie przynosi zapytań | APIXEL",
+    "viewport": 375
+  },
+  {
+    "canonical": "https://www.apixel.pl/",
+    "h1": [
+      "Strony internetowe,\nktóre pomagają\nzdobywać klientów."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/",
+    "schema": [
+      "Organization",
+      "WebSite"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "APIXEL — strony internetowe i rozwój w Google",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/strona/",
+    "h1": [
+      "Tworzenie stron internetowych\ndla firm z Warszawy i okolic."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/strona/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Tworzenie stron internetowych Warszawa | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/widocznosc/",
+    "h1": [
+      "Pozycjonowanie stron internetowych\ndla firm z Warszawy i okolic."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/widocznosc/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Pozycjonowanie stron internetowych Warszawa | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/",
+    "h1": [
+      "Realizacje stron internetowych dla firm.\nZobacz, co wdrożyliśmy."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Realizacje stron internetowych dla firm | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/seariders/",
+    "h1": [
+      "Strona internetowa organizatora rejsów Seariders"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/seariders/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Strona organizatora rejsów Seariders | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/mojadwokat/",
+    "h1": [
+      "Strona kancelarii adwokackiej MojAdwokat"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/mojadwokat/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Strona kancelarii MojAdwokat w Warszawie | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/kontakt/",
+    "h1": [
+      "Porozmawiajmy\no Twojej stronie."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/kontakt/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Kontakt | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/polityka-prywatnosci/",
+    "h1": [
+      "Polityka prywatności"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/polityka-prywatnosci/",
+    "schema": [
+      "Organization",
+      "WebSite"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "kontakt@apixel.pl",
+        "tag": "A",
+        "width": 131
+      },
+      {
+        "height": 22,
+        "name": "Informacje Vercel",
+        "tag": "A",
+        "width": 130
+      },
+      {
+        "height": 22,
+        "name": "kontakt@apixel.pl",
+        "tag": "A",
+        "width": 131
+      }
+    ],
+    "title": "Polityka prywatności | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/wspolpraca/",
+    "h1": [
+      "Najpierw ustalenia.\nPotem konkretna praca."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/wspolpraca/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Jak wygląda współpraca — strona i SEO | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/reklamy/",
+    "h1": [
+      "Reklamy Google Ads i Meta dla firm.\nDotrzyj do swoich klientów."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/reklamy/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Reklamy Google Ads i Meta dla firm | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/content/",
+    "h1": [
+      "Zdjęcia i filmy dla Twojej firmy.\nPokaż ofertę własnymi materiałami."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/content/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Zdjęcia i filmy dla firm — materiały na stronę | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/uslugi/automatyzacja/",
+    "h1": [
+      "Automatyzacja procesów i aplikacje dla firm.\nSprawniejsza obsługa."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/uslugi/automatyzacja/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Automatyzacja i aplikacje | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/",
+    "h1": [
+      "Podejmij dobrą decyzję\no stronie swojej firmy."
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Poradnik: strona firmowa, SEO i zapytania | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/ile-kosztuje-strona-firmowa/",
+    "h1": [
+      "Ile kosztuje strona internetowa dla małej firmy?"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/ile-kosztuje-strona-firmowa/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "Sprawdź zakres SEO",
+        "tag": "A",
+        "width": 147
+      },
+      {
+        "height": 22,
+        "name": "realizacjach APIXEL",
+        "tag": "A",
+        "width": 142
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Ile kosztuje strona internetowa dla małej firmy? | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/okremovals/",
+    "h1": [
+      "Strona firmy przeprowadzkowej OkRemovals"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/okremovals/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Strona firmy przeprowadzkowej OkRemovals | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/moja-pasja/",
+    "h1": [
+      "Strona pracowni ceramicznej Moja Pasja"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/moja-pasja/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Strona pracowni ceramicznej Moja Pasja | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/portfolio/bbtrans/",
+    "h1": [
+      "Strona firmy transportowej BBTrans"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/portfolio/bbtrans/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [],
+    "title": "Strona firmy transportowej BBTrans | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/jak-porownac-oferty-strony/",
+    "h1": [
+      "Jak porównać oferty wykonania strony internetowej?"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/jak-porownac-oferty-strony/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "tworzenia stron",
+        "tag": "A",
+        "width": 115
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowania",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "prześlij opis projektu",
+        "tag": "A",
+        "width": 152
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Jak porównać oferty wykonania strony internetowej? | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/one-page-czy-podstrony/",
+    "h1": [
+      "One page czy strona z podstronami dla firmy usługowej?"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/one-page-czy-podstrony/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "przewodniku Google dla SEO",
+        "tag": "A",
+        "width": 207
+      },
+      {
+        "height": 22,
+        "name": "APIXEL projektujemy strukturę strony",
+        "tag": "A",
+        "width": 272
+      },
+      {
+        "height": 22,
+        "name": "Opisz nam swoje usługi",
+        "tag": "A",
+        "width": 173
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "One page czy strona z podstronami dla firmy usługowej? | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/przebudowa-strony-a-ruch-z-google/",
+    "h1": [
+      "Przebudowa strony a ruch z Google: co sprawdzić?"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/przebudowa-strony-a-ruch-z-google/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "opisz obecną stronę i cel zmiany",
+        "tag": "A",
+        "width": 236
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Przebudowa strony a ruch z Google: co sprawdzić? | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/seo-przy-budowie-a-pozycjonowanie/",
+    "h1": [
+      "SEO przy budowie strony a późniejsze pozycjonowanie"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/seo-przy-budowie-a-pozycjonowanie/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "SEO i opiekę",
+        "tag": "A",
+        "width": 90
+      },
+      {
+        "height": 22,
+        "name": "porozmawiajmy o obu etapach",
+        "tag": "A",
+        "width": 224
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "SEO przy budowie strony a późniejsze pozycjonowanie | APIXEL",
+    "viewport": 430
+  },
+  {
+    "canonical": "https://www.apixel.pl/poradnik/strona-ma-ruch-ale-brak-zapytan/",
+    "h1": [
+      "Strona ma odwiedziny, ale nie przynosi zapytań"
+    ],
+    "layoutWidth": 430,
+    "motion": "subtle",
+    "overflow": false,
+    "overflowNodes": [],
+    "path": "/poradnik/strona-ma-ruch-ale-brak-zapytan/",
+    "schema": [
+      "Organization",
+      "WebSite",
+      "BreadcrumbList",
+      "Article"
+    ],
+    "scrollWidth": 430,
+    "smallControls": [
+      {
+        "height": 22,
+        "name": "tworzeniu stron APIXEL",
+        "tag": "A",
+        "width": 169
+      },
+      {
+        "height": 22,
+        "name": "Opisz swoją stronę",
+        "tag": "A",
+        "width": 139
+      },
+      {
+        "height": 22,
+        "name": "tworzenie stron internetowych",
+        "tag": "A",
+        "width": 226
+      },
+      {
+        "height": 22,
+        "name": "pozycjonowanie",
+        "tag": "A",
+        "width": 119
+      },
+      {
+        "height": 22,
+        "name": "wykonane projekty",
+        "tag": "A",
+        "width": 137
+      }
+    ],
+    "title": "Strona ma odwiedziny, ale nie przynosi zapytań | APIXEL",
+    "viewport": 430
+  }
+]

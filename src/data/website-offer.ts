@@ -1,10 +1,12 @@
+const maxPages = 10;
+
 export const websiteOffer = {
   price: 2000,
-  maxPages: 10,
+  maxPages,
   features: [
     {
       icon: 'pages',
-      title: 'Do 10 podstron',
+      title: `Do ${maxPages} podstron`,
       description:
         'Strukturę dopasujemy do Twoich usług. Klient znajdzie ofertę, informacje o firmie i kontakt.',
     },

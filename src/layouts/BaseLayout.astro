@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
+import PreviewMotionControl from '../components/PreviewMotionControl.astro';
 import { site } from '../data/site';
 import { motionCssVariables } from '../data/motion';
 import '@fontsource-variable/manrope';
@@ -112,6 +113,7 @@ const jsonLd = JSON.stringify(schemas).replace(/</g, '\\u003c');
     <main id="main">
       <slot />
     </main>
+    <PreviewMotionControl />
     <Footer />
     <Analytics />
     <script>

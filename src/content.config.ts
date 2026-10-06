@@ -10,9 +10,11 @@ const guides = defineCollection({
     category: z.string(),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
-    author: z.string().default(`Zespół ${site.name}`),
+    author: z.string().default(`Redakcja ${site.name}`),
     relatedProject: z.string(),
     relatedService: z.enum(['strona', 'seo']).default('strona'),
+    relatedGuides: z.array(z.string()).default([]),
+    offerSummary: z.boolean().default(false),
   }),
 });
 export const collections = { guides };

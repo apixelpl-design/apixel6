@@ -5,6 +5,10 @@ category: 'Przebudowa strony'
 publishedAt: 2026-10-05
 relatedProject: seariders
 relatedService: seo
+relatedGuides:
+  - seo-przy-budowie-a-pozycjonowanie
+  - strona-ma-ruch-ale-brak-zapytan
+  - jak-porownac-oferty-strony
 ---
 
 ## Najpierw sprawdź, co działa

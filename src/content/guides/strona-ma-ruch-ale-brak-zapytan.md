@@ -5,6 +5,10 @@ category: 'Kontakt i konwersja'
 publishedAt: 2026-10-05
 relatedProject: okremovals
 relatedService: strona
+relatedGuides:
+  - seo-przy-budowie-a-pozycjonowanie
+  - przebudowa-strony-a-ruch-z-google
+  - one-page-czy-podstrony
 ---
 
 ## Zacznij od sprawdzenia pomiaru

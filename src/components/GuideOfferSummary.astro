@@ -1,0 +1,33 @@
+---
+import { websiteOffer } from '../data/website-offer';
+import { seoOffer } from '../data/seo-offer';
+import { priceLabel } from '../data/services';
+---
+
+<section class="article-price-answer" aria-labelledby="cena-strony-apixel">
+  <h2 id="cena-strony-apixel">Ile kosztuje strona firmowa w APIXEL?</h2>
+  <p>
+    Strona firmowa w APIXEL kosztuje
+    <strong>{priceLabel(websiteOffer.price, false, false)}</strong>.
+    To płatność jednorazowa.
+  </p>
+  <p>
+    W cenie przygotujemy do {websiteOffer.maxPages} podstron oraz projekt na
+    telefon i komputer. W cenie są copywriting i teksty na podstrony,
+    formularz kontaktowy oraz blog. Zaprojektujemy nowe logo lub zmodyfikujemy
+    obecne. Dbamy także o szybkość ładowania i podstawy techniczne SEO.
+  </p>
+  <p>
+    Przed rozpoczęciem uzgadniamy strukturę, treści, poprawki i termin.
+    Dodatkowe podstrony, funkcje, domenę, hosting oraz płatne integracje
+    wyceniamy osobno.
+  </p>
+  <p>
+    Późniejsze pozycjonowanie możesz zamówić w osobnym abonamencie
+    {priceLabel(seoOffer.price, true, true)}.
+    <a href="/widocznosc/">Sprawdź zakres SEO</a>.
+  </p>
+  <a class="text-link" href="/uslugi/strona/">
+    Zobacz pełny zakres strony w tej cenie ↗
+  </a>
+</section>
