@@ -1,13 +1,64 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Hero } from '../components/Hero';
-import { Services } from '../components/Services';
+import ProjectCarousel from '../components/ProjectCarousel.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Faq from '../components/Faq.astro';
+import Pricing from '../components/Pricing.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import { workflows } from '../data/process';
+import { contactHref } from '../data/site';
+import { pages } from '../data/navigation';
 ---
 
 <BaseLayout
-	title="APIXEL — Twoja widoczność w internecie"
-	description="APIXEL pomaga małym i średnim firmom zaistnieć w sieci poprzez marketing, content, strony internetowe i automatyzacje."
+  title="APIXEL — strony internetowe i rozwój w Google"
+  description="Strony internetowe dla firm z Warszawy i okolic, a następnie SEO i opieka w abonamencie. Zobacz realizacje i zapytaj o zakres oraz wycenę."
 >
-	<Hero />
-	<Services client:load />
+  <header class="home-hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>
+          Strony internetowe,
+          <br />
+          które pomagają
+          <br />
+          <span class="accent">zdobywać klientów.</span>
+        </h1>
+        <p class="lead">
+          Projektujemy stronę dla Twojej firmy. Następnie rozwijamy jej
+          widoczność w Google — od wdrożenia po stałą opiekę i pozycjonowanie.
+        </p>
+        <div class="actions">
+          <a class="button" href={contactHref()} data-cta="home_hero">
+            Wyceń stronę i SEO <span aria-hidden="true">↗</span>
+          </a>
+          <a class="text-link" href={pages.portfolio.href}>
+            Zobacz realizacje ↗
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span>Zwiększ liczbę klientów</span>
+          <span>Rozwiń swoją obecność w internecie</span>
+          <span>Wzmocnij swoją markę</span>
+        </div>
+      </div>
+      <div class="hero-project">
+        <ProjectCarousel />
+      </div>
+    </div>
+  </header>
+  <Pricing compact id="uslugi" />
+  <section class="home-process section-light" id="wspolpraca">
+    <div class="container">
+      <div class="home-compact-heading">
+        <h2>Jak działamy</h2>
+        <a class="text-link" href={pages.process.href}>
+          Zasady współpracy ↗
+        </a>
+      </div>
+      <ProcessSteps items={workflows.collaboration} compact />
+    </div>
+  </section>
+  <Faq title="Najczęstsze pytania" compact />
+  <ContactSection />
 </BaseLayout>

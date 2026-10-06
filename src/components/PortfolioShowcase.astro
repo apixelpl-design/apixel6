@@ -1,0 +1,469 @@
+---
+import SitePreview from './SitePreview.astro';
+import PortfolioMetrics from './PortfolioMetrics.astro';
+import type { Project } from '../data/projects';
+import type { PortfolioStory } from '../data/portfolio';
+interface Props {
+  project: Project;
+  story: PortfolioStory;
+  eager?: boolean;
+}
+const { project, story, eager = false } = Astro.props;
+const domain = project.url
+  ? new URL(project.url).hostname.replace(/^www\./, '')
+  : project.name;
+---
+
+<article
+  class="portfolio-showcase"
+  id={project.slug}
+  aria-labelledby={`${project.slug}-title`}
+>
+  <header class="showcase-heading">
+    <div>
+      <p class="eyebrow">{project.category}</p>
+      <h2 id={`${project.slug}-title`}>{project.name}</h2>
+    </div>
+    <ul class="showcase-tags" aria-label="Elementy projektu">
+      {story.tags.map((tag) => (
+        <li>{tag}</li>
+      ))}
+    </ul>
+  </header>
+  <div class="showcase-main">
+    <div class="showcase-visual">
+      <a
+        class="showcase-preview"
+        href={project.url}
+        aria-label={`Otwórz stronę ${project.name}`}
+        data-cta="portfolio_preview"
+      >
+        <div class="showcase-desktop">
+          <SitePreview
+            image={project.image}
+            name={project.name}
+            variant="desktop"
+            browserLabel={domain}
+            width={1200}
+            widths={[600, 900, 1200]}
+            sizes="(max-width:800px) 80vw, 700px"
+            eager={eager}
+            priority={eager}
+            alt={`Strona ${project.name} — rzeczywisty projekt na komputerze`}
+          />
+        </div>
+        <div class="showcase-phone">
+          <SitePreview
+            image={project.mobile}
+            name={`${project.name} na telefonie`}
+            variant="phone"
+            width={360}
+            widths={[180, 360]}
+            sizes="(max-width:800px) 22vw, 160px"
+            eager={eager}
+            alt={`Mobilna wersja strony ${project.name}`}
+          />
+        </div>
+        <span class="preview-label">
+          Komputer + telefon <span aria-hidden="true">↗</span>
+        </span>
+      </a>
+    </div>
+    <div class="showcase-story">
+      <p class="story-label">Co wdrożyliśmy</p>
+      <h3>{story.headline}</h3>
+      <p class="story-description">{story.description}</p>
+      <ul class="story-scope" aria-label={`Zakres projektu ${project.name}`}>
+        {project.scope.map((item) => (
+          <li>
+            <span aria-hidden="true">↗</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+      <div class="story-links">
+        <a class="text-link" href={`/portfolio/${project.slug}/`}>
+          Zobacz zakres projektu {project.name}{' '}
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a
+          class="showcase-live"
+          href={project.url}
+          data-cta="portfolio_website"
+        >
+          Otwórz stronę {project.name}
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="showcase-next">
+    <div class="showcase-goal">
+      <p class="goal-label">Cel projektu</p>
+      <p>{story.goal}</p>
+      <div class="showcase-services" aria-label="Powiązane usługi">
+        {story.services.map((service) => (
+          <a class="text-link" href={service.href}>
+            {service.label} <span aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+    <a class="button" href="#wycena" data-cta="portfolio_contact">
+      Porozmawiajmy o podobnej stronie <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+  <PortfolioMetrics metrics={story.metrics} />
+  {project.results?.length && (
+    <div class="verified-results">
+      <h3>Udokumentowane wyniki</h3>
+      <div class="result-grid">
+        {project.results.map((result) => (
+          <div class="result">
+            <strong>{result.value}</strong>
+            <p>{result.label}</p>
+            <p class="small">
+              {result.period} · {result.source}
+            </p>
+            <p class="small">{result.context}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</article>
+<style>
+  .portfolio-showcase {
+    scroll-margin-top: 12px;
+  }
+  .showcase-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 28px;
+  }
+  .showcase-heading .eyebrow {
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: clamp(36px, 4vw, 54px);
+  }
+  .showcase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    max-width: 520px;
+  }
+  .showcase-tags li {
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .showcase-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    border: 1px solid var(--line);
+  }
+  .showcase-visual {
+    background: var(--apx-black);
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+  }
+  .showcase-visual::before {
+    content: '';
+    position: absolute;
+    width: 44%;
+    height: 56%;
+    right: 0;
+    bottom: 0;
+    background: var(--apx-red);
+    clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .showcase-preview {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    text-decoration: none;
+  }
+  .showcase-preview:focus-visible {
+    outline-offset: -7px;
+  }
+  .showcase-desktop {
+    position: absolute;
+    top: 42px;
+    left: 32px;
+    right: 90px;
+  }
+  .showcase-desktop :global(.site-preview) {
+    border-radius: 7px;
+    box-shadow: 0 22px 40px #0006;
+  }
+  .showcase-desktop :global(.site-preview-viewport) {
+    aspect-ratio: 16/9;
+  }
+  .showcase-desktop :global(.browser-top) {
+    height: 30px;
+  }
+  .showcase-desktop :global(.browser-top span) {
+    font-size: 11px;
+  }
+  .showcase-phone {
+    position: absolute;
+    width: 21%;
+    max-width: 168px;
+    bottom: 50px;
+    right: 26px;
+  }
+  .showcase-phone :global(.site-preview) {
+    box-shadow: 0 14px 30px #0007;
+  }
+  .showcase-phone :global(.site-preview-viewport) {
+    aspect-ratio: 9/18;
+  }
+  .preview-label {
+    position: absolute;
+    bottom: 22px;
+    left: 32px;
+    color: var(--apx-muted);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .preview-label span {
+    color: var(--apx-white);
+    font-size: 22px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+  .showcase-preview:hover .preview-label span {
+    transform: translate(3px, -3px);
+  }
+  .showcase-story {
+    padding: 36px;
+    background: var(--apx-white);
+    display: flex;
+    flex-direction: column;
+  }
+  .story-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--apx-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+  }
+  .showcase-story h3 {
+    font-size: clamp(26px, 2.5vw, 32px);
+    letter-spacing: -0.04em;
+    max-width: 360px;
+  }
+  .story-description {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--apx-text-light);
+  }
+  .story-scope {
+    margin: 24px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .story-scope li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    border-top: 1px solid var(--line);
+    padding: 11px 0;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .story-scope li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .story-scope span {
+    color: var(--apx-red);
+    font-size: 18px;
+    line-height: 1;
+  }
+  .story-links {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 24px;
+  }
+  .showcase-live {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    color: var(--apx-text-light);
+    font-size: 13px;
+    min-height: 44px;
+  }
+  .showcase-next {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 28px 36px;
+    background: var(--apx-black);
+    color: var(--apx-white);
+  }
+  .showcase-goal {
+    max-width: 640px;
+  }
+  .goal-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--apx-muted);
+    margin-bottom: 8px;
+  }
+  .showcase-goal > p:not(.goal-label) {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .showcase-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 24px;
+    margin-top: 8px;
+  }
+  .showcase-services .text-link {
+    font-size: 12px;
+    color: var(--apx-muted);
+  }
+  .showcase-next > .button {
+    flex-shrink: 0;
+  }
+  .verified-results {
+    padding: 36px;
+    background: var(--apx-white);
+    border: 1px solid var(--line);
+    border-top: 0;
+  }
+  @media (max-width: 1000px) {
+    .showcase-story {
+      padding: 28px;
+    }
+    .showcase-desktop {
+      left: 24px;
+      right: 64px;
+    }
+    .showcase-phone {
+      right: 18px;
+    }
+  }
+  @media (max-width: 800px) {
+    .showcase-next {
+      align-items: start;
+      flex-direction: column;
+      padding: 28px;
+      gap: 20px;
+    }
+    .showcase-heading {
+      display: block;
+    }
+    .showcase-tags {
+      justify-content: start;
+      margin-top: 18px;
+    }
+    .showcase-main {
+      grid-template-columns: 1fr;
+    }
+    .showcase-visual,
+    .showcase-preview {
+      min-height: 0;
+      aspect-ratio: 1.48;
+    }
+    .showcase-desktop {
+      top: 28px;
+      left: 28px;
+      right: 96px;
+    }
+    .showcase-phone {
+      bottom: 40px;
+      right: 24px;
+    }
+    .showcase-story h3 {
+      max-width: 540px;
+    }
+    .story-scope {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 24px;
+    }
+    .story-scope li:last-child {
+      border-bottom: 0;
+    }
+  }
+  @media (max-width: 520px) {
+    .showcase-visual,
+    .showcase-preview {
+      aspect-ratio: 1.15;
+    }
+    .showcase-desktop {
+      top: 24px;
+      left: 18px;
+      right: 44px;
+    }
+    .showcase-desktop :global(.site-preview-viewport) {
+      aspect-ratio: 1.55;
+    }
+    .showcase-desktop :global(.browser-top) {
+      height: 23px;
+    }
+    .showcase-phone {
+      width: 25%;
+      right: 14px;
+      bottom: 34px;
+    }
+    .showcase-phone :global(.site-preview) {
+      border-width: 3px;
+      border-radius: 12px;
+    }
+    .preview-label {
+      left: 18px;
+      bottom: 12px;
+      font-size: 11px;
+    }
+    .showcase-story {
+      padding: 24px;
+    }
+    .showcase-next {
+      padding: 24px;
+    }
+    .showcase-next > .button {
+      width: 100%;
+      padding-inline: 16px;
+      gap: 16px;
+    }
+    .story-scope {
+      grid-template-columns: 1fr;
+      margin: 20px 0;
+    }
+    .showcase-tags li {
+      padding: 6px 10px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .preview-label span {
+      transition: none;
+    }
+    .showcase-preview:hover .preview-label span {
+      transform: none;
+    }
+  }
+</style>

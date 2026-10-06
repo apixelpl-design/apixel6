@@ -1,0 +1,34 @@
+---
+import ServiceOffer from './ServiceOffer.astro';
+import type { PrimaryServiceId } from '../data/services';
+interface Props {
+  service: PrimaryServiceId;
+  title: string;
+  accent: string;
+}
+const { service, title, accent } = Astro.props;
+---
+
+<section class="section section-light" id="zakres">
+  <div class="container">
+    <div class="single-offer-heading">
+      <h1>
+        {title}
+        <br />
+        <span class="accent">{accent}</span>
+      </h1>
+    </div>
+    <ServiceOffer service={service} />
+    <slot />
+  </div>
+</section>
+
+<style>
+  .single-offer-heading {
+    max-width: 900px;
+    margin-bottom: 40px;
+  }
+  .single-offer-heading h1 {
+    font-size: clamp(30px, 3.4vw, 46px);
+  }
+</style>

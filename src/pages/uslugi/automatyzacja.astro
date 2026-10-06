@@ -1,11 +1,38 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { AutomationPage } from '../../components/AutomationPage';
+import AdditionalService from '../../components/AdditionalService.astro';
 ---
 
 <BaseLayout
-    title="Automatyzacja i aplikacje | APIXEL"
-    description="Automatyzujemy procesy, łączymy narzędzia i tworzymy dedykowane aplikacje oraz asystentów AI dla firm."
+  title="Automatyzacja i aplikacje | APIXEL"
+  description="Automatyzujemy procesy, łączymy narzędzia i tworzymy dedykowane aplikacje oraz asystentów AI dla firm."
+  breadcrumbs={[
+    { name: 'APIXEL', path: '/' },
+    { name: 'Automatyzacje', path: '/uslugi/automatyzacja/' },
+  ]}
 >
-    <AutomationPage client:load />
+  <AdditionalService
+    title="Mniej powtarzalnej pracy."
+    accent="Sprawniejsza obsługa."
+    description="Łączymy formularze i narzędzia oraz usprawniamy powtarzalne zadania. Zakres dobieramy do procesu w Twojej firmie."
+    service="automatyzacja"
+    scopeNote="Automatyzacje mają osobny zakres i wycenę. Koszty narzędzi, dostępów, utrzymania oraz zasady obsługi błędów ustalamy przed wdrożeniem."
+    items={[
+      {
+        title: 'Formularz i obsługa zapytań',
+        description:
+          'Przekazywanie zgłoszeń do uzgodnionych narzędzi, porządkowanie danych i wsparcie dalszej obsługi.',
+      },
+      {
+        title: 'Połączenie narzędzi',
+        description:
+          'Integracja aplikacji używanych w firmie. Najpierw sprawdzamy dostępne połączenia, potrzebne uprawnienia i koszty.',
+      },
+      {
+        title: 'Aplikacje i asystenci',
+        description:
+          'Dedykowane rozwiązania dla ustalonego procesu. Określamy, które czynności można automatyzować, a gdzie potrzebna jest decyzja człowieka.',
+      },
+    ]}
+  />
 </BaseLayout>

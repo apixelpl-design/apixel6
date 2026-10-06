@@ -1,0 +1,57 @@
+---
+import { site } from '../data/site';
+import { navigation, pages } from '../data/navigation';
+import ContactDetails from './ContactDetails.astro';
+import { analyticsEnabled } from '../data/analytics';
+---
+
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a
+        class="footer-logo"
+        href="/"
+        aria-label={`${site.name} — strona główna`}
+      >
+        <img
+          src={site.logo}
+          width={site.logoWidth}
+          height={site.logoHeight}
+          alt={site.name}
+          loading="lazy"
+        />
+      </a>
+      <p>{site.footerDescription}</p>
+      <p>{site.areaText}</p>
+    </div>
+    <div>
+      <h2>W czym pomagamy</h2>
+      {navigation.services.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </div>
+    <div>
+      <h2>Poznaj {site.name}</h2>
+      {navigation.about.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </div>
+    <div>
+      <h2>Porozmawiajmy</h2>
+      <ContactDetails variant="footer" showAddress showSocials />
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>
+      © {new Date().getFullYear()} {site.name}
+    </span>
+    <div>
+      <a href={pages.privacy.href}>{pages.privacy.label}</a>
+      {analyticsEnabled && (
+        <button type="button" data-analytics-settings>
+          Ustawienia analityki
+        </button>
+      )}
+    </div>
+  </div>
+</footer>

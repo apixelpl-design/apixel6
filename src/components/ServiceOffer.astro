@@ -1,0 +1,255 @@
+---
+import { primaryServices, type PrimaryServiceId } from '../data/services';
+import { serviceOffers } from '../data/service-offers';
+interface Props {
+  service: PrimaryServiceId;
+}
+const { service } = Astro.props;
+const offer = serviceOffers[service];
+const pricing = primaryServices[service];
+const icons: Record<string, string[]> = {
+  pages: ['M4 4h11v14H4z', 'M8 8h3M8 12h3', 'M15 8h5v14H9v-4'],
+  devices: ['M3 4h16v11H3z', 'M7 20h6M10 15v5', 'M17 11h5v10h-5z'],
+  text: ['M5 4h14v16H5z', 'M8 8h8M8 12h8M8 16h5'],
+  contact: ['M3 5h18v13H3z', 'm3 5 9 7 9-7', 'M8 22h8'],
+  logo: ['m12 3 9 9-9 9-9-9z', 'M8 15 12 8l4 7M10 13h4'],
+  speed: ['M4 18a9 9 0 1 1 16 0', 'm12 13 5-5', 'M6 18h12'],
+  audit: [
+    'M4 3h11v18H4z',
+    'M7 7h5M7 11h3',
+    'M17 12a3 3 0 1 0 0 6 3 3 0 0 0 0-6',
+    'm19 17 3 4',
+  ],
+  visibility: [
+    'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z',
+    'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6',
+  ],
+  click: ['m5 3 4 17 4-6 6-4z', 'm13 14 6 7'],
+  conversion: ['M3 5h18l-7 8v7h-4v-7z'],
+  ranking: ['M3 21h18M6 17v-4M12 17V9M18 17V5', 'm4 9 5-4 4 2 7-5M16 2h4v4'],
+  report: ['M4 3h16v18H4z', 'M8 7h8M8 11h4M8 15h8M8 18h5'],
+};
+---
+
+<div class="service-offer">
+  <div class="offer-price-panel">
+    <div class="offer-price-content">
+      <p class="offer-label">{offer.label}</p>
+      <h3>
+        {offer.title[0]}
+        <br />
+        {offer.title[1]}
+      </h3>
+      <p class="offer-price">
+        {pricing.startingPrice && <span class="offer-from">od</span>}
+        <strong>{new Intl.NumberFormat('pl-PL').format(pricing.price)}</strong>
+        <span>zł netto{pricing.monthly ? ' / miesiąc' : ''}</span>
+      </p>
+      <p class="offer-billing">
+        {pricing.monthly ? 'Abonament miesięczny' : 'Płatność jednorazowa'}
+      </p>
+      <p class="offer-fit">{offer.fit}</p>
+      <a class="button" href="#wycena" data-cta={`${service}_single_offer`}>
+        {offer.cta} <span aria-hidden="true">↗</span>
+      </a>
+      <p class="offer-no-subscription">{offer.note}</p>
+    </div>
+  </div>
+  <div class="offer-features-panel">
+    <p class="features-label">{offer.featuresLabel}</p>
+    <ul class="offer-features">
+      {offer.features.map((feature) => (
+        <li>
+          <svg
+            class="feature-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+            aria-hidden="true"
+          >
+            {icons[feature.icon].map((path) => (
+              <path d={path} />
+            ))}
+          </svg>
+          <h3>{feature.title}</h3>
+          <p>{feature.description}</p>
+        </li>
+      ))}
+    </ul>
+    <div class="offer-delivery">
+      <span aria-hidden="true">↗</span>
+      <p>{offer.delivery}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .service-offer {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.8fr);
+    border: 1px solid var(--line);
+  }
+  .offer-price-panel {
+    background: var(--apx-black);
+    color: var(--apx-white);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .offer-price-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 10px;
+    background: var(--apx-red);
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .offer-price-content {
+    position: relative;
+  }
+  .offer-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
+  }
+  .offer-price-panel h3 {
+    font-size: 30px;
+  }
+  .offer-price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 12px;
+    margin-top: 32px;
+  }
+  .offer-price strong {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 4.5vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+  }
+  .offer-price span {
+    font-size: 18px;
+  }
+  .offer-billing {
+    font-size: 14px;
+    color: var(--apx-muted);
+    margin-top: 10px;
+  }
+  .offer-fit {
+    margin-top: 32px;
+    color: var(--apx-muted);
+  }
+  .button {
+    margin-top: 32px;
+    width: 100%;
+    padding-inline: 16px;
+    font-size: 14px;
+  }
+  .offer-no-subscription {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--apx-muted);
+    margin-top: 16px;
+  }
+  .offer-features-panel {
+    background: var(--apx-white);
+    padding: 32px;
+  }
+  .features-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    padding-bottom: 24px;
+  }
+  .offer-features {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .offer-features li {
+    padding: 24px 20px 24px 0;
+    border-top: 1px solid var(--line);
+  }
+  .offer-features li:nth-child(even) {
+    padding-left: 24px;
+    padding-right: 0;
+  }
+  .feature-icon {
+    color: var(--apx-red);
+    margin-bottom: 16px;
+  }
+  .offer-features h3 {
+    font-size: 21px;
+    letter-spacing: -0.025em;
+  }
+  .offer-features p {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--apx-text-light);
+  }
+  .offer-delivery {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+  }
+  .offer-delivery span {
+    color: var(--apx-red);
+    font-size: 28px;
+    line-height: 1;
+  }
+  .offer-delivery p {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  @media (max-width: 1000px) {
+    .service-offer {
+      grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.3fr);
+    }
+    .offer-price-panel,
+    .offer-features-panel {
+      padding: 28px 24px;
+    }
+  }
+  @media (max-width: 800px) {
+    .service-offer {
+      grid-template-columns: 1fr;
+    }
+    .offer-price-panel {
+      padding: 32px;
+    }
+    .offer-price-panel h3 {
+      font-size: 32px;
+    }
+    .offer-price-content {
+      max-width: 500px;
+    }
+  }
+  @media (max-width: 520px) {
+    .offer-features {
+      grid-template-columns: 1fr;
+    }
+    .offer-features li,
+    .offer-features li:nth-child(even) {
+      padding: 24px 0;
+    }
+    .offer-price-panel,
+    .offer-features-panel {
+      padding: 28px 24px;
+    }
+  }
+</style>

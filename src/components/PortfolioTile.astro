@@ -1,0 +1,158 @@
+---
+import SitePreview from './SitePreview.astro';
+import type { Project } from '../data/projects';
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+const href = project.confidential ? undefined : `/portfolio/${project.slug}/`;
+---
+
+<article class="portfolio-tile">
+  <div class="tile-visual">
+    <div class="tile-desktop">
+      <SitePreview
+        image={project.image}
+        name={project.name}
+        variant="desktop"
+        width={900}
+        widths={[450, 900]}
+        sizes="(max-width:700px) 80vw, 500px"
+        alt={`Projekt strony ${project.name} na komputerze`}
+      />
+    </div>
+    <div class="tile-phone">
+      <SitePreview
+        image={project.mobile}
+        name={`${project.name} na telefonie`}
+        variant="phone"
+        width={240}
+        widths={[120, 240]}
+        sizes="(max-width:700px) 20vw, 100px"
+        alt={`Projekt strony ${project.name} na telefonie`}
+      />
+    </div>
+  </div>
+  <div class="tile-copy">
+    <p class="eyebrow">{project.category}</p>
+    <div class="tile-title">
+      <h3>
+        {href ? (
+          <a href={href}>
+            {project.name} <span aria-hidden="true">↗</span>
+          </a>
+        ) : (
+          project.name
+        )}
+      </h3>
+    </div>
+    <p>{project.summary}</p>
+    {project.url && (
+      <a class="text-link" href={project.url} data-cta="portfolio_website">
+        Otwórz stronę {project.name} <span aria-hidden="true">↗</span>
+      </a>
+    )}
+    {project.confidential && (
+      <p class="tile-private">Projekt z zachowaniem poufności klienta.</p>
+    )}
+  </div>
+</article>
+<style>
+  .portfolio-tile {
+    min-width: 0;
+    border: 1px solid var(--line);
+    background: var(--apx-white);
+  }
+  .tile-visual {
+    background: var(--apx-black);
+    position: relative;
+    padding: 28px 70px 50px 28px;
+    overflow: hidden;
+  }
+  .tile-visual::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 42%;
+    height: 55%;
+    background: var(--apx-red);
+    clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .tile-desktop {
+    position: relative;
+  }
+  .tile-desktop :global(.site-preview-viewport) {
+    aspect-ratio: 16/10;
+  }
+  .tile-phone {
+    position: absolute;
+    width: 18%;
+    right: 20px;
+    bottom: 22px;
+  }
+  .tile-phone :global(.site-preview) {
+    border-radius: 12px;
+    border-width: 3px;
+    box-shadow: 0 10px 20px #0005;
+  }
+  .tile-phone :global(.site-preview-viewport) {
+    aspect-ratio: 9/18;
+  }
+  .tile-copy {
+    padding: 28px;
+  }
+  .tile-copy .eyebrow {
+    margin-bottom: 12px;
+  }
+  .tile-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  h3 {
+    font-size: 32px;
+  }
+  .tile-title a {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 44px;
+    text-decoration: none;
+  }
+  .tile-title a:hover {
+    text-decoration: underline;
+  }
+  .tile-title a span {
+    color: var(--apx-red);
+    font-size: 26px;
+  }
+  .tile-copy > p:not(.eyebrow) {
+    margin-top: 14px;
+    font-size: 15px;
+    color: var(--apx-text-light);
+  }
+  .tile-copy .text-link {
+    margin-top: 16px;
+  }
+  .tile-copy .tile-private {
+    font-size: 12px;
+  }
+  @media (max-width: 520px) {
+    .tile-visual {
+      padding: 22px 56px 40px 22px;
+    }
+    .tile-copy {
+      padding: 24px;
+    }
+    .tile-phone {
+      right: 14px;
+      bottom: 18px;
+      width: 21%;
+    }
+    h3 {
+      font-size: 28px;
+    }
+  }
+</style>

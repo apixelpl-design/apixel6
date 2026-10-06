@@ -1,0 +1,215 @@
+---
+import { pages } from '../data/navigation';
+interface Props {
+  id?: string;
+  service?: string;
+}
+const { id = 'contact', service = 'strona-seo' } = Astro.props;
+---
+
+<form
+  class="contact-form"
+  method="post"
+  action="/api/contact/"
+  data-contact-form
+  data-service={service}
+>
+  <input type="hidden" name="service" value={service} />
+  <input type="hidden" name="requestId" value="" />
+  <div class="form-row">
+    <div>
+      <label for={`${id}-name`}>
+        Imię <span aria-hidden="true">*</span>
+      </label>
+      <input
+        id={`${id}-name`}
+        name="name"
+        autocomplete="given-name"
+        required
+        minlength="2"
+        maxlength="80"
+      />
+      <p class="field-error" data-error-for="name"></p>
+    </div>
+    <div>
+      <label for={`${id}-email`}>
+        E-mail <span aria-hidden="true">*</span>
+      </label>
+      <input
+        id={`${id}-email`}
+        name="email"
+        type="email"
+        autocomplete="email"
+        required
+        maxlength="254"
+      />
+      <p class="field-error" data-error-for="email"></p>
+    </div>
+  </div>
+  <div class="form-row">
+    <div>
+      <label for={`${id}-phone`}>
+        Telefon <span class="optional">opcjonalnie</span>
+      </label>
+      <input
+        id={`${id}-phone`}
+        name="phone"
+        type="tel"
+        autocomplete="tel"
+        maxlength="30"
+      />
+      <p class="field-error" data-error-for="phone"></p>
+    </div>
+    <div>
+      <label for={`${id}-website`}>
+        Obecna strona <span class="optional">opcjonalnie</span>
+      </label>
+      <input
+        id={`${id}-website`}
+        name="website"
+        type="text"
+        inputmode="url"
+        autocomplete="url"
+        placeholder="np. twojafirma.pl"
+        maxlength="300"
+      />
+      <p class="field-error" data-error-for="website"></p>
+    </div>
+  </div>
+  <div>
+    <label for={`${id}-message`}>
+      Czym zajmuje się Twoja firma i czego potrzebujesz?{' '}
+      <span aria-hidden="true">*</span>
+    </label>
+    <textarea
+      id={`${id}-message`}
+      name="message"
+      rows="4"
+      required
+      minlength="10"
+      maxlength="4000"
+      placeholder="Nowa strona, przebudowa czy rozwój widoczności? Wystarczy kilka zdań."
+    ></textarea>
+    <p class="field-error" data-error-for="message"></p>
+  </div>
+  <div class="form-trap" aria-hidden="true">
+    <label for={`${id}-company-url`}>Pozostaw to pole puste</label>
+    <input
+      id={`${id}-company-url`}
+      name="company_url"
+      tabindex="-1"
+      autocomplete="off"
+    />
+  </div>
+  <p class="form-privacy">
+    Dane wykorzystamy do odpowiedzi na Twoje zapytanie.{' '}
+    <a href={pages.privacy.href}>Polityka prywatności</a>. Pola z * są wymagane.
+  </p>
+  <button class="button" type="submit">
+    Wyślij zapytanie <span aria-hidden="true">↗</span>
+  </button>
+  <p class="form-status" aria-live="polite" role="status" tabindex="-1"></p>
+  <noscript>
+    <p class="small">
+      Formularz działa również bez JavaScript. Po wysłaniu zobaczysz
+      potwierdzenie lub informacje o polach do poprawy.
+    </p>
+  </noscript>
+</form>
+<script>
+  import { track } from '../scripts/analytics';
+  import { serviceLabels } from '../data/services';
+  const services = Object.keys(serviceLabels);
+  document
+    .querySelectorAll<HTMLFormElement>('[data-contact-form]')
+    .forEach((form) => {
+      const serviceField = form.elements.namedItem(
+        'service',
+      ) as HTMLInputElement;
+      const queryService = new URLSearchParams(window.location.search).get(
+        'usluga',
+      );
+      if (queryService && services.includes(queryService))
+        serviceField.value = queryService;
+      const status = form.querySelector<HTMLElement>('.form-status')!;
+      const button = form.querySelector<HTMLButtonElement>(
+        'button[type="submit"]',
+      )!;
+      const token = form.elements.namedItem('requestId') as HTMLInputElement;
+      let started = false;
+      let pending = false;
+      let submitted = false;
+      form.addEventListener('input', () => {
+        if (!pending) token.value = '';
+        if (!started) {
+          started = true;
+          track('form_start', { service: serviceField.value });
+        }
+      });
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (pending || submitted || !form.reportValidity()) return;
+        pending = true;
+        token.value ||= crypto.randomUUID();
+        button.disabled = true;
+        button.textContent = 'Wysyłanie…';
+        status.textContent = '';
+        status.classList.remove('is-error', 'is-success');
+        form
+          .querySelectorAll<HTMLElement>('[data-error-for]')
+          .forEach((el) => (el.textContent = ''));
+        form
+          .querySelectorAll('[aria-invalid]')
+          .forEach((el) => el.removeAttribute('aria-invalid'));
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json' },
+            signal: AbortSignal.timeout(20000),
+          });
+          const result = await response.json();
+          if (!response.ok || result.ok !== true) {
+            if (result.fields) {
+              for (const [name, message] of Object.entries(result.fields)) {
+                const error = form.querySelector<HTMLElement>(
+                  `[data-error-for="${name}"]`,
+                );
+                if (error) error.textContent = String(message);
+                const input = form.elements.namedItem(name);
+                if (input instanceof HTMLElement) {
+                  input.setAttribute('aria-invalid', 'true');
+                  if (error) {
+                    error.id ||= `${input.id}-error`;
+                    input.setAttribute('aria-describedby', error.id);
+                  }
+                }
+              }
+            }
+            throw new Error(
+              result.message ||
+                'Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się telefonicznie.',
+            );
+          }
+          submitted = true;
+          status.classList.add('is-success');
+          status.textContent =
+            'Dziękujemy — otrzymaliśmy Twoje zapytanie. Odezwiemy się, aby ustalić zakres i kolejne kroki.';
+          button.textContent = 'Zapytanie wysłane ✓';
+          track('generate_lead', { service: serviceField.value });
+        } catch (error) {
+          status.classList.add('is-error');
+          status.textContent =
+            error instanceof Error &&
+            !['TimeoutError', 'AbortError', 'TypeError'].includes(error.name)
+              ? error.message
+              : 'Nie udało się połączyć z formularzem. Twoja wiadomość pozostaje w polach. Spróbuj ponownie lub zadzwoń.';
+          button.disabled = false;
+          button.textContent = 'Spróbuj wysłać ponownie ↗';
+        } finally {
+          pending = false;
+          status.focus();
+        }
+      });
+    });
+</script>

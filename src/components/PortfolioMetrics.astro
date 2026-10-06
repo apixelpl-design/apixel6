@@ -1,0 +1,139 @@
+---
+import PortfolioIcon from './PortfolioIcon.astro';
+import type { PortfolioMetric } from '../data/portfolio';
+interface Props {
+  metrics: PortfolioMetric[];
+  showHeading?: boolean;
+}
+const { metrics, showHeading = true } = Astro.props;
+---
+
+<div class="portfolio-metrics">
+  {showHeading && (
+    <div class="metrics-heading">
+      <p>Co warto mierzyć po uruchomieniu</p>
+    </div>
+  )}
+  <ol class="metrics-path">
+    {metrics.map((metric) => (
+      <li>
+        <div class="metric-icon">
+          <PortfolioIcon icon={metric.icon} />
+        </div>
+        <h3>{metric.title}</h3>
+        <p>{metric.description}</p>
+      </li>
+    ))}
+  </ol>
+</div>
+<style>
+  .portfolio-metrics {
+    background: var(--apx-white);
+    padding: 28px 36px 32px;
+    border: 1px solid var(--line);
+    border-top: 0;
+  }
+  .metrics-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .metrics-heading p {
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .metrics-path {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px;
+    list-style: none;
+    padding: 0;
+    position: relative;
+  }
+  .metrics-path::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    right: calc(33.333% - 48px);
+    border-top: 1px solid var(--apx-red);
+  }
+  li {
+    position: relative;
+  }
+  li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: -15px;
+    width: 8px;
+    height: 8px;
+    border-top: 1px solid var(--apx-red);
+    border-right: 1px solid var(--apx-red);
+    transform: rotate(45deg);
+  }
+  .metric-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--apx-red);
+    color: var(--apx-red);
+    background: var(--apx-white);
+    position: relative;
+    margin-bottom: 18px;
+  }
+  h3 {
+    font-size: 21px;
+    letter-spacing: -0.035em;
+  }
+  li p {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--apx-text-light);
+    max-width: 340px;
+  }
+  @media (max-width: 700px) {
+    .portfolio-metrics {
+      padding: 24px;
+    }
+    .metrics-heading {
+      display: block;
+    }
+    .metrics-path {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .metrics-path::before {
+      top: 24px;
+      bottom: 40px;
+      right: auto;
+      left: 24px;
+      border-top: 0;
+      border-left: 1px solid var(--apx-red);
+    }
+    li {
+      padding-left: 68px;
+      min-height: 48px;
+    }
+    .metric-icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: 0;
+    }
+    li:not(:last-child)::after {
+      display: none;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    li p {
+      margin-top: 8px;
+      max-width: none;
+    }
+  }
+</style>

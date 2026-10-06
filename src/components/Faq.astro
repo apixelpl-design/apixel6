@@ -1,0 +1,33 @@
+---
+import { commonFaq } from '../data/faq';
+interface Props {
+  items?: { question: string; answer: string }[];
+  title?: string;
+  compact?: boolean;
+}
+const {
+  items = commonFaq,
+  title = 'Dobre pytania przed rozpoczęciem.',
+  compact = false,
+} = Astro.props;
+---
+
+<section class:list={['section section-white', { 'home-faq': compact }]}>
+  <div class={compact ? 'container' : 'container split'}>
+    <div>
+      {!compact && <p class="eyebrow">Zanim podejmiesz decyzję</p>}
+      <h2>{title}</h2>
+    </div>
+    <div class="faq-list">
+      {items.map((item) => (
+        <details class="faq-item">
+          <summary>
+            {item.question}
+            <span aria-hidden="true">+</span>
+          </summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,173 @@
+/* Motion values are rendered by BaseLayout from src/data/motion.ts. */
+.button {
+  transition:
+    background var(--motion-ui) ease,
+    border-color var(--motion-ui) ease,
+    translate var(--motion-ui) var(--motion-ease);
+}
+.button > span[aria-hidden='true'],
+.text-link > span[aria-hidden='true'],
+.contact-action-arrow {
+  transition: translate var(--motion-ui) var(--motion-ease);
+}
+.text-link {
+  transition: text-decoration-color var(--motion-ui) ease;
+}
+.price-card,
+.service-card,
+.scope-item,
+.article-card,
+.portfolio-tile {
+  transition:
+    border-color var(--motion-ui) ease,
+    translate var(--motion-ui) var(--motion-ease);
+}
+.desktop-nav > a:not(.button) {
+  position: relative;
+}
+.desktop-nav > a:not(.button):not([aria-current])::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--apx-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--motion-ui) var(--motion-ease);
+}
+.footer-top a:not(.footer-logo) {
+  transition:
+    color var(--motion-ui) ease,
+    translate var(--motion-ui) var(--motion-ease);
+}
+input,
+textarea,
+select {
+  transition: border-color var(--motion-ui) ease;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .button:hover {
+    translate: 0 -1px;
+  }
+  .button:hover > span[aria-hidden='true'],
+  .text-link:hover > span[aria-hidden='true'],
+  .contact-action:hover .contact-action-arrow {
+    translate: 2px -2px;
+  }
+  .text-link:hover {
+    text-decoration-color: var(--apx-red);
+  }
+  .price-card:hover,
+  .service-card:hover,
+  .scope-item:hover,
+  .article-card:hover,
+  .portfolio-tile:hover {
+    translate: 0 -2px;
+    border-color: var(--apx-red);
+  }
+  .desktop-nav > a:not(.button):hover::after {
+    transform: scaleX(1);
+  }
+  .footer-top a:not(.footer-logo):hover {
+    color: var(--apx-white);
+    translate: 2px 0;
+  }
+}
+.button:active {
+  translate: 0 0;
+}
+.desktop-nav > a:not(.button):focus-visible::after {
+  transform: scaleX(1);
+}
+
+.faq-item summary span {
+  transition: transform var(--motion-ui) var(--motion-ease);
+}
+.faq-item[open] > p {
+  animation: disclosure-entry var(--motion-disclosure) var(--motion-ease);
+}
+@keyframes disclosure-entry {
+  from {
+    opacity: 0.6;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Native disclosure sizing is an optional enhancement; old browsers keep details usable. */
+@supports (interpolate-size: allow-keywords) and
+  selector(details::details-content) {
+  .faq-item {
+    interpolate-size: allow-keywords;
+  }
+  .faq-item::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition:
+      block-size var(--motion-disclosure) var(--motion-ease),
+      opacity var(--motion-ui) ease,
+      content-visibility var(--motion-disclosure) allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+  .faq-item[open] > p {
+    animation: none;
+  }
+}
+.mobile-nav[open] .mobile-links {
+  animation: menu-entry var(--motion-menu) var(--motion-ease);
+}
+@keyframes menu-entry {
+  from {
+    opacity: 0.7;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.menu-mark .menu-line {
+  transform-origin: center;
+  transition:
+    transform var(--motion-ui) var(--motion-ease),
+    opacity var(--motion-ui) ease;
+}
+.menu-mark .menu-line--top {
+  transform: translateY(-5px);
+}
+.menu-mark .menu-line--bottom {
+  transform: translateY(5px);
+}
+.mobile-nav[open] .menu-line--top {
+  transform: rotate(45deg);
+}
+.mobile-nav[open] .menu-line--middle {
+  opacity: 0;
+  transform: scaleX(0.7);
+}
+.mobile-nav[open] .menu-line--bottom {
+  transform: rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after,
+  .faq-item::details-content {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media print {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

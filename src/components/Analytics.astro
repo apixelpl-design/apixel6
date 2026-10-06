@@ -1,0 +1,36 @@
+---
+import { analytics, analyticsEnabled } from '../data/analytics';
+import { pages } from '../data/navigation';
+const { measurementId } = analytics;
+---
+
+{analyticsEnabled && (
+  <div
+    class="consent-panel"
+    data-consent-panel
+    data-measurement-id={measurementId}
+    hidden
+    role="region"
+    aria-label="Analityka strony"
+  >
+    <h2>Czy możemy mierzyć odwiedziny?</h2>
+    <p>
+      Za Twoją zgodą użyjemy Google Analytics do analizy korzystania ze strony.
+      Możesz skontaktować się z nami niezależnie od tej decyzji.{' '}
+      <a href={pages.privacy.href}>Więcej o danych</a>.
+    </p>
+    <div class="consent-actions">
+      <button type="button" data-consent-accept>
+        Zgadzam się
+      </button>
+      <button type="button" data-consent-decline>
+        Bez analityki
+      </button>
+    </div>
+  </div>
+)}
+<script>
+  import { initAnalytics } from '../scripts/analytics';
+  const panel = document.querySelector<HTMLElement>('[data-consent-panel]');
+  if (panel?.dataset.measurementId) initAnalytics(panel.dataset.measurementId);
+</script>

@@ -1,0 +1,55 @@
+---
+import OfferCard from './OfferCard.astro';
+import {
+  primaryServices,
+  additionalServices,
+  type PrimaryServiceId,
+} from '../data/services';
+interface Props {
+  compact?: boolean;
+  id?: string;
+}
+const { compact = false, id = 'ceny' } = Astro.props;
+const serviceIds = Object.keys(primaryServices) as PrimaryServiceId[];
+---
+
+<section
+  class:list={[
+    'section',
+    compact ? 'section-white home-offer' : 'section-dark',
+  ]}
+  id={id}
+>
+  {id !== 'ceny' && <span id="ceny" aria-hidden="true"></span>}
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        {compact ? (
+          <h2>Oferta i ceny</h2>
+        ) : (
+          <>
+            <p class="eyebrow">Koszt i zakres</p>
+            <h2>
+              Dwa etapy.
+              <br />
+              Jasne rozliczenie.
+            </h2>
+          </>
+        )}
+      </div>
+    </div>
+    <div class="pricing-grid">
+      {serviceIds.map((service) => (
+        <OfferCard service={service} />
+      ))}
+    </div>
+    {compact && (
+      <div class="home-offer-extras">
+        <span>Dodatkowo:</span>
+        {Object.values(additionalServices).map((service) => (
+          <a href={service.href}>{service.name}</a>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

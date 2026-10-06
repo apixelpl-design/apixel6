@@ -1,0 +1,85 @@
+---
+import { site } from '../data/site';
+interface Props {
+  variant?: 'section' | 'footer';
+  showAddress?: boolean;
+  showSocials?: boolean;
+}
+const {
+  variant = 'section',
+  showAddress = false,
+  showSocials = false,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    'contact-details',
+    `contact-details--${variant}`,
+    { 'contact-only-details': variant === 'section' },
+  ]}
+>
+  <div
+    class={variant === 'section' ? 'contact-direct' : 'contact-details-links'}
+  >
+    <a
+      href={site.phoneHref}
+      class:list={{
+        'contact-action': variant === 'section',
+        'contact-action--phone': variant === 'section',
+      }}
+    >
+      {variant === 'section' ? (
+        <>
+          <span class="contact-action-copy">
+            <span class="contact-action-label">Zadzwoń</span>
+            <span class="contact-action-value">{site.phone}</span>
+          </span>
+          <span class="contact-action-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </>
+      ) : (
+        site.phone
+      )}
+    </a>
+    <a
+      href={site.emailHref}
+      class:list={{
+        'contact-action': variant === 'section',
+        'contact-action--email': variant === 'section',
+      }}
+    >
+      {variant === 'section' ? (
+        <>
+          <span class="contact-action-copy">
+            <span class="contact-action-label">Napisz e-mail</span>
+            <span class="contact-action-value">{site.email}</span>
+          </span>
+          <span class="contact-action-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </>
+      ) : (
+        site.email
+      )}
+    </a>
+  </div>
+  {showAddress && (
+    <p class="small">
+      {site.address.street}
+      <br />
+      {site.address.postalCode} {site.address.city}
+    </p>
+  )}
+  {variant === 'section' && <p class="small">{site.areaText}</p>}
+  {showSocials && (
+    <div class="social-links">
+      {site.socialLinks.map((link) => (
+        <a href={link.href} target="_blank" rel="noopener noreferrer">
+          {link.label} ↗
+        </a>
+      ))}
+    </div>
+  )}
+</div>

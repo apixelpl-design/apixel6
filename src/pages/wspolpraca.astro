@@ -1,11 +1,53 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { WspolpracaPage } from '../components/WspolpracaPage';
+import PageHero from '../components/PageHero.astro';
+import ContactSection from '../components/ContactSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import { workflows, collaboration } from '../data/process';
 ---
 
 <BaseLayout
-    title="Jak działamy | APIXEL"
-    description="Poznaj proces współpracy z APIXEL: audyt, wdrożenie, aktywna obsługa, raportowanie i skalowanie działań."
+  title="Jak wygląda współpraca — strona i SEO | APIXEL"
+  description="Od rozmowy i wyceny przez projekt oraz wdrożenie strony do miesięcznego SEO. Poznaj zasady zakresu, dostępu i raportowania APIXEL."
+  breadcrumbs={[
+    { name: 'APIXEL', path: '/' },
+    { name: 'Jak pracujemy', path: '/wspolpraca/' },
+  ]}
 >
-    <WspolpracaPage client:load />
+  <PageHero
+    eyebrow="Jak pracujemy"
+    title="Najpierw ustalenia."
+    accent="Potem konkretna praca."
+    description="Strona i pozycjonowanie mają odrębny zakres oraz rozliczenie. Przed startem ustalamy, kto dostarcza materiały, jak zatwierdzasz projekt i co dzieje się po wdrożeniu."
+    compact
+  />
+  <section class="section section-white">
+    <div class="container">
+      <ProcessSteps items={workflows.collaboration} />
+    </div>
+  </section>
+  <section class="section section-light">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Zasady współpracy</p>
+        <h2>
+          Zakres i dostęp
+          <br />
+          ustalamy przed startem.
+        </h2>
+      </div>
+      <div>
+        <ul class="check-list">
+          {collaboration.rules.map((rule) => (
+            <li>{rule}</li>
+          ))}
+        </ul>
+        <p>
+          Sesje zdjęciowe, nagrania i prowadzenie reklam są osobnymi usługami.
+          Nie obiecujemy ich w każdym abonamencie.
+        </p>
+      </div>
+    </div>
+  </section>
+  <ContactSection />
 </BaseLayout>

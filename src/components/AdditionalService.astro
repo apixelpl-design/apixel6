@@ -1,0 +1,77 @@
+---
+import PageHero from './PageHero.astro';
+import ContactSection from './ContactSection.astro';
+import { additionalServices, type AdditionalServiceId } from '../data/services';
+import { pages } from '../data/navigation';
+interface Props {
+  title: string;
+  accent: string;
+  description: string;
+  service: AdditionalServiceId;
+  items: { title: string; description: string }[];
+  scopeNote: string;
+}
+const { title, accent, description, service, items, scopeNote } = Astro.props;
+const { name } = additionalServices[service];
+---
+
+<PageHero
+  eyebrow={name}
+  title={title}
+  accent={accent}
+  description={description}
+  service={service}
+  cta="Porozmawiajmy o zakresie"
+  secondary={{ label: 'Jak pracujemy', href: pages.process.href }}
+  compact
+/>
+<section class="section section-white">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Dobieramy do celu</p>
+        <h2>
+          Konkretny zakres.
+          <br />
+          Osobna wycena.
+        </h2>
+      </div>
+      <p>{scopeNote}</p>
+    </div>
+    <div class="service-cards">
+      {items.map((item) => (
+        <article class="service-card">
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<section class="section section-light">
+  <div class="container split">
+    <div>
+      <p class="eyebrow">Jak zaczynamy</p>
+      <h2>
+        Najpierw cel
+        <br />i sposób pomiaru.
+      </h2>
+    </div>
+    <div>
+      <p>
+        Ustalamy, jaki problem ma rozwiązać usługa i czego potrzebujemy do
+        pracy. Przed rozpoczęciem poznajesz zakres, koszt, termin oraz zasady
+        przekazania materiałów i dostępów.
+      </p>
+      <p>
+        Jeśli projekt wymaga nowej strony lub zmian na obecnej, pokazujemy ten
+        zakres osobno. Dodatkowa usługa nie zastępuje podstawowej oferty ani
+        stałego SEO.
+      </p>
+      <a class="text-link" href="/uslugi/strona/">
+        Poznaj tworzenie stron ↗
+      </a>
+    </div>
+  </div>
+</section>
+<ContactSection service={service} />

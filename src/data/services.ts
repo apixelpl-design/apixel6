@@ -1,87 +1,85 @@
-/* ═══════════════════════════════════════════════════════
-   Shared service card data
-   Used by both homepage Services and /uslugi ServicesPage
-   ═══════════════════════════════════════════════════════ */
+import { websiteOffer } from './website-offer';
+import { seoOffer } from './seo-offer';
 
-export interface ServiceCard {
-    number: string;
-    badge: string;
-    title: string;
-    subtitle: string;
-    items: string[];
-    variant: 'black' | 'white' | 'red' | 'grey' | 'darkblack';
-    href: string;
+export const primaryServices = {
+  strona: {
+    id: 'strona',
+    name: 'Strona internetowa',
+    navLabel: 'Strony www',
+    href: '/uslugi/strona/',
+    billing: 'Jednorazowo',
+    monthly: false,
+    price: websiteOffer.price,
+    startingPrice: false,
+    scope: [
+      ...websiteOffer.features.map((feature) => feature.title),
+      websiteOffer.delivery,
+    ],
+    priceNote:
+      'Stronę dopasowujemy do Twojej firmy. Dodatkowe podstrony i funkcje wyceniamy osobno. Zakres, poprawki i termin ustalamy przed rozpoczęciem.',
+    detailsLabel: 'Szczegóły wykonania strony',
+    quoteLabel: 'Wyceń stronę',
+    quoteService: 'strona',
+  },
+  seo: {
+    id: 'seo',
+    name: 'SEO i rozwój',
+    navLabel: 'Pozycjonowanie',
+    href: '/widocznosc/',
+    billing: 'Miesięcznie',
+    monthly: true,
+    price: seoOffer.price,
+    startingPrice: true,
+    scope: seoOffer.features.map((feature) => feature.scope),
+    priceNote:
+      'Liczbę treści, miesięczny zakres prac i zasady opieki zapisujemy w propozycji.',
+    detailsLabel: 'Szczegóły pozycjonowania',
+    quoteLabel: 'Wyceń stronę i SEO',
+    quoteService: 'strona-seo',
+  },
+};
+
+export const additionalServices = {
+  reklamy: {
+    id: 'reklamy',
+    name: 'Reklamy Google i Meta',
+    href: '/uslugi/reklamy/',
+    summary:
+      'Kampanie kierujące do właściwej oferty. Osobna opłata za obsługę i osobny budżet mediowy.',
+    detailsLabel: 'Poznaj reklamy',
+  },
+  content: {
+    id: 'content',
+    name: 'Zdjęcia i filmy',
+    href: '/uslugi/content/',
+    summary:
+      'Materiały pokazujące Twoje usługi, produkty i firmę. Zakres sesji, dojazdy i montaż ustalamy w wycenie.',
+    detailsLabel: 'Poznaj produkcję materiałów',
+  },
+  automatyzacja: {
+    id: 'automatyzacja',
+    name: 'Automatyzacje',
+    href: '/uslugi/automatyzacja/',
+    summary:
+      'Połączenie formularzy z narzędziami i usprawnienie powtarzalnych zadań. Każde wdrożenie ma osobny zakres.',
+    detailsLabel: 'Poznaj automatyzacje',
+  },
+};
+export const services = { ...primaryServices, ...additionalServices };
+export type PrimaryServiceId = keyof typeof primaryServices;
+export type AdditionalServiceId = keyof typeof additionalServices;
+
+export function priceLabel(
+  amount: number,
+  monthly = false,
+  starting = true,
+): string {
+  return `${starting ? 'od ' : ''}${new Intl.NumberFormat('pl-PL').format(amount)} zł netto${monthly ? ' / miesiąc' : ''}`;
 }
 
-export const services: ServiceCard[] = [
-    {
-        number: '01',
-        badge: 'PODSTAWA',
-        title: 'CHCĘ BYĆ',
-        subtitle: 'WIDOCZNY W INTERNECIE',
-        items: [
-            'Zbudujemy wizerunek w social mediach, który budzi zaufanie',
-            'Sprawimy, że klienci szybko znajdą Cię w wynikach Google',
-            'Zmienimy profil w Google w magnes na zapytania',
-            'Udowodnimy wyniki dzięki przejrzystym raportom',
-        ],
-        variant: 'black',
-        href: '/widocznosc',
-    },
-    {
-        number: '02',
-        badge: 'DODATKOWO',
-        title: 'CHCĘ ORYGINALNY',
-        subtitle: 'CONTENT',
-        items: [
-            'Stworzymy zdjęcia, które skutecznie sprzedają Twoje produkty',
-            'Nagramy wideo, które zatrzymuje uwagę i buduje zaufanie',
-            'Pokażemy profesjonalne i ludzkie oblicze Twojej marki',
-            'Zdobędziemy nowe zasięgi dzięki dynamicznym Rolkom i TikTokom',
-        ],
-        variant: 'white',
-        href: '/uslugi/content',
-    },
-    {
-        number: '03',
-        badge: 'DODATKOWO',
-        title: 'CHCĘ PŁATNE',
-        subtitle: 'KAMPANIE REKLAMOWE',
-        items: [
-            'Umieścimy Cię na szczycie wyników wyszukiwania Google',
-            'Precyzyjnie dotrzemy do Twojej grupy docelowej w Google oraz Meta (Facebook/Instagram)',
-            'Zamienimy niezdecydowanych odwiedzających w kupujących klientów',
-            'Zadbamy o to, by każda złotówka z budżetu pracowała na zysk',
-        ],
-        variant: 'red',
-        href: '/uslugi/reklamy',
-    },
-    {
-        number: '04',
-        badge: 'DODATKOWO',
-        title: 'CHCĘ STRONĘ',
-        subtitle: 'INTERNETOWĄ',
-        items: [
-            'Zaprojektujemy szybką, nowoczesną stronę dopasowaną do Twojej marki',
-            'Zoptymalizujemy ją pod SEO i konwersję od pierwszego dnia',
-            'Zadbamy o responsywność — świetnie wygląda na każdym urządzeniu',
-            'Przekażemy gotową stronę i przeszkolimy z obsługi',
-        ],
-        variant: 'grey',
-        href: '/uslugi/strona',
-    },
-    {
-        number: '05',
-        badge: 'DODATKOWO',
-        title: 'CHCĘ',
-        subtitle: 'AUTOMATYZACJĘ & APLIKACJE',
-        items: [
-            'Zautomatyzujemy powtarzalne procesy w Twojej firmie',
-            'Tworzymy dedykowane aplikacje webowe szyte na miarę',
-            'Połączymy używane przez Ciebie narzędzia i aplikacje',
-            'Wdrożymy chatboty i asystentów AI do obsługi klientów',
-        ],
-        variant: 'darkblack',
-        href: '/uslugi/automatyzacja',
-    },
-];
+export const serviceLabels: Record<string, string> = {
+  'strona-seo': 'Strona i SEO',
+  ...Object.fromEntries(
+    Object.entries(services).map(([id, service]) => [id, service.name]),
+  ),
+};

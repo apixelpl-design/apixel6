@@ -1,0 +1,146 @@
+---
+import SitePreview from './SitePreview.astro';
+import { featuredProjects } from '../data/projects';
+const slides = featuredProjects;
+---
+
+<section
+  class="project-carousel"
+  data-project-carousel
+  data-carousel-running="false"
+  aria-label="Wybrane realizacje"
+  aria-roledescription="karuzela"
+>
+  <div class="project-carousel-stage" aria-live="off">
+    {slides.map((project, index) => (
+      <article
+        id={`home-project-${project.slug}`}
+        class="project-carousel-slide"
+        data-project-slide
+        data-active={index === 0 ? 'true' : 'false'}
+        role="group"
+        aria-roledescription="slajd"
+        aria-label={`${index + 1} z ${slides.length}: ${project.name}`}
+        aria-hidden={index !== 0 ? 'true' : undefined}
+        inert={index !== 0}
+      >
+        <div class="project-carousel-media">
+          <a
+            class="project-preview-link"
+            href={project.url}
+            aria-label={`Zobacz stronę ${project.name}`}
+            data-cta="home_project_preview"
+          >
+            <div class="project-carousel-desktop">
+              <SitePreview
+                image={project.image}
+                name={project.name}
+                variant="hero"
+                frameless
+                browserLabel={new URL(project.url!).hostname.replace(
+                  /^www\./,
+                  '',
+                )}
+                priority={index === 0}
+                width={1200}
+                widths={[600, 1200]}
+                sizes="(max-width: 700px) 100vw, 50vw"
+                eager
+                alt={`Strona ${project.name} na komputerze — realizacja APIXEL`}
+              />
+            </div>
+            <div class="project-carousel-phone">
+              <SitePreview
+                image={project.mobile}
+                name={`${project.name} na telefonie`}
+                variant="phone"
+                frameless
+                priority={false}
+                width={320}
+                widths={[160, 320]}
+                sizes="(max-width: 700px) 25vw, 150px"
+                eager
+                alt={`Mobilna wersja strony ${project.name}`}
+              />
+            </div>
+          </a>
+        </div>
+        <div class="project-carousel-caption">
+          <div class="project-carousel-identity">
+            <h2 class="project-carousel-heading">Wybrane realizacje</h2>
+            <h3>{project.name}</h3>
+            <p class="project-carousel-category">{project.category}</p>
+          </div>
+          <div class="project-carousel-footer">
+            <p>{project.previewDescription ?? project.summary}</p>
+            <a
+              class="project-carousel-link"
+              href={project.url}
+              aria-label={`Zobacz projekt ${project.name}`}
+              data-cta="home_project"
+            >
+              <span>Zobacz projekt</span>
+              <span class="project-carousel-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+  <div
+    class="project-carousel-controls"
+    role="group"
+    aria-label="Wybór realizacji"
+  >
+    <button
+      class="project-carousel-nav"
+      type="button"
+      data-carousel-prev
+      aria-label="Poprzednia realizacja"
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 5 8 12l7 7M8 12h13" />
+      </svg>
+    </button>
+    <div class="project-carousel-pagination">
+      {slides.map((project, index) => (
+        <button
+          class="project-carousel-page"
+          type="button"
+          data-carousel-page={index}
+          aria-label={`Pokaż realizację ${project.name}`}
+          aria-controls={`home-project-${project.slug}`}
+          aria-pressed={index === 0 ? 'true' : 'false'}
+          title={project.name}
+        >
+          <span aria-hidden="true"></span>
+        </button>
+      ))}
+    </div>
+    <button
+      class="project-carousel-nav"
+      type="button"
+      data-carousel-next
+      aria-label="Następna realizacja"
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="m9 5 7 7-7 7M16 12H3" />
+      </svg>
+    </button>
+  </div>
+  <p
+    class="project-carousel-status"
+    data-carousel-status
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    {slides.length > 0 && `1 z ${slides.length}: ${slides[0].name}`}
+  </p>
+</section>
+
+<script>
+  import { initProjectCarousels } from '../scripts/project-carousel';
+  initProjectCarousels();
+</script>

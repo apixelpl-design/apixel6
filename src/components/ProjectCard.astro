@@ -1,0 +1,42 @@
+---
+import SitePreview from './SitePreview.astro';
+import type { Project } from '../data/projects';
+interface Props {
+  project: Project;
+  eager?: boolean;
+}
+const { project, eager = false } = Astro.props;
+---
+
+<article class="project-card">
+  <div class="project-image">
+    <SitePreview
+      image={project.image}
+      name={project.name}
+      width={900}
+      alt={`Projekt strony ${project.name} — widok na komputerze`}
+      eager={eager}
+      sizes="(max-width: 700px) 100vw, 50vw"
+      widths={[450, 900]}
+    />
+  </div>
+  <div class="project-info">
+    <p class="eyebrow">{project.category}</p>
+    <h3>{project.name}</h3>
+    <p>{project.summary}</p>
+    {project.url && (
+      <p>
+        <a class="text-link" href={project.url} data-cta="project_website">
+          Zobacz stronę {project.name} <span aria-hidden="true">↗</span>
+        </a>
+      </p>
+    )}
+    {project.confidential ? (
+      <p class="small">Dane klienta pozostają poufne.</p>
+    ) : (
+      <a class="text-link" href={`/portfolio/${project.slug}/`}>
+        Zobacz zakres projektu {project.name} <span aria-hidden="true">↗</span>
+      </a>
+    )}
+  </div>
+</article>

@@ -1,0 +1,13 @@
+---
+import { primaryServices, type PrimaryServiceId } from '../data/services';
+interface Props {
+  service: PrimaryServiceId;
+}
+const item = primaryServices[Astro.props.service];
+---
+
+<ul class="check-list">
+  {item.scope.map((text) => (
+    <li>{text}</li>
+  ))}
+</ul>

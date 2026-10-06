@@ -1,11 +1,351 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { PortfolioPage } from '../components/PortfolioPage';
+import PortfolioShowcase from '../components/PortfolioShowcase.astro';
+import PortfolioTile from '../components/PortfolioTile.astro';
+import PortfolioIcon from '../components/PortfolioIcon.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { projects } from '../data/projects';
+import { portfolioStories, portfolioJourney } from '../data/portfolio';
+const highlighted = ['seariders', 'mojadwokat'].map((slug) =>
+  projects.find((project) => project.slug === slug)!,
+);
+const otherProjects = projects.filter(
+  (project) => !portfolioStories[project.slug],
+);
 ---
 
 <BaseLayout
-    title="Portfolio | APIXEL"
-    description="Zobacz wybrane realizacje APIXEL: strony, platformy i cyfrowe produkty tworzone z myślą o zaufaniu, szybkości i konwersji."
+  title="Realizacje stron internetowych dla firm | APIXEL"
+  description="Zobacz strony Seariders, MojAdwokat i innych firm. Poznaj zakres wdrożeń, obejrzyj widoki na komputerze i telefonie i porozmawiajmy o Twojej stronie."
+  breadcrumbs={[
+    { name: 'APIXEL', path: '/' },
+    { name: 'Realizacje', path: '/portfolio/' },
+  ]}
 >
-    <PortfolioPage client:load />
+  <header class="portfolio-hero">
+    <div class="container portfolio-intro">
+      <div class="portfolio-intro-copy">
+        <p class="eyebrow">Realizacje APIXEL</p>
+        <h1>
+          Realizacje stron internetowych dla firm.
+          <br />
+          <span class="accent">Zobacz, co wdrożyliśmy.</span>
+        </h1>
+        <p class="portfolio-lead">
+          Oferta rejsów Seariders, specjalizacje kancelarii MojAdwokat i
+          formularz wyceny OkRemovals. Zobacz strony na komputerze i telefonie
+          oraz zakres wykonanych prac.
+        </p>
+        <a
+          class="text-link hero-contact"
+          href="#wycena"
+          data-cta="portfolio_hero"
+        >
+          Porozmawiajmy o Twojej stronie <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div
+        class="hero-route"
+        aria-label="Cel strony: od widoczności do zapytania"
+      >
+        <span class="route-label">Tak myślimy o Twojej stronie</span>
+        <ol>
+          {portfolioJourney.map((step) => (
+            <li>
+              <div class="route-icon">
+                <PortfolioIcon icon={step.icon} />
+              </div>
+              <span>{step.title}</span>
+            </li>
+          ))}
+        </ol>
+        <p>
+          Klient znajduje ofertę.
+          <br />
+          Poznaje usługę. Rozpoczyna kontakt.
+        </p>
+      </div>
+    </div>
+    <div class="container portfolio-jumps">
+      <span>Wybrane projekty</span>
+      <a href="#seariders">
+        Seariders <span aria-hidden="true">↘</span>
+      </a>
+      <a href="#mojadwokat">
+        MojAdwokat <span aria-hidden="true">↘</span>
+      </a>
+      <a href="#inne-projekty">
+        Pozostałe realizacje <span aria-hidden="true">↓</span>
+      </a>
+    </div>
+  </header>
+  <section
+    class="portfolio-featured"
+    aria-label="Wybrane realizacje i cele wdrożenia"
+  >
+    <div class="container">
+      <div class="showcases">
+        {highlighted.map((project, index) => (
+          <PortfolioShowcase
+            project={project}
+            story={portfolioStories[project.slug]}
+            eager={index === 0}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  <section
+    class="portfolio-others"
+    id="inne-projekty"
+    aria-labelledby="other-projects-title"
+  >
+    <div class="container">
+      <div class="other-heading">
+        <div>
+          <p class="eyebrow">Pozostałe realizacje</p>
+          <h2 id="other-projects-title">
+            Strony dla firm transportowych,
+            <br />
+            <span class="accent">pracowni i kancelarii.</span>
+          </h2>
+        </div>
+        <p>
+          Formularz wyceny przeprowadzki, katalog ceramiki i prezentacja usług
+          logistycznych. Zobacz kolejne zastosowania naszych stron.
+        </p>
+      </div>
+      <div class="portfolio-grid">
+        {otherProjects.map((project) => (
+          <PortfolioTile project={project} />
+        ))}
+      </div>
+    </div>
+  </section>
+  <ContactSection />
 </BaseLayout>
+
+<style>
+  .portfolio-hero {
+    color: var(--apx-white);
+    background: var(--apx-black);
+    padding-top: 66px;
+  }
+  .portfolio-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+    gap: 72px;
+    align-items: center;
+    padding-bottom: 54px;
+  }
+  .portfolio-hero .eyebrow {
+    color: var(--apx-muted);
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: clamp(36px, 3.7vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+  }
+  .portfolio-lead {
+    max-width: 640px;
+    margin-top: 24px;
+    color: var(--apx-muted);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .hero-contact {
+    margin-top: 18px;
+  }
+  .hero-contact span {
+    color: var(--apx-red);
+  }
+  .hero-route {
+    border-left: 1px solid #363636;
+    padding-left: 36px;
+  }
+  .route-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apx-muted);
+  }
+  .hero-route ol {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+    position: relative;
+  }
+  .hero-route ol::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    right: calc(33.333% - 36px);
+    border-top: 1px solid var(--apx-red);
+  }
+  .hero-route li {
+    position: relative;
+  }
+  .route-icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    color: var(--apx-white);
+    background: var(--apx-black);
+    border: 1px solid var(--apx-red);
+  }
+  .hero-route li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 21px;
+    width: 7px;
+    height: 7px;
+    transform: rotate(45deg);
+    border-top: 1px solid var(--apx-red);
+    border-right: 1px solid var(--apx-red);
+  }
+  .hero-route li span {
+    display: block;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .hero-route > p {
+    color: var(--apx-muted);
+    margin-top: 24px;
+    font-size: 14px;
+  }
+  .portfolio-jumps {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    border-top: 1px solid #363636;
+    min-height: 76px;
+  }
+  .portfolio-jumps > span {
+    font-size: 12px;
+    color: var(--apx-muted);
+    margin-right: auto;
+  }
+  .portfolio-jumps a {
+    font-family: var(--font-display);
+    font-size: 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    min-height: 44px;
+  }
+  .portfolio-jumps a span {
+    color: var(--apx-red);
+  }
+  .portfolio-jumps a:hover {
+    text-decoration: underline;
+  }
+  .portfolio-featured {
+    background: var(--apx-grey);
+    padding: 72px 0 56px;
+  }
+  .showcases {
+    display: grid;
+    gap: 84px;
+  }
+  .portfolio-others {
+    background: var(--apx-white);
+    padding: 80px 0 96px;
+  }
+  .other-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+  .other-heading > p {
+    max-width: 400px;
+    color: var(--apx-text-light);
+    font-size: 15px;
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+  @media (max-width: 1000px) {
+    .portfolio-intro {
+      gap: 40px;
+      grid-template-columns: 1.5fr 1fr;
+    }
+    .hero-route {
+      padding-left: 24px;
+    }
+    .portfolio-jumps {
+      gap: 24px;
+    }
+    .portfolio-jumps a {
+      gap: 12px;
+    }
+  }
+  @media (max-width: 800px) {
+    .portfolio-hero {
+      padding-top: 48px;
+    }
+    .portfolio-intro {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding-bottom: 28px;
+    }
+    .hero-route {
+      border-left: 0;
+      border-top: 1px solid #363636;
+      padding: 24px 0 0;
+    }
+    .hero-route ol {
+      max-width: 420px;
+      margin-top: 18px;
+    }
+    .hero-route > p {
+      margin-top: 18px;
+    }
+    .portfolio-jumps {
+      flex-wrap: wrap;
+      padding-block: 16px;
+      gap: 8px 24px;
+    }
+    .portfolio-jumps > span {
+      width: 100%;
+    }
+    .portfolio-jumps a {
+      font-size: 14px;
+    }
+    .portfolio-featured {
+      padding-top: 48px;
+    }
+    .showcases {
+      gap: 56px;
+    }
+    .other-heading {
+      display: block;
+    }
+    .other-heading > p {
+      margin-top: 24px;
+    }
+    .portfolio-others {
+      padding: 56px 0;
+    }
+  }
+  @media (max-width: 700px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+    h1 {
+      font-size: 38px;
+    }
+  }
+</style>

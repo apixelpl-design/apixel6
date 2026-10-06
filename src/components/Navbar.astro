@@ -1,0 +1,80 @@
+---
+import { site, contactHref } from '../data/site';
+import { navigation } from '../data/navigation';
+const links = navigation.main;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const active = (href: string) =>
+  currentPath === href.replace(/\/$/, '') ||
+  (['/poradnik/', '/portfolio/'].includes(href) &&
+    currentPath.startsWith(href));
+---
+
+<header class="site-header">
+  <nav class="container nav" aria-label="Nawigacja główna">
+    <a class="brand" href="/" aria-label={`${site.name} — strona główna`}>
+      <img
+        src={site.logo}
+        width={site.logoWidth}
+        height={site.logoHeight}
+        alt={site.name}
+        loading="eager"
+      />
+    </a>
+    <div class="desktop-nav">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          aria-current={active(link.href) ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a class="button button-small" href={contactHref()} data-cta="navigation">
+        {navigation.quoteLabel} <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <details class="mobile-nav">
+      <summary aria-label="Otwórz lub zamknij menu">
+        <span>Menu</span>
+        <svg
+          class="menu-mark"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path class="menu-line menu-line--top" d="M4 12h16" />
+          <path class="menu-line menu-line--middle" d="M4 12h16" />
+          <path class="menu-line menu-line--bottom" d="M4 12h16" />
+        </svg>
+      </summary>
+      <div class="mobile-links">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            aria-current={active(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a class="button" href={contactHref()} data-cta="mobile_navigation">
+          {navigation.quoteLabel} ↗
+        </a>
+      </div>
+    </details>
+  </nav>
+</header>
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('.mobile-nav');
+  menu?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('a')) menu.open = false;
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu?.open) {
+      menu.open = false;
+      menu.querySelector('summary')?.focus();
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (menu?.open && !menu.contains(event.target as Node)) menu.open = false;
+  });
+</script>

@@ -1,0 +1,289 @@
+---
+import SitePreview from '../../components/SitePreview.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import PortfolioMetrics from '../../components/PortfolioMetrics.astro';
+import { projects, type Project } from '../../data/projects';
+import { caseStudies, projectHeadings } from '../../data/case-studies';
+import { portfolioStories } from '../../data/portfolio';
+export function getStaticPaths() {
+  return projects
+    .filter((project) => !project.confidential)
+    .map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+const caseStudy = caseStudies[project.slug];
+const story = portfolioStories[project.slug];
+const seoService = story?.services.find(
+  (service) => service.href === '/widocznosc/',
+);
+const heading =
+  caseStudy?.heading ??
+  projectHeadings[project.slug] ??
+  `Strona internetowa ${project.name}`;
+---
+
+<BaseLayout
+  title={caseStudy?.title ?? `${heading} | APIXEL`}
+  description={caseStudy?.description ?? project.summary}
+  breadcrumbs={[
+    { name: 'APIXEL', path: '/' },
+    { name: 'Realizacje', path: '/portfolio/' },
+    { name: project.name, path: `/portfolio/${project.slug}/` },
+  ]}
+>
+  <header class="page-hero page-hero-compact">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Ścieżka strony">
+        <a href="/portfolio/">Realizacje</a>
+        <span aria-hidden="true">/</span>
+        <span>{project.name}</span>
+      </nav>
+      <p class="eyebrow">{project.category}</p>
+      <h1>{heading}</h1>
+      <p class="lead">{caseStudy?.lead ?? project.summary}</p>
+      <div class="actions">
+        <a class="button" href="#wycena" data-cta="case_hero">
+          Porozmawiajmy o podobnej stronie ↗
+        </a>
+        {project.url && (
+          <a class="text-link" href={project.url} data-cta="case_website">
+            Otwórz stronę {project.name} ↗
+          </a>
+        )}
+      </div>
+    </div>
+  </header>
+  <section class="section section-white">
+    <div class="container">
+      <div class="case-visuals">
+        <SitePreview
+          image={project.image}
+          name={project.name}
+          variant="desktop"
+          width={1200}
+          widths={[600, 1200]}
+          sizes="(max-width:700px) 100vw, 75vw"
+          alt={`Strona ${project.name} na komputerze`}
+          eager
+        />
+        <SitePreview
+          image={project.mobile}
+          name={`${project.name} na telefonie`}
+          variant="phone"
+          width={420}
+          widths={[210, 420]}
+          sizes="(max-width:700px) 175px, 20vw"
+          alt={`Strona ${project.name} na telefonie`}
+        />
+      </div>
+      <div class="case-section">
+        <p class="eyebrow">Potrzeba klienta</p>
+        <h2>{caseStudy?.needHeading ?? 'Z czym przyszedł klient'}</h2>
+        {caseStudy ? (
+          <div class="case-paragraphs">
+            {caseStudy.need.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+        ) : (
+          <p>{project.challenge}</p>
+        )}
+      </div>
+      {caseStudy && story && (
+        <div class="case-goal">
+          <h2>Cel projektu</h2>
+          <p>{story.goal}</p>
+        </div>
+      )}
+      <div class="case-section">
+        <p class="eyebrow">Praca APIXEL</p>
+        <h2>Co wdrożyliśmy</h2>
+        {caseStudy && (
+          <p class="case-implementation-intro">
+            {caseStudy.implementationIntro}
+          </p>
+        )}
+        <ul>
+          {project.scope.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        {caseStudy && (
+          <div class="case-solutions">
+            {caseStudy.solutions.map((solution) => (
+              <article>
+                <h3>{solution.title}</h3>
+                <p>{solution.description}</p>
+              </article>
+            ))}
+          </div>
+        )}
+        {seoService && (
+          <div class="case-seo-link">
+            <p>
+              Prace nad pozycjonowaniem były częścią tej realizacji. Zobacz, nad
+              czym pracujemy w ramach SEO dla firm.
+            </p>
+            <a
+              class="text-link"
+              href={seoService.href}
+              data-cta="case_seo_scope"
+            >
+              {seoService.label} ↗
+            </a>
+          </div>
+        )}
+      </div>
+      {caseStudy && story ? (
+        <div class="case-section">
+          <h2>Co warto mierzyć po uruchomieniu</h2>
+          <p>{caseStudy.measurementIntro}</p>
+          <div class="case-metrics">
+            <PortfolioMetrics metrics={story.metrics} showHeading={false} />
+          </div>
+          <p class="small case-measurement-note">{caseStudy.measurementNote}</p>
+        </div>
+      ) : (
+        <div class="case-section">
+          <p class="eyebrow">Gotowe rozwiązanie</p>
+          <h2>Co zostało wdrożone</h2>
+          <p>{project.outcome}</p>
+        </div>
+      )}
+      {project.results?.length && (
+        <div class="case-section">
+          <p class="eyebrow">Pomiar</p>
+          <h2>Udokumentowane wyniki</h2>
+          <div class="result-grid">
+            {project.results.map((result) => (
+              <article class="result">
+                <strong>{result.value}</strong>
+                <p>{result.label}</p>
+                <p class="small">
+                  Okres: {result.period}
+                  <br />
+                  Źródło: {result.source}
+                </p>
+                <p class="small">{result.context}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
+      {project.technologies.length > 0 && (
+        <p class="tech-list">
+          Technologie użyte w projekcie: {project.technologies.join(' · ')}.
+        </p>
+      )}
+      <div class="case-next-step">
+        <h2>Strona dopasowana do Twojej firmy</h2>
+        <p>
+          Dobierzemy układ i funkcje do Twojej oferty. Poznaj zakres tworzenia
+          stron lub porozmawiajmy o tym, co ma obejmować Twoja witryna.
+        </p>
+        <div class="actions">
+          <a class="button" href="#wycena" data-cta="case_content">
+            Omówmy stronę dla Twojej firmy ↗
+          </a>
+          <a
+            class="text-link"
+            href="/uslugi/strona/"
+            data-cta="case_website_scope"
+          >
+            Zobacz ofertę tworzenia stron internetowych ↗
+          </a>
+          <a class="text-link" href="/portfolio/">
+            Wszystkie realizacje ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ContactSection />
+</BaseLayout>
+
+<style>
+  .case-paragraphs p + p {
+    margin-top: 16px;
+  }
+  .case-goal {
+    padding: 32px;
+    background: var(--apx-black);
+    color: var(--apx-white);
+    border-left: 3px solid var(--apx-red);
+    margin-top: 32px;
+  }
+  .case-goal h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .case-goal p {
+    font-size: 20px;
+    max-width: 900px;
+  }
+  .case-implementation-intro {
+    margin-bottom: 18px;
+  }
+  .case-solutions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    margin-top: 32px;
+  }
+  .case-solutions article {
+    border-top: 2px solid var(--apx-red);
+    padding-top: 20px;
+  }
+  .case-solutions h3 {
+    font-size: 23px;
+    margin-bottom: 12px;
+  }
+  .case-solutions p {
+    color: var(--apx-text-light);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .case-seo-link {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--apx-grey);
+    border-left: 2px solid var(--apx-red);
+  }
+  .case-seo-link .text-link {
+    margin-top: 16px;
+  }
+  .case-metrics {
+    margin-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .case-measurement-note {
+    margin-top: 20px;
+    color: var(--apx-text-light);
+  }
+  .case-next-step {
+    padding-top: 40px;
+  }
+  .case-next-step h2 {
+    font-size: 30px;
+    margin-bottom: 16px;
+  }
+  .case-next-step p {
+    max-width: 760px;
+  }
+  @media (max-width: 700px) {
+    .case-solutions {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .case-goal {
+      padding: 24px;
+    }
+    .case-goal p {
+      font-size: 18px;
+    }
+  }
+</style>

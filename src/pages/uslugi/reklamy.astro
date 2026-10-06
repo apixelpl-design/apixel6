@@ -1,11 +1,38 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { PaidAdsPage } from '../../components/PaidAdsPage';
+import AdditionalService from '../../components/AdditionalService.astro';
 ---
 
 <BaseLayout
-    title="Płatne kampanie reklamowe | APIXEL"
-    description="Prowadzimy kampanie Google Ads, Meta Ads i remarketing oparte na danych, optymalizacji oraz kontroli budżetu."
+  title="Reklamy Google Ads i Meta dla firm | APIXEL"
+  description="Kampanie kierujące do właściwej oferty, pomiar zapytań i kontrola budżetu. Oddzielna wycena obsługi i wydatków reklamowych."
+  breadcrumbs={[
+    { name: 'APIXEL', path: '/' },
+    { name: 'Reklamy', path: '/uslugi/reklamy/' },
+  ]}
 >
-    <PaidAdsPage client:load />
+  <AdditionalService
+    title="Dotrzyj do odbiorców."
+    accent="Mierz jakość zapytań."
+    description="Reklamy mogą dostarczyć ruch podczas rozwoju SEO. Zaczynamy od właściwej oferty, działającego kontaktu i uzgodnionego pomiaru."
+    service="reklamy"
+    scopeNote="Opłata za prowadzenie kampanii i budżet przeznaczony na reklamy są osobnymi kosztami. Pilotaż ma uzgodniony limit wydatków oraz sposób oceny zapytań."
+    items={[
+      {
+        title: 'Google Ads',
+        description:
+          'Kampanie dopasowane do wyszukiwania konkretnych usług. Reklamę kierujemy na stronę, która odpowiada potrzebie odbiorcy.',
+      },
+      {
+        title: 'Facebook i Instagram',
+        description:
+          'Materiały i kampanie dopasowane do odbiorców oraz celu. Produkcję zdjęć i filmów ustalamy osobno, jeśli jest potrzebna.',
+      },
+      {
+        title: 'Pomiar i decyzje',
+        description:
+          'Rozdzielamy kliknięcia, otrzymane zgłoszenia i wartościowe kontakty. Wspólnie oceniamy, czy ruch prowadzi do współpracy.',
+      },
+    ]}
+  />
 </BaseLayout>

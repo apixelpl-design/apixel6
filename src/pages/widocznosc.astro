@@ -1,11 +1,37 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { VisibilityPage } from '../components/VisibilityPage';
+import ServiceOfferSection from '../components/ServiceOfferSection.astro';
+import PortfolioLink from '../components/PortfolioLink.astro';
+import Faq from '../components/Faq.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { serviceFaq } from '../data/faq';
+import { primaryServices, priceLabel } from '../data/services';
+const description = `Pozycjonowanie stron dla firm z Warszawy i okolic ${priceLabel(primaryServices.seo.price, true)}. Audyt, treści, techniczne SEO, poprawa konwersji i miesięczny raport.`;
 ---
 
 <BaseLayout
-    title="Widoczność w internecie | APIXEL"
-    description="Budujemy widoczność firm w Google, social mediach i lokalnych punktach styku z klientem."
+  title="Pozycjonowanie stron internetowych Warszawa | APIXEL"
+  description={description}
+  breadcrumbs={[
+    { name: 'APIXEL', path: '/' },
+    { name: 'Pozycjonowanie', path: '/widocznosc/' },
+  ]}
 >
-    <VisibilityPage client:load />
+  <ServiceOfferSection
+    service="seo"
+    title="Pozycjonowanie stron internetowych"
+    accent="dla firm z Warszawy i okolic."
+  >
+    <div class="portfolio-shortcut" id="realizacje">
+      <PortfolioLink />
+    </div>
+  </ServiceOfferSection>
+  <Faq title="Pytania przed rozpoczęciem SEO" items={serviceFaq.seo} />
+  <ContactSection service="seo" />
 </BaseLayout>
+
+<style>
+  .portfolio-shortcut {
+    margin-top: 24px;
+  }
+</style>

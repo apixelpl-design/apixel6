@@ -1,0 +1,31 @@
+---
+import ServicePrice from './ServicePrice.astro';
+import ServiceScope from './ServiceScope.astro';
+import { primaryServices, type PrimaryServiceId } from '../data/services';
+import { contactHref } from '../data/site';
+interface Props {
+  service: PrimaryServiceId;
+}
+const { service } = Astro.props;
+const item = primaryServices[service];
+---
+
+<article class="price-card">
+  <p class="eyebrow">{item.billing}</p>
+  <h3>{item.name}</h3>
+  <ServicePrice service={service} />
+  <ServiceScope service={service} />
+  <p class="small">{item.priceNote}</p>
+  <div class="price-actions">
+    <a
+      class:list={['button', { 'button-outline': item.monthly }]}
+      href={contactHref(item.quoteService)}
+      data-cta={`${service}_price`}
+    >
+      {item.quoteLabel} <span aria-hidden="true">↗</span>
+    </a>
+    <a class="text-link offer-details" href={item.href}>
+      {item.detailsLabel} ↗
+    </a>
+  </div>
+</article>

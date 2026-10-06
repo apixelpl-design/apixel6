@@ -1,0 +1,127 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import { projects } from '../../data/projects';
+import { site } from '../../data/site';
+import { primaryServices } from '../../data/services';
+export async function getStaticPaths() {
+  return (await getCollection('guides')).map((guide) => ({
+    params: { id: guide.id },
+    props: { guide },
+  }));
+}
+interface Props {
+  guide: CollectionEntry<'guides'>;
+}
+const { guide } = Astro.props;
+const { Content, headings } = await render(guide);
+const project = projects.find(
+  (item) => item.slug === guide.data.relatedProject,
+);
+const path = `/poradnik/${guide.id}/`;
+const servicePath = primaryServices[guide.data.relatedService].href;
+const related = (await getCollection('guides'))
+  .filter((item) => item.id !== guide.id)
+  .slice(0, 3);
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.data.title,
+  description: guide.data.description,
+  datePublished: guide.data.publishedAt.toISOString(),
+  dateModified: (guide.data.updatedAt ?? guide.data.publishedAt).toISOString(),
+  author: { '@type': 'Organization', name: guide.data.author, url: site.url },
+  publisher: { '@id': `${site.url}/#organization` },
+  image: new URL(site.sharingImage, site.url).href,
+  mainEntityOfPage: `${site.url}${path}`,
+  inLanguage: 'pl-PL',
+};
+---
+
+<BaseLayout
+  title={`${guide.data.title} | APIXEL`}
+  description={guide.data.description}
+  type="article"
+  schema={articleSchema}
+  breadcrumbs={[
+    { name: 'APIXEL', path: '/' },
+    { name: 'Poradnik', path: '/poradnik/' },
+    { name: guide.data.title, path },
+  ]}
+>
+  <header class="page-hero page-hero-compact">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Ścieżka strony">
+        <a href="/poradnik/">Poradnik</a>
+        <span aria-hidden="true">/</span>
+        <span>{guide.data.category}</span>
+      </nav>
+      <p class="eyebrow">{guide.data.category}</p>
+      <h1 style="font-size:clamp(32px,3.8vw,52px)">{guide.data.title}</h1>
+      <p class="lead">{guide.data.description}</p>
+      <div class="article-meta">
+        <span>{guide.data.author}</span>
+        <time datetime={guide.data.publishedAt.toISOString()}>
+          Opublikowano:{' '}
+          {guide.data.publishedAt.toLocaleDateString('pl-PL', {
+            timeZone: 'Europe/Warsaw',
+          })}
+        </time>
+      </div>
+    </div>
+  </header>
+  <section class="section section-white">
+    <div class="container article-layout">
+      <article class="article-content">
+        <Content />
+        {project && (
+          <div class="case-section">
+            <h2>Przykład z portfolio APIXEL</h2>
+            <p>{project.summary}</p>
+            <a class="text-link" href={`/portfolio/${project.slug}/`}>
+              Zobacz zakres projektu {project.name} ↗
+            </a>
+          </div>
+        )}
+      </article>
+      <aside class="article-aside">
+        <h2>W tym poradniku</h2>
+        <ul style="padding-left:18px;font-size:14px;margin-top:18px">
+          {headings
+            .filter((h) => h.depth === 2)
+            .map((h) => (
+              <li style="margin-bottom:12px">
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))}
+        </ul>
+        <p>Sprawdź, jak możemy pomóc Twojej firmie.</p>
+        <a class="button" href={servicePath}>
+          Poznaj naszą ofertę ↗
+        </a>
+      </aside>
+    </div>
+  </section>
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Powiązane poradniki</h2>
+      </div>
+      <div class="article-grid">
+        {related.map((item) => (
+          <article class="article-card">
+            <p class="eyebrow">{item.data.category}</p>
+            <h3>
+              <a href={`/poradnik/${item.id}/`}>{item.data.title}</a>
+            </h3>
+            <a class="text-link" href={`/poradnik/${item.id}/`}>
+              Przeczytaj ↗
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <ContactSection service={guide.data.relatedService} />
+</BaseLayout>

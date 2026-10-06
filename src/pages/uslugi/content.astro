@@ -1,11 +1,38 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { ContentPage } from '../../components/ContentPage';
+import AdditionalService from '../../components/AdditionalService.astro';
 ---
 
 <BaseLayout
-    title="Content w internecie | APIXEL"
-    description="Tworzymy zdjęcia, wideo, posty, artykuły i strategię contentową, która wzmacnia markę oraz sprzedaż."
+  title="Zdjęcia i filmy dla firm — materiały na stronę | APIXEL"
+  description="Zdjęcia, filmy i krótkie materiały pokazujące Twoją firmę oraz ofertę. Uzgodniony zakres sesji, montażu i publikacji. APIXEL, Warszawa i okolice."
+  breadcrumbs={[
+    { name: 'APIXEL', path: '/' },
+    { name: 'Zdjęcia i filmy', path: '/uslugi/content/' },
+  ]}
 >
-    <ContentPage client:load />
+  <AdditionalService
+    title="Pokaż, jak pracujesz."
+    accent="Własnymi materiałami."
+    description="Zdjęcia i wideo na stronę oraz do social media. Pomagamy pokazać ofertę, ludzi i wykonane prace w sposób dopasowany do Twojej firmy."
+    service="content"
+    scopeNote="Sesję, dojazd, liczbę materiałów, montaż oraz prawa do wykorzystania ustalamy w osobnej wycenie. Produkcja nie jest automatycznie częścią abonamentu SEO."
+    items={[
+      {
+        title: 'Zdjęcia firmy i oferty',
+        description:
+          'Materiały przedstawiające usługi, produkty, miejsce pracy i zespół. Dobieramy ujęcia do strony oraz sposobu prezentacji firmy.',
+      },
+      {
+        title: 'Filmy i krótkie nagrania',
+        description:
+          'Prezentacja usługi, procesu albo realizacji. Format i montaż dopasowujemy do strony, reklam lub social media.',
+      },
+      {
+        title: 'Plan wykorzystania',
+        description:
+          'Ustalamy, gdzie materiały będą publikowane i co powinny wyjaśniać odbiorcom. Sama sesja i regularna publikacja mają odrębny zakres.',
+      },
+    ]}
+  />
 </BaseLayout>

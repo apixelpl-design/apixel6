@@ -1,0 +1,42 @@
+---
+import ContactForm from './ContactForm.astro';
+import ContactDetails from './ContactDetails.astro';
+import { contact } from '../data/site';
+interface Props {
+  id?: string;
+  service?: string;
+  asPage?: boolean;
+}
+const { id = 'wycena', service = 'strona-seo', asPage = false } = Astro.props;
+const Heading = asPage ? 'h1' : 'h2';
+---
+
+<section
+  class="section contact-section"
+  id={id}
+  data-contact-section
+  data-contact-mode={contact.formEnabled ? 'form' : 'direct'}
+>
+  <div
+    class:list={[
+      'container contact-layout',
+      { 'contact-layout--direct': !contact.formEnabled },
+    ]}
+  >
+    <div class="contact-intro">
+      <Heading>
+        <span>{contact.heading.lead}</span>
+        <span class="contact-heading-accent">{contact.heading.accent}</span>
+      </Heading>
+      <p class="contact-description">
+        {contact.formEnabled ? contact.formDescription : contact.description}
+      </p>
+      {contact.formEnabled && <ContactDetails showAddress={asPage} />}
+    </div>
+    {contact.formEnabled ? (
+      <ContactForm id={`${id}-form`} service={service} />
+    ) : (
+      <ContactDetails showAddress={asPage} />
+    )}
+  </div>
+</section>

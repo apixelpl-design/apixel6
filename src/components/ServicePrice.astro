@@ -1,0 +1,16 @@
+---
+import {
+  primaryServices,
+  priceLabel,
+  type PrimaryServiceId,
+} from '../data/services';
+interface Props {
+  service: PrimaryServiceId;
+  showBilling?: boolean;
+}
+const item = primaryServices[Astro.props.service];
+const { showBilling = false } = Astro.props;
+const label = `${priceLabel(item.price, item.monthly, item.startingPrice)}${showBilling && !item.monthly ? ', jednorazowo' : ''}`;
+---
+
+<p class="price">{label}</p>

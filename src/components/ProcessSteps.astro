@@ -1,0 +1,22 @@
+---
+import type { ProcessStep } from '../data/process';
+interface Props {
+  items: ProcessStep[];
+  compact?: boolean;
+}
+const { items, compact = false } = Astro.props;
+---
+
+<ol class={compact ? 'home-process-steps' : 'steps steps-list'}>
+  {items.map((item, index) => (
+    <li class:list={{ step: !compact }}>
+      <span class={compact ? 'process-stop' : 'step-number'} aria-hidden="true">
+        {compact ? index + 1 : String(index + 1).padStart(2, '0')}
+      </span>
+      <div>
+        <h3>{item.title}</h3>
+        <p>{compact ? (item.summary ?? item.description) : item.description}</p>
+      </div>
+    </li>
+  ))}
+</ol>
