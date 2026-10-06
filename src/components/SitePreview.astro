@@ -77,4 +77,5 @@ const {
 <script>
   import { initSitePreviews } from '../scripts/site-previews';
   initSitePreviews();
+  document.addEventListener('astro:after-swap', initSitePreviews);
 </script>

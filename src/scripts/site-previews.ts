@@ -1,10 +1,13 @@
 import { previewMotion } from '../data/motion';
 
-let initialized = false;
+let cleanupCurrent: (() => void) | null = null;
+let previewsPaused = false;
 
 export function initSitePreviews() {
-  if (initialized) return;
-  initialized = true;
+  cleanupCurrent?.();
+  let disposed = false;
+  const observers: { disconnect: () => void }[] = [];
+  const stopAnimations: (() => void)[] = [];
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mobile = window.matchMedia('(max-width: 700px)');
   const control = document.querySelector<HTMLElement>(
@@ -22,7 +25,7 @@ export function initSitePreviews() {
   const playIcon = control?.querySelector<HTMLElement>(
     '[data-preview-motion-icon="play"]',
   );
-  let paused = false;
+  let paused = previewsPaused;
   let controlAvailable = false;
   let controlFrame = 0;
   let controlHeight = 44;
@@ -34,6 +37,7 @@ export function initSitePreviews() {
   }[] = [];
 
   const syncControl = () => {
+    if (disposed) return;
     if (controlFrame) return;
     controlFrame = requestAnimationFrame(() => {
       controlFrame = 0;
@@ -109,6 +113,7 @@ export function initSitePreviews() {
   toggle?.addEventListener('click', () => {
     if (motion.matches) return;
     paused = !paused;
+    previewsPaused = paused;
     previews.forEach((preview) => preview.update());
     syncControl();
   });
@@ -148,6 +153,7 @@ export function initSitePreviews() {
         frame = 0;
         previousTime = 0;
       };
+      stopAnimations.push(stop);
       const tick = (time: number) => {
         if (previousTime) elapsed += time - previousTime;
         previousTime = time;
@@ -164,6 +170,10 @@ export function initSitePreviews() {
         frame = requestAnimationFrame(tick);
       };
       const update = () => {
+        if (disposed) {
+          stop();
+          return;
+        }
         if (motion.matches) {
           offset = 0;
           elapsed = hold;
@@ -188,6 +198,7 @@ export function initSitePreviews() {
         else if (!frame) frame = requestAnimationFrame(tick);
       };
       const measure = () => {
+        if (disposed) return;
         stop();
         distance = Math.max(0, image.offsetHeight - viewport.clientHeight);
         offset = Math.min(offset, distance);
@@ -229,9 +240,10 @@ export function initSitePreviews() {
       interaction.addEventListener('focusin', update);
       interaction.addEventListener('focusout', () => queueMicrotask(update));
       const resize = new ResizeObserver(measure);
+      observers.push(resize);
       resize.observe(viewport);
       resize.observe(image);
-      new IntersectionObserver(
+      const visibility = new IntersectionObserver(
         (entries) => {
           visible =
             entries[0].isIntersecting &&
@@ -240,7 +252,9 @@ export function initSitePreviews() {
           syncControl();
         },
         { threshold: [0, previewMotion.visibleThreshold] },
-      ).observe(viewport);
+      );
+      observers.push(visibility);
+      visibility.observe(viewport);
       previews.push({
         available: () => visible && distance > 2 && image.naturalWidth > 0,
         rect: () => viewport.getBoundingClientRect(),
@@ -254,4 +268,19 @@ export function initSitePreviews() {
     mobile.addEventListener('change', syncControl);
   }
   syncControl();
+  cleanupCurrent = () => {
+    disposed = true;
+    stopAnimations.forEach((stop) => stop());
+    observers.forEach((observer) => observer.disconnect());
+    document.removeEventListener('visibilitychange', updateAll);
+    motion.removeEventListener('change', updateAll);
+    if (previews.length) {
+      window.removeEventListener('scroll', syncControl);
+      window.removeEventListener('resize', syncControl);
+      mobile.removeEventListener('change', syncControl);
+    }
+    if (controlFrame) cancelAnimationFrame(controlFrame);
+    if (control) control.hidden = true;
+    cleanupCurrent = null;
+  };
 }

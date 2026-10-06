@@ -151,4 +151,5 @@ const slides = featuredProjects;
 <script>
   import { initProjectCarousels } from '../scripts/project-carousel';
   initProjectCarousels();
+  document.addEventListener('astro:after-swap', initProjectCarousels);
 </script>

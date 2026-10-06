@@ -120,96 +120,102 @@ const { id = 'contact', service = 'strona-seo' } = Astro.props;
   import { track } from '../scripts/analytics';
   import { serviceLabels } from '../data/services';
   const services = Object.keys(serviceLabels);
-  document
-    .querySelectorAll<HTMLFormElement>('[data-contact-form]')
-    .forEach((form) => {
-      const serviceField = form.elements.namedItem(
-        'service',
-      ) as HTMLInputElement;
-      const queryService = new URLSearchParams(window.location.search).get(
-        'usluga',
-      );
-      if (queryService && services.includes(queryService))
-        serviceField.value = queryService;
-      const status = form.querySelector<HTMLElement>('.form-status')!;
-      const button = form.querySelector<HTMLButtonElement>(
-        'button[type="submit"]',
-      )!;
-      const token = form.elements.namedItem('requestId') as HTMLInputElement;
-      let started = false;
-      let pending = false;
-      let submitted = false;
-      form.addEventListener('input', () => {
-        if (!pending) token.value = '';
-        if (!started) {
-          started = true;
-          track('form_start', { service: serviceField.value });
-        }
-      });
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        if (pending || submitted || !form.reportValidity()) return;
-        pending = true;
-        token.value ||= crypto.randomUUID();
-        button.disabled = true;
-        button.textContent = 'Wysyłanie…';
-        status.textContent = '';
-        status.classList.remove('is-error', 'is-success');
-        form
-          .querySelectorAll<HTMLElement>('[data-error-for]')
-          .forEach((el) => (el.textContent = ''));
-        form
-          .querySelectorAll('[aria-invalid]')
-          .forEach((el) => el.removeAttribute('aria-invalid'));
-        try {
-          const response = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { Accept: 'application/json' },
-            signal: AbortSignal.timeout(20000),
-          });
-          const result = await response.json();
-          if (!response.ok || result.ok !== true) {
-            if (result.fields) {
-              for (const [name, message] of Object.entries(result.fields)) {
-                const error = form.querySelector<HTMLElement>(
-                  `[data-error-for="${name}"]`,
-                );
-                if (error) error.textContent = String(message);
-                const input = form.elements.namedItem(name);
-                if (input instanceof HTMLElement) {
-                  input.setAttribute('aria-invalid', 'true');
-                  if (error) {
-                    error.id ||= `${input.id}-error`;
-                    input.setAttribute('aria-describedby', error.id);
+  const initContactForms = () => {
+    document
+      .querySelectorAll<HTMLFormElement>('[data-contact-form]')
+      .forEach((form) => {
+        if (form.dataset.contactReady === 'true') return;
+        form.dataset.contactReady = 'true';
+        const serviceField = form.elements.namedItem(
+          'service',
+        ) as HTMLInputElement;
+        const queryService = new URLSearchParams(window.location.search).get(
+          'usluga',
+        );
+        if (queryService && services.includes(queryService))
+          serviceField.value = queryService;
+        const status = form.querySelector<HTMLElement>('.form-status')!;
+        const button = form.querySelector<HTMLButtonElement>(
+          'button[type="submit"]',
+        )!;
+        const token = form.elements.namedItem('requestId') as HTMLInputElement;
+        let started = false;
+        let pending = false;
+        let submitted = false;
+        form.addEventListener('input', () => {
+          if (!pending) token.value = '';
+          if (!started) {
+            started = true;
+            track('form_start', { service: serviceField.value });
+          }
+        });
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          if (pending || submitted || !form.reportValidity()) return;
+          pending = true;
+          token.value ||= crypto.randomUUID();
+          button.disabled = true;
+          button.textContent = 'Wysyłanie…';
+          status.textContent = '';
+          status.classList.remove('is-error', 'is-success');
+          form
+            .querySelectorAll<HTMLElement>('[data-error-for]')
+            .forEach((el) => (el.textContent = ''));
+          form
+            .querySelectorAll('[aria-invalid]')
+            .forEach((el) => el.removeAttribute('aria-invalid'));
+          try {
+            const response = await fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { Accept: 'application/json' },
+              signal: AbortSignal.timeout(20000),
+            });
+            const result = await response.json();
+            if (!response.ok || result.ok !== true) {
+              if (result.fields) {
+                for (const [name, message] of Object.entries(result.fields)) {
+                  const error = form.querySelector<HTMLElement>(
+                    `[data-error-for="${name}"]`,
+                  );
+                  if (error) error.textContent = String(message);
+                  const input = form.elements.namedItem(name);
+                  if (input instanceof HTMLElement) {
+                    input.setAttribute('aria-invalid', 'true');
+                    if (error) {
+                      error.id ||= `${input.id}-error`;
+                      input.setAttribute('aria-describedby', error.id);
+                    }
                   }
                 }
               }
+              throw new Error(
+                result.message ||
+                  'Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się telefonicznie.',
+              );
             }
-            throw new Error(
-              result.message ||
-                'Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się telefonicznie.',
-            );
+            submitted = true;
+            status.classList.add('is-success');
+            status.textContent =
+              'Dziękujemy — otrzymaliśmy Twoje zapytanie. Odezwiemy się, aby ustalić zakres i kolejne kroki.';
+            button.textContent = 'Zapytanie wysłane ✓';
+            track('generate_lead', { service: serviceField.value });
+          } catch (error) {
+            status.classList.add('is-error');
+            status.textContent =
+              error instanceof Error &&
+              !['TimeoutError', 'AbortError', 'TypeError'].includes(error.name)
+                ? error.message
+                : 'Nie udało się połączyć z formularzem. Twoja wiadomość pozostaje w polach. Spróbuj ponownie lub zadzwoń.';
+            button.disabled = false;
+            button.textContent = 'Spróbuj wysłać ponownie ↗';
+          } finally {
+            pending = false;
+            status.focus();
           }
-          submitted = true;
-          status.classList.add('is-success');
-          status.textContent =
-            'Dziękujemy — otrzymaliśmy Twoje zapytanie. Odezwiemy się, aby ustalić zakres i kolejne kroki.';
-          button.textContent = 'Zapytanie wysłane ✓';
-          track('generate_lead', { service: serviceField.value });
-        } catch (error) {
-          status.classList.add('is-error');
-          status.textContent =
-            error instanceof Error &&
-            !['TimeoutError', 'AbortError', 'TypeError'].includes(error.name)
-              ? error.message
-              : 'Nie udało się połączyć z formularzem. Twoja wiadomość pozostaje w polach. Spróbuj ponownie lub zadzwoń.';
-          button.disabled = false;
-          button.textContent = 'Spróbuj wysłać ponownie ↗';
-        } finally {
-          pending = false;
-          status.focus();
-        }
+        });
       });
-    });
+  };
+  initContactForms();
+  document.addEventListener('astro:after-swap', initContactForms);
 </script>

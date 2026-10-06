@@ -4,7 +4,8 @@ import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
 import PreviewMotionControl from '../components/PreviewMotionControl.astro';
 import { site } from '../data/site';
-import { motionCssVariables } from '../data/motion';
+import { motionCssVariables, pageTransition } from '../data/motion';
+import { ClientRouter } from 'astro:transitions';
 import '@fontsource-variable/manrope';
 import '@fontsource-variable/space-grotesk';
 import '../styles/site.css';
@@ -80,7 +81,7 @@ const jsonLd = JSON.stringify(schemas).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
-<html lang="pl" style={motionCssVariables}>
+<html lang="pl" style={motionCssVariables} transition:animate="none">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -104,13 +105,15 @@ const jsonLd = JSON.stringify(schemas).replace(/</g, '\\u003c');
     <title>{title}</title>
     <link rel="canonical" href={canonical} />
     <script type="application/ld+json" set:html={jsonLd} />
+    <ClientRouter fallback="animate" />
   </head>
   <body>
+    <div class="page-transition-progress" aria-hidden="true"></div>
     <a class="skip-link" href="#main">
       Przejdź do treści
     </a>
     <Navbar />
-    <main id="main">
+    <main id="main" transition:animate={pageTransition}>
       <slot />
     </main>
     <PreviewMotionControl />
@@ -119,6 +122,21 @@ const jsonLd = JSON.stringify(schemas).replace(/</g, '\\u003c');
     <script>
       import { initSiteMotion } from '../scripts/site-motion';
       initSiteMotion();
+
+      const root = document.documentElement;
+      let routeProgressTimer = 0;
+      document.addEventListener('astro:before-preparation', () => {
+        window.clearTimeout(routeProgressTimer);
+        root.dataset.routeLoading = 'true';
+      });
+      document.addEventListener('astro:page-load', () => {
+        if (root.dataset.routeLoading !== 'true') return;
+        root.dataset.routeLoading = 'done';
+        routeProgressTimer = window.setTimeout(() => {
+          if (root.dataset.routeLoading === 'done')
+            delete root.dataset.routeLoading;
+        }, 180);
+      });
     </script>
   </body>
 </html>

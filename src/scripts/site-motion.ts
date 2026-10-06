@@ -54,13 +54,28 @@ const revealSelectors = [
   '.footer-top > div',
 ];
 
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+const active = new Map<HTMLElement, Animation>();
+let observer: IntersectionObserver | null = null;
+let lifecycleReady = false;
+
+const finishActive = () => {
+  active.forEach((animation) => animation.cancel());
+  active.clear();
+};
+
+const updatePreference = () => {
+  document.documentElement.dataset.motionMode = reduced.matches
+    ? 'reduced'
+    : 'subtle';
+  if (reduced.matches) finishActive();
+};
+
 export function initSiteMotion() {
-  if (document.documentElement.dataset.motionReady === 'true') return;
   if (!('IntersectionObserver' in window) || !Element.prototype.animate) return;
-  document.documentElement.dataset.motionReady = 'true';
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  observer?.disconnect();
+  finishActive();
   const mobile = window.matchMedia('(max-width: 700px)');
-  const active = new Map<HTMLElement, Animation>();
   const candidates = [
     ...document.querySelectorAll<HTMLElement>(revealSelectors.join(',')),
   ].filter(
@@ -79,25 +94,15 @@ export function initSiteMotion() {
     return true;
   });
 
-  const finishActive = () => {
-    active.forEach((animation) => animation.cancel());
-    active.clear();
-  };
-  const updatePreference = () => {
-    document.documentElement.dataset.motionMode = reduced.matches
-      ? 'reduced'
-      : 'subtle';
-    if (reduced.matches) finishActive();
-  };
   updatePreference();
 
-  const observer = new IntersectionObserver(
+  const pageObserver = new IntersectionObserver(
     (entries) => {
       const groups = new Map<Element, number>();
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const element = entry.target as HTMLElement;
-        observer.unobserve(element);
+        pageObserver.unobserve(element);
         element.dataset.motionState = 'revealed';
         if (
           reduced.matches ||
@@ -144,22 +149,27 @@ export function initSiteMotion() {
     },
     { threshold: 0.08, rootMargin: '0px 0px -24px 0px' },
   );
+  observer = pageObserver;
   targets.forEach((element) => {
     element.dataset.motionState = 'ready';
-    observer.observe(element);
+    pageObserver.observe(element);
   });
-  reduced.addEventListener('change', updatePreference);
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) finishActive();
-  });
-  // Keyboard focus should land on a still, fully readable control.
-  document.addEventListener('focusin', (event) => {
-    active.forEach((animation, element) => {
-      if (element.contains(event.target as Node)) {
-        animation.cancel();
-        active.delete(element);
-      }
+  if (!lifecycleReady) {
+    lifecycleReady = true;
+    reduced.addEventListener('change', updatePreference);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) finishActive();
     });
-  });
-  window.addEventListener('pagehide', finishActive);
+    // Keyboard focus should land on a still, fully readable control.
+    document.addEventListener('focusin', (event) => {
+      active.forEach((animation, element) => {
+        if (element.contains(event.target as Node)) {
+          animation.cancel();
+          active.delete(element);
+        }
+      });
+    });
+    window.addEventListener('pagehide', finishActive);
+    document.addEventListener('astro:after-swap', initSiteMotion);
+  }
 }
