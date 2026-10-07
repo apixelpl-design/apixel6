@@ -4,6 +4,8 @@ const intentionalZeroOpacity = new Set([
   '.project-carousel-slide',
   '.faq-item::details-content',
   '.mobile-nav[open] .menu-line--middle',
+  '.page-transition-progress',
+  'html[data-route-loading=done] .page-transition-progress',
 ]);
 
 function normalizeSelector(selector) {
@@ -46,6 +48,7 @@ export function assertContentVisibility(css) {
     if (!isZero.test(declarations)) continue;
     for (const selector of selectors.split(',')) {
       const normalized = normalizeSelector(selector);
+      if (/^(?:from|to|\d+(?:\.\d+)?%)$/i.test(normalized)) continue;
       assert.ok(
         intentionalZeroOpacity.has(normalized),
         `Content is not hidden until animation runs: unexpected opacity:0 on ${normalized}`,

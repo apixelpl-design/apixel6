@@ -48,7 +48,11 @@ assert.equal(
 const titles = new Set();
 const indexable = [];
 for (const [route, html] of pages) {
-  assert.match(html, /<html lang="pl"/i, `${route}: Polish document language`);
+  assert.equal(
+    attribute(html.match(/<html\b[^>]*>/i)?.[0] ?? '', 'lang'),
+    'pl',
+    `${route}: Polish document language`,
+  );
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `${route}: one H1`);
   assert.equal(
     (html.match(/<main\b/g) ?? []).length,

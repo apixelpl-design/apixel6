@@ -10,7 +10,8 @@ let allowed = false;
 let loaded = false;
 let listenersReady = false;
 let activeMeasurementId = '';
-let lastPageView = '';
+let lastPageViewKey = '';
+let lastPagePath = '';
 
 export function track(name: string, params: AnalyticsParams = {}) {
   if (!allowed) return;
@@ -62,9 +63,9 @@ function startAnalytics() {
     document.head.append(script);
   }
 
-  const page = `${location.pathname}${location.search}`;
-  if (page === lastPageView) return;
-  const pageLocation = `${location.origin}${page}`;
+  const pageKey = `${location.pathname}${location.search}`;
+  if (pageKey === lastPageViewKey) return;
+  const pageLocation = `${location.origin}${location.pathname}`;
   analyticsWindow.gtag?.('config', activeMeasurementId, {
     send_page_view: false,
     page_location: pageLocation,
@@ -76,13 +77,14 @@ function startAnalytics() {
   analyticsWindow.gtag?.('event', 'page_view', {
     page_location: pageLocation,
     page_title: document.title,
-    page_referrer: lastPageView
-      ? `${location.origin}${lastPageView}`
+    page_referrer: lastPagePath
+      ? `${location.origin}${lastPagePath}`
       : document.referrer
         ? new URL(document.referrer).origin
         : '',
   });
-  lastPageView = page;
+  lastPageViewKey = pageKey;
+  lastPagePath = location.pathname;
 }
 
 function handleDocumentClick(event: MouseEvent) {

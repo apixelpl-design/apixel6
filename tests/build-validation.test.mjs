@@ -55,6 +55,9 @@ test('visible default content and native interaction states pass CSS validation'
       .faq-item[open]::details-content { opacity:1 }
     }
     .mobile-nav[open] .menu-line--middle { opacity:0 }
+    .page-transition-progress { opacity:0 }
+    html[data-route-loading=done] .page-transition-progress { opacity:0 }
+    @keyframes astroFadeOut { 0% { opacity:1 } to { opacity:0 } }
   `),
   );
 });

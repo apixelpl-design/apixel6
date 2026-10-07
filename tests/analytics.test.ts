@@ -23,23 +23,30 @@ test('campaign measurement accepts campaign codes and excludes unrelated or unsa
 });
 
 test('analytics requires consent, records no contact values, and stops after withdrawal', () => {
+  const documentListeners = new Map<
+    string,
+    (event: { target: Control }) => void
+  >();
   class Control {
     hidden = true;
-    listeners = new Map<string, () => void>();
-    addEventListener(name: string, callback: () => void) {
-      this.listeners.set(name, callback);
+    selector: string;
+    constructor(selector: string) {
+      this.selector = selector;
+    }
+    closest(selector: string) {
+      return selector === this.selector ? this : null;
     }
     querySelector() {
       return { focus() {} };
     }
     click() {
-      this.listeners.get('click')?.();
+      documentListeners.get('click')?.({ target: this });
     }
   }
-  const panel = new Control();
-  const accept = new Control();
-  const decline = new Control();
-  const settings = new Control();
+  const panel = new Control('[data-consent-panel]');
+  const accept = new Control('[data-consent-accept]');
+  const decline = new Control('[data-consent-decline]');
+  const settings = new Control('[data-analytics-settings]');
   const scripts: unknown[] = [];
   const storage = new Map<string, string>();
   const analyticsWindow: {
@@ -57,18 +64,28 @@ test('analytics requires consent, records no contact values, and stops after wit
         '[data-consent-accept]': accept,
         '[data-consent-decline]': decline,
       })[selector],
-    querySelectorAll: () => [settings],
     createElement: () => ({}),
     head: { append: (script: unknown) => scripts.push(script) },
-    addEventListener() {},
+    addEventListener: (
+      name: string,
+      callback: (event: { target: Control }) => void,
+    ) => documentListeners.set(name, callback),
+  };
+  const fakeLocation = {
+    origin: 'https://www.apixel.pl',
+    pathname: '/kontakt/',
+    hostname: 'www.apixel.pl',
+    search: '?email=test@example.com&utm_source=google',
+    reload: () => reloads++,
   };
   const originals = new Map(
-    ['window', 'document', 'localStorage', 'location'].map((key) => [
+    ['window', 'document', 'localStorage', 'location', 'Element'].map((key) => [
       key,
       Object.getOwnPropertyDescriptor(globalThis, key),
     ]),
   );
   Object.defineProperties(globalThis, {
+    Element: { configurable: true, value: Control },
     window: { configurable: true, value: analyticsWindow },
     document: { configurable: true, value: fakeDocument },
     localStorage: {
@@ -78,16 +95,7 @@ test('analytics requires consent, records no contact values, and stops after wit
         setItem: (key: string, value: string) => storage.set(key, value),
       },
     },
-    location: {
-      configurable: true,
-      value: {
-        origin: 'https://www.apixel.pl',
-        pathname: '/kontakt/',
-        hostname: 'www.apixel.pl',
-        search: '?email=test@example.com&utm_source=google',
-        reload: () => reloads++,
-      },
-    },
+    location: { configurable: true, value: fakeLocation },
   });
   try {
     initAnalytics('invalid');
@@ -118,6 +126,20 @@ test('analytics requires consent, records no contact values, and stops after wit
       JSON.stringify(analyticsWindow.dataLayer),
       /test@example|private/,
     );
+    fakeLocation.pathname = '/poradnik/';
+    fakeLocation.search = '?email=another@example.com';
+    fakeDocument.title = 'Poradnik | APIXEL';
+    documentListeners.get('astro:page-load')?.({ target: panel });
+    const pageViews = analyticsWindow.dataLayer?.filter(
+      (args) => args[1] === 'page_view',
+    );
+    assert.equal(pageViews?.length, 2);
+    assert.deepEqual(pageViews?.[1]?.[2], {
+      page_location: 'https://www.apixel.pl/poradnik/',
+      page_title: 'Poradnik | APIXEL',
+      page_referrer: 'https://www.apixel.pl/kontakt/',
+    });
+    assert.doesNotMatch(JSON.stringify(analyticsWindow.dataLayer), /@example/);
     track('generate_lead', { service: 'strona-seo' });
     assert.ok(
       analyticsWindow.dataLayer?.some((args) => args[1] === 'generate_lead'),
